@@ -9,18 +9,18 @@ public class FolderHeadClick : MonoBehaviour
     public void FolderHeadButtonClick()
     {
         MainMenu m_menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-        FolderHead menuFolderButtons = m_menu.folderHead.GetComponent<FolderHead>();
+        FolderHead menuFolder = m_menu.folderHead.GetComponent<FolderHead>();
         Button button_clicked = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
 
         if (m_menu.isOpen != true)
         {
             m_menu.SetOpen(true);
         }
-        else if (menuFolderButtons.activeButton == button_clicked)
+        else if (menuFolder.activeButton == button_clicked)
         {
             m_menu.SetOpen(false);
         }
 
-        menuFolderButtons.activeButton = button_clicked;
+        menuFolder.activeButton = button_clicked;
     }
 }

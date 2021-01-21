@@ -14,7 +14,8 @@ public class FolderHead : MonoBehaviour
     void Start()
     {
         folderButtons = GetComponentsInChildren<Button>();
-        activeButton = folderButtons[0];
+        if (activeButton == null)
+            activeButton = folderButtons[0];
     }
 
     public void HighlightButton(Button button)
