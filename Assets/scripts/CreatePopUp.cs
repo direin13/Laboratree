@@ -10,7 +10,7 @@ public class CreatePopUp : MonoBehaviour
     {
         panel = new GameObject("Panel");
         panel.AddComponent<CanvasRenderer>();
-        panel.transform.position = new Vector2(350,153);
+        panel.transform.position = new Vector3(350,153,0);
         // Image i = panel.AddComponent<Image>();
         // i.color = Color.blue;
     }
