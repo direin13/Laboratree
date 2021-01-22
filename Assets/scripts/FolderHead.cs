@@ -27,7 +27,7 @@ public class FolderHead : MonoBehaviour
             Image b_img = folderButton.GetComponent<Image>();
             GameObject drop = folderButton.transform.GetChild(0).gameObject;
             RectTransform fButRect = folderButton.GetComponent<RectTransform>();
-            float fButHeight = fButRect.rect.height * GetMainMenu().scaleFactor;
+            float fButHeight = fButRect.rect.height;
 
             if (folderButton != button)
             {
@@ -46,7 +46,7 @@ public class FolderHead : MonoBehaviour
             {
                 b_img.color = color;
                 drop.transform.position = new Vector3(drop.transform.position[0],
-                                                      folderButton.transform.position[1] - (fButHeight / 30),
+                                                      folderButton.transform.position[1] - (fButHeight / 18),
                                                       drop.transform.position[2]);
                 drop.GetComponent<Image>().color = color;
             }

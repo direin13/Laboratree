@@ -6,7 +6,7 @@ using System;
 
 public class MainMenu : MonoBehaviour
 {
-    public float scaleFactor;
+    //public float scaleFactor;
     public GameObject folderHead;
     private Vector3 followPoint;
     public bool isOpen;
@@ -15,15 +15,15 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         Transform tr = gameObject.transform;
-        scaleFactor = (Screen.height / tr.root.gameObject.GetComponent<CanvasScaler>().referenceResolution.x) * 10;
-        ChangePosition(new Vector3(GetPosition()[0], 6f, 0));
+        //scaleFactor = (Screen.height / tr.root.gameObject.GetComponent<CanvasScaler>().referenceResolution.x) * 10;
+        ChangePosition(new Vector3(GetPosition()[0], 4f, GetPosition()[2]));
         ChangeFollowPoint(GetPosition());
         SetOpen(isOpen);
     }
 
     public void ChangeFollowPoint(Vector3 new_pos)
     {
-        followPoint = new_pos * scaleFactor;
+        followPoint = new_pos;
     }
 
     public Vector3 GetPosition()
@@ -70,20 +70,20 @@ public class MainMenu : MonoBehaviour
         if (b)
         {
             isOpen = true;
-            ChangeFollowPoint(new Vector3(0, 110f, 0));
+            ChangeFollowPoint(new Vector3(0, 170f, GetPosition()[2]));
         }
 
         else
         {
             isOpen = false;
-            ChangeFollowPoint(new Vector3(0, 6f, 0));
+            ChangeFollowPoint(new Vector3(0, 4f, GetPosition()[2]));
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        float followSpeed = (float)(Math.Round(300f * Time.deltaTime, 2)) * scaleFactor;
+        float followSpeed = (float)(Math.Round(480f * Time.deltaTime, 2));
         followY(followPoint, followSpeed);
     }
 }
