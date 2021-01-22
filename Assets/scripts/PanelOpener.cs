@@ -4,28 +4,21 @@ using UnityEngine;
 
 public class PanelOpener : MonoBehaviour
 {
-    // public GameObject Panel;
     public GameObject Panel;
-
-    void update()
-    {
-
-    }
 
     public void OpenPanel()
     {
-        // if(Panel != null)
-        // {
 
-        var parent = GameObject.Find("PlantCollectionPage").transform;
+        Camera camera = Camera.main;
+        var parent = GameObject.Find("Collection").transform;
+
         // var Panel = (GameObject)Instantiate(prefab,parent);
         // // Panel.transform.parent = parent;
         // Panel.transform.SetAsLastSibling();
         
         Panel.transform.SetParent(parent);
-        Panel.transform.position = new Vector2(350,153);
+        Panel.transform.position = camera.ScreenToWorldPoint(new Vector2(Screen.width/2,Screen.height/2));
         Panel.SetActive(true);
-        // }
     }
 
     // public void ClosePanel()
