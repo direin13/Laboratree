@@ -31,7 +31,7 @@ public class LeafSprout : MonoBehaviour
 
     public Vector3 mulVec(Vector3 vec1, Vector3 vec2)
     {
-        return new Vector3(vec1[0]*vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
+        return new Vector3(vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
     }
 
     // Start is called before the first frame update
@@ -47,7 +47,7 @@ public class LeafSprout : MonoBehaviour
         //creating each leaf
         for (int i = 0; i < leafCount; i++)
         {
-            GameObject leaf = new GameObject("leaf " + i.ToString());
+            GameObject leaf = new GameObject(name + "' child " + i.ToString());
             leaves[i] = leaf;
 
             leaf.AddComponent<SpriteRenderer>();
@@ -81,12 +81,12 @@ public class LeafSprout : MonoBehaviour
         obj.transform.parent.localScale = scale;        
     }
 
-    public void SetLeavesRotation(float anglePower)
+    public void SetLeavesRotation(float newAngle, float anglePower)
     {
         //sets the spread of the leaves evenly around angle.
         //angle power is how much of the total angle is used
         //anglePower is a float from 0 -> 1
-        float maxAngle = angle * anglePower;
+        float maxAngle = newAngle * anglePower;
         float interval = maxAngle / (leafCount - 1);
         float midInd = leafCount / 2;
 
@@ -147,7 +147,7 @@ public class LeafSprout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        SetLeavesRotation(sproutSize);
+        SetLeavesRotation(angle, sproutSize);
         SetHeightSkew(heightOffset, heightOffsetPower);
         SetBackgroundColor();
     }
