@@ -2163,12 +2163,37 @@ PrefabInstance:
       value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c,
+        type: 3}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: color.b
+      value: 0.17254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: color.g
+      value: 0.35686275
+      objectReference: {fileID: 0}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: color.r
+      value: 0.09019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: leafCount
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: sproutSize
       value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: heightOffset
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: invHeightSkew
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: rotationOffset
@@ -2236,7 +2261,7 @@ PrefabInstance:
     - target: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_Name
-      value: AloeVera (1)
+      value: Aloe 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
@@ -2985,7 +3010,7 @@ PrefabInstance:
     - target: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_Name
-      value: AloeVera
+      value: Aloe
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}

@@ -12,6 +12,7 @@ public class LeafSprout : MonoBehaviour
     public float angle;
     public float sproutSize;
     public float rotationOffset;
+    public bool invHeightSkew;
     public float heightOffset;
     public float heightOffsetPower;
     public Vector3 offsetSpawnPoint;
@@ -88,40 +89,56 @@ public class LeafSprout : MonoBehaviour
         //anglePower is a float from 0 -> 1
         float maxAngle = newAngle * anglePower;
         float interval = maxAngle / (leafCount - 1);
-        float midInd = leafCount / 2;
+        int midInd = leafCount / 2;
+        if (leafCount % 2 == 0)
+        {
+            midInd--;
+        }
 
         for (int i = 0; i <= midInd; i++)
         {
             //get angles on one side and mirror to the other side
             float zAngle = (maxAngle / 2) - (interval * i);
-            zAngle = zAngle - ( (zAngle * rotationOffset) * ((i+1)/(1+midInd)) );
+            zAngle = zAngle - ( (zAngle * rotationOffset) * ((i+1)/(1+(float)midInd)) );
             Vector3 rotation = new Vector3(0, 0, zAngle);
 
             leaves[i].transform.parent.rotation = Quaternion.Euler(rotation);
-            leaves[leafCount-i-1].transform.parent.rotation = Quaternion.Euler(-rotation);
+            leaves[leafCount - i - 1].transform.parent.rotation = Quaternion.Euler(-rotation);
         }
     }
 
-    public void SetHeightSkew(float skewAmount, float offsetAmount)
+    public void SetHeightSkew(float skewAmount, float offsetAmount, bool reverseSkew)
     {
         //sets how much the leaves' height are skewed from the centre
-        //angle power is how much of the total angle is used
+        //offsetAmount represents the amount of skew used the further
+        //the leaf is from the center
         //skewAmount and offSetAMount are floats from  0 -> 1
         int midInd = leafCount / 2;
-
-        for (int i = 0; i < midInd; i++)
+        if (leafCount % 2 == 0)
         {
-            //loop goes from midIndex to opposite ends so leaves are affected
-            //in that order and mirrored on opposite side
-            Vector3 interval = leafScale - ((leafScale * skewAmount) *  ( (i+1)/( (float)midInd+1) ));
-            SetLocalScale(leaves[midInd-i-1], interval);
+            midInd--;
+        }
 
-            if (leafCount % 2 == 0)
-                SetLocalScale(leaves[midInd + i], interval);
+        for (int i = 0; i <= midInd; i++)
+        {
+
+            Vector3 interval = leafScale - ((leafScale * skewAmount) *  ( (i)/( (float)midInd+1) ));
+            
+            if (reverseSkew)
+            {
+                SetLocalScale(leaves[i], interval);
+                SetLocalScale(leaves[leafCount - i - 1], interval);
+            }
+
             else
-                SetLocalScale(leaves[midInd + i + 1], interval);
+            {
+
+                SetLocalScale(leaves[midInd - i], interval);
+                SetLocalScale(leaves[leafCount - midInd + i - 1], interval);
+            }
+
             if (offsetAmount > 0)
-                skewAmount = CutoffFloat(skewAmount + (skewAmount*offsetAmount), 0f, 1f);
+                skewAmount = CutoffFloat(skewAmount + (skewAmount * offsetAmount), 0f, 1f);
         }
     }
 
@@ -148,7 +165,7 @@ public class LeafSprout : MonoBehaviour
     void Update()
     {
         SetLeavesRotation(angle, sproutSize);
-        SetHeightSkew(heightOffset, heightOffsetPower);
+        SetHeightSkew(heightOffset, heightOffsetPower, invHeightSkew);
         SetBackgroundColor();
     }
 }
