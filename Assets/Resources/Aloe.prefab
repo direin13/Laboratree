@@ -178,6 +178,7 @@ MonoBehaviour:
   stem: {fileID: 269094081}
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
   leafCount: 5
+  growthStages: 400
   angle: 140
   sproutSize: 0.8
   rotationOffset: 0.6
@@ -187,6 +188,7 @@ MonoBehaviour:
   offsetSpawnPoint: {x: 0, y: -0.2, z: 0}
   leafScale: {x: 0.29, y: 0.2, z: 0}
   color: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  debug: 1
 --- !u!1 &1427151331
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsTillDeath: 120
-  secondsTillGrowth: 70
+  secondsTillGrowth: 30
   deathTimeSkew: 0.02
   growthTimeSkew: 0
   timeStampObject: {fileID: 0}

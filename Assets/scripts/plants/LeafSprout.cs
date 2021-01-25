@@ -9,6 +9,7 @@ public class LeafSprout : MonoBehaviour
     public GameObject stem;
     public Sprite sprite;
     public int leafCount;
+    public int growthStages;
     private Vector3 spawnPoint;
     public float angle;
     public float sproutSize;
@@ -20,6 +21,9 @@ public class LeafSprout : MonoBehaviour
     public Vector3 leafScale;
     public Color color;
     private GameObject [] leaves;
+
+    private int secondsElapsed;
+    public bool debug;
 
 
     public Vector3 mulVec(Vector3 vec1, Vector3 vec2)
@@ -86,15 +90,15 @@ public class LeafSprout : MonoBehaviour
         obj.transform.parent.localScale = scale;        
     }
 
-    public void SetLeavesRotation(float newAngle, float anglePower)
+    public void SetLeavesRotation(float newAngle, float anglePower, float rotationOffset)
     {
         //sets the spread of the leaves evenly around angle.
         //angle power is how much of the total angle is used
         //anglePower is a float from 0 -> 1
         float maxAngle = newAngle * anglePower;
-        float interval = maxAngle / (leafCount - 1);
-        int midInd = leafCount / 2;
-        if (leafCount % 2 == 0)
+        float interval = maxAngle / (leaves.Length - 1);
+        int midInd = leaves.Length / 2;
+        if (leaves.Length % 2 == 0)
         {
             midInd--;
         }
@@ -111,19 +115,19 @@ public class LeafSprout : MonoBehaviour
                 Vector3 rotation = new Vector3(0, 0, zAngle);
 
                 leaves[i].transform.parent.rotation = Quaternion.Euler(rotation);
-                leaves[leafCount - i - 1].transform.parent.rotation = Quaternion.Euler(-rotation);
+                leaves[leaves.Length - i - 1].transform.parent.rotation = Quaternion.Euler(-rotation);
             }
         }
     }
 
-    public void SetHeightSkew(float skewAmount, float offsetAmount, bool reverseSkew)
+    public void SetHeightSkew(float skewAmount, float offsetAmount, bool reverseSkew, Vector3 leafScale)
     {
         //sets how much the leaves' height are skewed from the centre
         //offsetAmount represents the amount of skew used the further
         //the leaf is from the center
         //skewAmount and offSetAMount are floats from  0 -> 1
-        int midInd = leafCount / 2;
-        if (leafCount % 2 == 0)
+        int midInd = leaves.Length / 2;
+        if (leaves.Length % 2 == 0)
         {
             midInd--;
         }
@@ -136,14 +140,14 @@ public class LeafSprout : MonoBehaviour
             if (reverseSkew)
             {
                 SetLocalScale(leaves[i], interval);
-                SetLocalScale(leaves[leafCount - i - 1], interval);
+                SetLocalScale(leaves[leaves.Length - i - 1], interval);
             }
 
             else
             {
 
                 SetLocalScale(leaves[midInd - i], interval);
-                SetLocalScale(leaves[leafCount - midInd + i - 1], interval);
+                SetLocalScale(leaves[leaves.Length - midInd + i - 1], interval);
             }
 
             if (offsetAmount > 0)
@@ -153,7 +157,7 @@ public class LeafSprout : MonoBehaviour
 
     public void SetBackgroundColor()
     {
-        for (int i = 0; i < leafCount; i++)
+        for (int i = 0; i < leaves.Length; i++)
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
             Transform tf = leaves[i].transform;
@@ -173,6 +177,7 @@ public class LeafSprout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         rotationOffset = NumOp.Cutoff(rotationOffset, 0f, 1f);
         sproutSize = NumOp.Cutoff(sproutSize, 0f, 1f);
         heightOffset = NumOp.Cutoff(heightOffset, 0f, 1f);
@@ -181,8 +186,22 @@ public class LeafSprout : MonoBehaviour
         if (leafCount != leaves.Length)
             leaves = CreateLeaves(leafCount);
 
-        SetLeavesRotation(angle, sproutSize);
-        SetHeightSkew(heightOffset, heightOffsetPower, invHeightSkew);
+        PlantRates plant = transform.root.gameObject.GetComponent<PlantRates>();
+        if (plant.timeStampObject.GetComponent<Timer>().Tick())
+        {
+            secondsElapsed = secondsElapsed + 1;
+        }
+
+        float growthAmount = plant.GetGrowthAmount(secondsElapsed, growthStages);
+
+        SetLeavesRotation(angle*growthAmount, sproutSize*growthAmount, rotationOffset*growthAmount);
+        SetHeightSkew(heightOffset*growthAmount, heightOffsetPower*growthAmount, invHeightSkew, leafScale*growthAmount);
         SetBackgroundColor();
+
+        if (debug)
+        {
+            print("Seconds elapsed: " + secondsElapsed.ToString());
+            print("Growth amount: " + growthAmount.ToString());
+        }
     }
 }
