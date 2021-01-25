@@ -83,6 +83,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &353368829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 353368831}
+  - component: {fileID: 353368830}
+  m_Layer: 6
+  m_Name: Fertiliser Interval
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &353368831
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353368829}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1890919240}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353368830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353368829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.1
+  dependencyEfficiency: 1
+  minValue: 2000
+  maxValue: 2000000
+  optimumValue: 100000
+  currValue: 100000
 --- !u!1 &565172579
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,6 +187,187 @@ MonoBehaviour:
   offsetSpawnPoint: {x: 0, y: -0.2, z: 0}
   leafScale: {x: 0.29, y: 0.2, z: 0}
   color: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+--- !u!1 &1427151331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1427151332}
+  - component: {fileID: 1427151333}
+  m_Layer: 6
+  m_Name: Water Interval
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1427151332
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427151331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1890919240}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1427151333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427151331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.3
+  dependencyEfficiency: 1
+  minValue: 2000
+  maxValue: 2000000
+  optimumValue: 101000
+  currValue: 101000
+--- !u!1 &1535978376
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1535978377}
+  - component: {fileID: 1535978378}
+  m_Layer: 6
+  m_Name: Temperature
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1535978377
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535978376}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1890919240}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1535978378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1535978376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.3
+  dependencyEfficiency: 1
+  minValue: 10
+  maxValue: 30
+  optimumValue: 20
+  currValue: 20
+--- !u!1 &1890919239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1890919240}
+  m_Layer: 6
+  m_Name: Dependencies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1890919240
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890919239}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2092136191}
+  - {fileID: 1535978377}
+  - {fileID: 1427151332}
+  - {fileID: 353368831}
+  m_Father: {fileID: 1487364218792195063}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2092136190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2092136191}
+  - component: {fileID: 2092136192}
+  m_Layer: 6
+  m_Name: Light Intensity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2092136191
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092136190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1890919240}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2092136192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092136190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.3
+  dependencyEfficiency: 1
+  minValue: 1000
+  maxValue: 10000
+  optimumValue: 5500
+  currValue: 5500
 --- !u!1 &2652030684054046656
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +381,6 @@ GameObject:
   - component: {fileID: 2911030038140038826}
   - component: {fileID: 2911030038140038827}
   - component: {fileID: 1651670677}
-  - component: {fileID: 1017648178}
   m_Layer: 6
   m_Name: Aloe
   m_TagString: Untagged
@@ -173,6 +402,7 @@ Transform:
   - {fileID: 2911030037602206598}
   - {fileID: 269094082}
   - {fileID: 565172580}
+  - {fileID: 1890919240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -288,29 +518,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SecondsTillDeath: 60
-  lightDependanceRate: 0.5
-  soilDependanceRate: 0
-  tempDependanceRate: 0.25
-  wateringDependanceRate: 0.25
-  lightEfficiency: 1
-  soilEfficiency: 1
-  tempEfficiency: 1
-  wateringEfficiency: 1
---- !u!114 &1017648178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652030684054046656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 495f09c0e5282464882e46923412f76c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minimumLumen: 1000
-  maximumLumen: 10000
-  currLumenVal: 5500
+  allDependencies:
+  - {fileID: 2092136190}
+  - {fileID: 1535978376}
+  - {fileID: 1427151331}
+  - {fileID: 353368829}
 --- !u!1 &2911030037602206599
 GameObject:
   m_ObjectHideFlags: 0
