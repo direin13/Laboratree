@@ -517,12 +517,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3180c11263f04f4eb6244919a356b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SecondsTillDeath: 60
+  secondsTillDeath: 120
+  secondsTillGrowth: 70
+  deathTimeSkew: 0.02
+  growthTimeSkew: 0
+  timeStampObject: {fileID: 0}
   allDependencies:
   - {fileID: 2092136190}
   - {fileID: 1535978376}
   - {fileID: 1427151331}
   - {fileID: 353368829}
+  debug: 0
 --- !u!1 &2911030037602206599
 GameObject:
   m_ObjectHideFlags: 0

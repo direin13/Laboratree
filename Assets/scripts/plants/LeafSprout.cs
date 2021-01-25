@@ -104,7 +104,7 @@ public class LeafSprout : MonoBehaviour
             //get angles on one side and mirror to the other side
             float zAngle = (maxAngle / 2) - (interval * i);
             zAngle = zAngle - ( (zAngle * rotationOffset) * ((i+1)/(1+(float)midInd)) );
-            zAngle = NumOp.Cutoff(zAngle, 0, zAngle);
+            zAngle = NumOp.Cutoff(zAngle, 0, 360f);
 
             if (zAngle >= 0)
             {
