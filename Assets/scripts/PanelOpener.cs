@@ -5,7 +5,7 @@ using UnityEngine;
 public class PanelOpener : MonoBehaviour
 {
     public GameObject Panel;
-
+    
     public void OpenPanel()
     {
 
@@ -18,6 +18,9 @@ public class PanelOpener : MonoBehaviour
         
         Panel.transform.SetParent(parent);
         // Panel.transform.position = camera.ScreenToWorldPoint(new Vector2(Screen.width/2,Screen.height/2));
+        
+        Panel.transform.position = new Vector2(245,145);       
+        
         Panel.SetActive(true);
     }
 
