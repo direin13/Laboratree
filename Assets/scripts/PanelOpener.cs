@@ -9,15 +9,15 @@ public class PanelOpener : MonoBehaviour
     public void OpenPanel()
     {
 
-        Camera camera = Camera.main;
-        var parent = GameObject.Find("Collection").transform;
+        // Camera camera = Camera.main;
+        var parent = GameObject.Find("PlantCollectionPage").transform;
 
         // var Panel = (GameObject)Instantiate(prefab,parent);
         // // Panel.transform.parent = parent;
         // Panel.transform.SetAsLastSibling();
         
         Panel.transform.SetParent(parent);
-        Panel.transform.position = camera.ScreenToWorldPoint(new Vector2(Screen.width/2,Screen.height/2));
+        // Panel.transform.position = camera.ScreenToWorldPoint(new Vector2(Screen.width/2,Screen.height/2));
         Panel.SetActive(true);
     }
 
