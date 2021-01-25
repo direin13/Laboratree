@@ -49,9 +49,9 @@ public class LeafSprout : MonoBehaviour
             newLeaves[i] = leaf;
 
             leaf.AddComponent<SpriteRenderer>();
-            SpriteRenderer sr = leaf.GetComponent<SpriteRenderer>();
-            sr.sprite = sprite;
-            sr.color = color;
+            SpriteRenderer leafSpriteRenderer = leaf.GetComponent<SpriteRenderer>();
+            leafSpriteRenderer.sprite = sprite;
+            leafSpriteRenderer.color = color;
 
             //setting the scale and default position of each leaf
             //each leaf has a node (not visible) at the bottom of the sprite.
@@ -61,7 +61,7 @@ public class LeafSprout : MonoBehaviour
             leaf.transform.parent = leafNode.transform;
 
             float stemHeight = stemSprite.bounds.size.y;
-            leaf.transform.position = leaf.transform.position + new Vector3(0, (sr.bounds.size.y / 2), 0);
+            leaf.transform.position = leaf.transform.position + new Vector3(0, (leafSpriteRenderer.bounds.size.y / 2), 0);
             leafNode.transform.position = spawnPoint + new Vector3(0, (stemHeight / 2), 0);
 
             SetLocalScale(leaf, leafScale);
