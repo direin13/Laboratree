@@ -54,7 +54,6 @@ public class PlantRates : MonoBehaviour
         BalanceFloats(allDependencies, 0, maxEfficiency);
 
         timeStampObject.GetComponent<Timer>().Set(name + " currentSecondsTillDeath", secondsTillDeath);
-        timeStampObject.GetComponent<Timer>().Set(name + " currentSecondsTillGrowth", secondsTillGrowth);
     }
 
 
@@ -143,22 +142,42 @@ public class PlantRates : MonoBehaviour
         float actualGrowthEffic = (currEffic - (currEffic * growthTimeSkew));
 
         int currentSecondsTillDeath = (int)((float)secondsTillDeath * actualDeathEffic );
-        int currentSecondsTillGrowth = secondsTillGrowth + ( secondsTillGrowth - (int)( (float)secondsTillGrowth * actualGrowthEffic) );
+        secondsTillGrowth = secondsTillGrowthOrigin + ( secondsTillGrowthOrigin - (int)( (float)secondsTillGrowthOrigin * actualGrowthEffic) );
 
         timeStampObject.GetComponent<Timer>().Change(name + " currentSecondsTillDeath", currentSecondsTillDeath);
-        timeStampObject.GetComponent<Timer>().Change(name + " currentSecondsTillGrowth", currentSecondsTillGrowth);
 
         //constant countdown
         if (timeStampObject.GetComponent<Timer>().Tick())
         {
             secondsTillDeath = NumOp.Cutoff(secondsTillDeath-1, 0, secondsTillDeath);
-            secondsTillGrowth = NumOp.Cutoff(secondsTillGrowth-1, 0, secondsTillGrowth);
         }
 
         if (debug)
         {
             timeStampObject.GetComponent<Timer>().PrintTime(name + " currentSecondsTillDeath");
-            timeStampObject.GetComponent<Timer>().PrintTime(name + " currentSecondsTillGrowth");
         }
+    }
+
+    public float GetGrowthAmount(float timeElapsed, int numOfStages)
+    {
+        float growthAmount;
+        if (numOfStages <= 0)
+        {
+            growthAmount = 1f;
+        }
+        else
+        {
+            float stageInterval = (float)secondsTillGrowth / numOfStages;
+            float stage = (int)((float)timeElapsed / stageInterval);
+            growthAmount = NumOp.Cutoff(stage / numOfStages, 0f, 1f);
+        }
+
+        return growthAmount;
+    }
+
+    public float GetLifeAmount()
+    {
+        float lifePercentLeft = 0;
+        return lifePercentLeft;
     }
 }

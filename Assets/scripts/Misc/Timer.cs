@@ -5,24 +5,29 @@ using MiscFunctions;
 
 public class Timer : MonoBehaviour
 {
-    private readonly Dictionary<string, int> timeStamps = new Dictionary<string, int>();
-    private int prevSec;
+    private readonly Dictionary<string, float> timeStamps = new Dictionary<string, float>();
+    private float prevSec;
     private bool secPassed;
 
     // Start is called before the first frame update
     void Start()
     {
-        prevSec = (int)Time.time;
+        prevSec = (float)Time.time;
         secPassed = false;
     }
 
-    public void Set(string name, int seconds)
+    public void Set(string name, float seconds)
     {
         seconds = NumOp.Cutoff(seconds, 0, seconds);
         timeStamps.Add(name, prevSec + seconds);
     }
 
-    public void Change(string name, int seconds)
+    public float Get(string name)
+    {
+        return timeStamps[name];
+    }
+
+    public void Change(string name, float seconds)
     {
         seconds = NumOp.Cutoff(seconds, 0, seconds);
         timeStamps[name] = timeStamps[name] + (seconds - timeStamps[name]);
@@ -51,10 +56,10 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((int)Time.time > prevSec)
+        if ((float)Time.time - prevSec >= 1f)
         {
             secPassed = true;
-            prevSec = (int)(Time.time);
+            prevSec = (float)(Time.time);
         }
         else
         {
