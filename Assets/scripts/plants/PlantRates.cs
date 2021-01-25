@@ -30,8 +30,6 @@ public class PlantRates : MonoBehaviour
     public bool debug;
 
 
-
-
     public DependenceAttribute GetDepComp(GameObject dep)
     {
         return dep.GetComponent<DependenceAttribute>();
@@ -108,8 +106,9 @@ public class PlantRates : MonoBehaviour
         string text = name + " currentSfficiency >> ";
         foreach (GameObject obj in values)
         {
-            currEffic = currEffic + (GetDepComp(obj).dependencyAmount * GetDepComp(obj).dependencyEfficiency);
-            text = text + String.Format("{0}: {1} ", obj.name, GetDepComp(obj).dependencyAmount * GetDepComp(obj).dependencyEfficiency);
+            float subEffic = GetDepComp(obj).dependencyAmount * GetDepComp(obj).dependencyEfficiency;
+            currEffic = currEffic + subEffic;
+            text = text + String.Format("{0}: {1} ", obj.name, subEffic);
         }
         if (debug)
             print(text + " Current Efficiency: " + currEffic);
