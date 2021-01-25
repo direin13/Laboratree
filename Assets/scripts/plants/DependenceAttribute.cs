@@ -9,7 +9,7 @@ public class DependenceAttribute : MonoBehaviour
     //Dependecy is an attribute that affects the plants overall efficiency
     //Each dependency has an optimum value which represents the best case scenario
     //for that dependency, for example if a dependency was light intensity, an optimum range
-    //could be somewhere between the min and max. This would be the optimum value
+    //could be somewhere between the min and max. By default it's half way.
 
     public float dependencyAmount;
     private float prevDepAmount;
@@ -36,7 +36,8 @@ public class DependenceAttribute : MonoBehaviour
         maxValue = NumOp.Cutoff(maxValue, minValue, maxValue);
         if (optimumValue < minValue || optimumValue > maxValue)
             optimumValue = minValue + (Math.Abs(maxValue - minValue) / 2);
-        //Get efficiency of light, the closer to the optimum it is, the higher the efficiency
+
+        //Get efficiency of dependency, the closer to the optimum it is, the higher the efficiency
         if (currValue <= optimumValue)
         {
             dependencyEfficiency = NumOp.Cutoff((float)(currValue - minValue) / (float)(optimumValue - minValue), 0, 1f);
