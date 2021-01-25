@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using MiscFunctions;
 
 public class LeafSprout : MonoBehaviour
 {
@@ -20,36 +21,32 @@ public class LeafSprout : MonoBehaviour
     public Color color;
     private GameObject [] leaves;
 
-    private float CutoffFloat(float val, float start, float end)
-    {
-        if (val > end)
-            return end;
-        else if (val < start)
-            return start;
-        else
-            return val;
-    }
 
     public Vector3 mulVec(Vector3 vec1, Vector3 vec2)
     {
         return new Vector3(vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public GameObject [] CreateLeaves(int amount)
     {
+        if (leaves != null)
+        {
+            foreach (GameObject leaf in leaves)
+                Destroy(leaf.transform.parent.gameObject); //LeafNode
+        }
+
         SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
-        spawnPoint = new Vector3(stemSprite.transform.position[0], 
-                                 stemSprite.transform.position[1], 
+        spawnPoint = new Vector3(stemSprite.transform.position[0],
+                                 stemSprite.transform.position[1],
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
 
-        leaves = new GameObject[leafCount];
+        GameObject [] newLeaves = new GameObject[amount];
 
         //creating each leaf
-        for (int i = 0; i < leafCount; i++)
+        for (int i = 0; i < amount; i++)
         {
             GameObject leaf = new GameObject(name + "' child " + i.ToString());
-            leaves[i] = leaf;
+            newLeaves[i] = leaf;
 
             leaf.AddComponent<SpriteRenderer>();
             SpriteRenderer sr = leaf.GetComponent<SpriteRenderer>();
@@ -64,17 +61,24 @@ public class LeafSprout : MonoBehaviour
             leaf.transform.parent = leafNode.transform;
 
             float stemHeight = stemSprite.bounds.size.y;
-            leaf.transform.position = leaf.transform.position + new Vector3(0, (sr.bounds.size.y/2), 0);
+            leaf.transform.position = leaf.transform.position + new Vector3(0, (sr.bounds.size.y / 2), 0);
             leafNode.transform.position = spawnPoint + new Vector3(0, (stemHeight / 2), 0);
 
             SetLocalScale(leaf, leafScale);
 
         }
-        rotationOffset = CutoffFloat(rotationOffset, 0f, 1f);
-        sproutSize = CutoffFloat(sproutSize, 0f, 1f);
-        heightOffset = CutoffFloat(heightOffset, 0f, 1f);
-        angle = CutoffFloat(angle, 0f, 360f);
+        return newLeaves;
+    }
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
+        spawnPoint = new Vector3(stemSprite.transform.position[0], 
+                                 stemSprite.transform.position[1], 
+                                 stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
+
+        leaves = CreateLeaves(leafCount);
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
@@ -100,10 +104,15 @@ public class LeafSprout : MonoBehaviour
             //get angles on one side and mirror to the other side
             float zAngle = (maxAngle / 2) - (interval * i);
             zAngle = zAngle - ( (zAngle * rotationOffset) * ((i+1)/(1+(float)midInd)) );
-            Vector3 rotation = new Vector3(0, 0, zAngle);
+            zAngle = NumOp.Cutoff(zAngle, 0, zAngle);
 
-            leaves[i].transform.parent.rotation = Quaternion.Euler(rotation);
-            leaves[leafCount - i - 1].transform.parent.rotation = Quaternion.Euler(-rotation);
+            if (zAngle >= 0)
+            {
+                Vector3 rotation = new Vector3(0, 0, zAngle);
+
+                leaves[i].transform.parent.rotation = Quaternion.Euler(rotation);
+                leaves[leafCount - i - 1].transform.parent.rotation = Quaternion.Euler(-rotation);
+            }
         }
     }
 
@@ -138,7 +147,7 @@ public class LeafSprout : MonoBehaviour
             }
 
             if (offsetAmount > 0)
-                skewAmount = CutoffFloat(skewAmount + (skewAmount * offsetAmount), 0f, 1f);
+                skewAmount = NumOp.Cutoff(skewAmount + (skewAmount * offsetAmount), 0f, 1f);
         }
     }
 
@@ -164,6 +173,14 @@ public class LeafSprout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rotationOffset = NumOp.Cutoff(rotationOffset, 0f, 1f);
+        sproutSize = NumOp.Cutoff(sproutSize, 0f, 1f);
+        heightOffset = NumOp.Cutoff(heightOffset, 0f, 1f);
+        angle = NumOp.Cutoff(angle, 0f, 360f);
+
+        if (leafCount != leaves.Length)
+            leaves = CreateLeaves(leafCount);
+
         SetLeavesRotation(angle, sproutSize);
         SetHeightSkew(heightOffset, heightOffsetPower, invHeightSkew);
         SetBackgroundColor();

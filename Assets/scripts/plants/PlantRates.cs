@@ -7,9 +7,12 @@ using MiscFunctions;
 
 public class PlantRates : MonoBehaviour
 {
-    public int SecondsTillDeath; //seconds
-    public GameObject[] allDependencies;
+    public int secondsTillDeath;
+    public int secondsTillGrowth;
     private int currentSecondsTillDeath;
+    private int currentSecondsTillGrowth;
+
+    public GameObject[] allDependencies;
     private readonly float maxEfficiency = 1f;
 
 
@@ -111,8 +114,10 @@ public class PlantRates : MonoBehaviour
         }
         float currEffic = GetCurrentEfficiency(allDependencies);
 
-        currentSecondsTillDeath = (int)((float)SecondsTillDeath * currEffic);
+        //time till death decreases as efficiency lowers whereas it increases growth time
+        currentSecondsTillDeath = (int)((float)secondsTillDeath * currEffic);
+        currentSecondsTillGrowth = secondsTillGrowth + ( secondsTillGrowth - (int)((float)secondsTillGrowth * currEffic) );
         if (name == "Aloe")
-            print("Second left till death: " + currentSecondsTillDeath.ToString());
+            print("Second left till death: " + currentSecondsTillGrowth.ToString());
     }
 }
