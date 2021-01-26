@@ -27,7 +27,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.015, y: 0.045, z: 15}
   m_LocalScale: {x: 0.09162116, y: 0.89747137, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 565172580}
   m_Father: {fileID: 1487364218792195063}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -156,12 +157,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565172579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: -15}
+  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
   m_Children: []
-  m_Father: {fileID: 1487364218792195063}
-  m_RootOrder: 2
+  m_Father: {fileID: 269094082}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &565172581
 MonoBehaviour:
@@ -175,7 +176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a2d12c5ae83f44e86ec48a783ce884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stem: {fileID: 269094081}
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
   leafCount: 5
   growthStages: 400
@@ -185,10 +185,11 @@ MonoBehaviour:
   invHeightSkew: 0
   heightOffset: 0.23
   heightOffsetPower: 0.9
-  offsetSpawnPoint: {x: 0, y: -0.2, z: 0}
+  offsetSpawnPoint: {x: 0.008, y: -0.2, z: 0}
   leafScale: {x: 0.29, y: 0.2, z: 0}
   color: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
-  debug: 1
+  ripeColor: {r: 0.6392157, g: 0.7254902, b: 0.19607843, a: 0}
+  debug: 0
 --- !u!1 &1427151331
 GameObject:
   m_ObjectHideFlags: 0
@@ -319,7 +320,7 @@ Transform:
   - {fileID: 1427151332}
   - {fileID: 353368831}
   m_Father: {fileID: 1487364218792195063}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2092136190
 GameObject:
@@ -403,7 +404,6 @@ Transform:
   m_Children:
   - {fileID: 2911030037602206598}
   - {fileID: 269094082}
-  - {fileID: 565172580}
   - {fileID: 1890919240}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3180c11263f04f4eb6244919a356b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsTillDeath: 120
+  secondsToLive: 120
   secondsTillGrowth: 30
   deathTimeSkew: 0.02
   growthTimeSkew: 0
@@ -529,7 +529,7 @@ MonoBehaviour:
   - {fileID: 1535978376}
   - {fileID: 1427151331}
   - {fileID: 353368829}
-  debug: 0
+  debug: 1
 --- !u!1 &2911030037602206599
 GameObject:
   m_ObjectHideFlags: 0

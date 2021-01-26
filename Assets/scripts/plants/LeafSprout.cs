@@ -6,7 +6,7 @@ using MiscFunctions;
 
 public class LeafSprout : MonoBehaviour
 {
-    public GameObject stem;
+    private GameObject stem;
     public Sprite sprite;
     public int leafCount;
     public int growthStages;
@@ -20,6 +20,7 @@ public class LeafSprout : MonoBehaviour
     public Vector3 offsetSpawnPoint;
     public Vector3 leafScale;
     public Color color;
+    public Color ripeColor;
     private GameObject [] leaves;
 
     private int secondsElapsed;
@@ -77,10 +78,12 @@ public class LeafSprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stem = transform.parent.gameObject;
         SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
         spawnPoint = new Vector3(stemSprite.transform.position[0], 
                                  stemSprite.transform.position[1], 
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
+
 
         leaves = CreateLeaves(leafCount);
     }
@@ -201,7 +204,11 @@ public class LeafSprout : MonoBehaviour
         if (debug)
         {
             print("Seconds elapsed: " + secondsElapsed.ToString());
+            print("Full growth Time: " + plant.secondsTillGrowth);
             print("Growth amount: " + growthAmount.ToString());
+            Color tesy = new Color(0.5f - color[0],0.5f - color[1], 0.5f - color[2], color[3]);
+            stem.GetComponent<SpriteRenderer>().color = tesy;
+            print(tesy);
         }
     }
 }

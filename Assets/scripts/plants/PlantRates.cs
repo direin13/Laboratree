@@ -7,10 +7,10 @@ using MiscFunctions;
 
 public class PlantRates : MonoBehaviour
 {
-    public int secondsTillDeath;
+    public int secondsToLive;
+    private int secondsTillDeath;
     public int secondsTillGrowth;
     private int secondsTillGrowthOrigin;
-    private int secondsTillDeathOrigin;
 
     //Efficiency of a plant is how close each of it's dependencies efficiency
     //are to 100%. This is calculated by summing up the individual efficiencies
@@ -48,7 +48,7 @@ public class PlantRates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        secondsTillDeathOrigin = secondsTillDeath;
+        secondsTillDeath = secondsToLive;
         secondsTillGrowthOrigin = secondsTillGrowth;
 
         BalanceFloats(allDependencies, 0, maxEfficiency);
@@ -102,7 +102,7 @@ public class PlantRates : MonoBehaviour
     public float GetCurrentEfficiency(GameObject[] values)
     {
         float currEffic = 0f;
-        string text = name + " currentSfficiency >> ";
+        string text = name + " Current Efficiency >> ";
         foreach (GameObject obj in values)
         {
             float subEffic = GetDepComp(obj).dependencyAmount * GetDepComp(obj).dependencyEfficiency;
@@ -110,7 +110,7 @@ public class PlantRates : MonoBehaviour
             text = text + String.Format("{0}: {1} ", obj.name, subEffic);
         }
         if (debug)
-            print(text + " Current Efficiency: " + currEffic);
+            print(text + ", Current Efficiency: " + currEffic);
         return currEffic;
     }
 
@@ -155,6 +155,7 @@ public class PlantRates : MonoBehaviour
         if (debug)
         {
             timeStampObject.GetComponent<Timer>().PrintTime(name + " currentSecondsTillDeath");
+            print("Plant health: " + Health().ToString());
         }
     }
 
@@ -175,9 +176,8 @@ public class PlantRates : MonoBehaviour
         return growthAmount;
     }
 
-    public float GetLifeAmount()
+    public float Health()
     {
-        float lifePercentLeft = 0;
-        return lifePercentLeft;
+        return timeStampObject.GetComponent<Timer>().Get(name + " currentSecondsTillDeath") / secondsToLive;
     }
 }
