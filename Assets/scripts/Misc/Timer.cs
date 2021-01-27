@@ -6,20 +6,32 @@ using MiscFunctions;
 public class Timer : MonoBehaviour
 {
     private readonly Dictionary<string, float> timeStamps = new Dictionary<string, float>();
-    private float prevSec;
-    private bool secPassed;
+    private readonly Dictionary<string, float> onGoingTimeStamps = new Dictionary<string, float>();
+    private readonly Dictionary<string, float> tickSpeeds = new Dictionary<string, float>();
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
     {
-        prevSec = (float)Time.time;
-        secPassed = false;
+        Set("test", 10f, 1f);
+        speed = NumOp.Cutoff(speed, 0f, 1f);
     }
 
-    public void Set(string name, float seconds)
-    {
-        seconds = NumOp.Cutoff(seconds, 0, seconds);
-        timeStamps.Add(name, prevSec + seconds);
+    public void Set(string name, float newTime, float tickSpeed)
+    {   
+        newTime = NumOp.Cutoff(newTime, 0, newTime);
+        if (timeStamps.ContainsKey(name) != true)
+        {
+            timeStamps.Add(name, newTime);
+            onGoingTimeStamps.Add(name, Time.time);
+            tickSpeeds.Add(name, tickSpeed);
+        }
+        else
+        {
+            timeStamps[name] = newTime;
+            onGoingTimeStamps[name] = Time.time;
+            tickSpeeds[name] = tickSpeed;
+        }
     }
 
     public float Get(string name)
@@ -48,22 +60,27 @@ public class Timer : MonoBehaviour
         print(name + ": " + timeStamps[name].ToString() + " seconds");
     }
 
-    public bool Tick()
-    {
-        return secPassed;
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if ((float)Time.time - prevSec >= 1f)
+        string[] keys = new string[timeStamps.Count];
+        int i = 0;
+
+        foreach (KeyValuePair<string, float> kvp in timeStamps)
         {
-            secPassed = true;
-            prevSec = (float)(Time.time);
+            keys[i] = kvp.Key;
+            i++;
         }
-        else
-        {
-            secPassed = false;
+
+        foreach (string key in keys)
+        { 
+            float dist = Time.time - onGoingTimeStamps[key];
+            if (dist >= tickSpeeds[key]*speed)
+            {
+                onGoingTimeStamps[key] = onGoingTimeStamps[key] + dist;
+                timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key]*speed), 0, timeStamps[key]);
+            }
         }
     }
 }

@@ -23,7 +23,6 @@ public class LeafSprout : MonoBehaviour
     public Color ripeColor;
     private GameObject [] leaves;
 
-    private int secondsElapsed;
     public bool debug;
 
 
@@ -190,12 +189,8 @@ public class LeafSprout : MonoBehaviour
             leaves = CreateLeaves(leafCount);
 
         PlantRates plant = transform.root.gameObject.GetComponent<PlantRates>();
-        if (plant.timeStampObject.GetComponent<Timer>().Tick())
-        {
-            secondsElapsed = secondsElapsed + 1;
-        }
 
-        float growthAmount = plant.GetGrowthAmount(secondsElapsed, growthStages);
+        float growthAmount = plant.GetGrowthAmount(growthStages);
 
         SetLeavesRotation(angle*growthAmount, sproutSize*growthAmount, rotationOffset*growthAmount);
         SetHeightSkew(heightOffset*growthAmount, heightOffsetPower*growthAmount, invHeightSkew, leafScale*growthAmount);
@@ -203,8 +198,6 @@ public class LeafSprout : MonoBehaviour
 
         if (debug)
         {
-            print("Seconds elapsed: " + secondsElapsed.ToString());
-            print("Full growth Time: " + plant.secondsTillGrowth);
             print("Growth amount: " + growthAmount.ToString());
             Color tesy = new Color(0.5f - color[0],0.5f - color[1], 0.5f - color[2], color[3]);
             stem.GetComponent<SpriteRenderer>().color = tesy;
