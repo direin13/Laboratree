@@ -1332,11 +1332,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d014787f21387a409297ec75b542312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalTimeSpeedPercentage: 0
+  globalTimeSpeed: 0.0000001
   plantCollection:
   - {fileID: 783001752}
   - {fileID: 1182155835}
-  inLabSpace: []
+  inLabSpace:
+  - {fileID: 783001752}
+  - {fileID: 1182155835}
 --- !u!1 &748760898
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,7 +2498,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aloe 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1673303321, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
 --- !u!1 &1253472329
 GameObject:
@@ -3186,10 +3189,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: debug
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
       value: 
       objectReference: {fileID: 730175966}
@@ -3253,8 +3252,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aloe
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1673303321, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
 --- !u!850595691 &1608189053
 LightingSettings:

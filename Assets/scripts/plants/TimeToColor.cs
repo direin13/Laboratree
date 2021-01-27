@@ -35,7 +35,6 @@ public class TimeToColor : MonoBehaviour
         Color.RGBToHSV(optimumColor, out H1, out S1, out V1);
 
         float H2, S2, V2;
-        float splitPoint = 0.15f;
 
         if (pr.Health() >= healthRatio)
         {
