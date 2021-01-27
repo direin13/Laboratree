@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using MiscFunctions;
 
-public class LeafSprout : MonoBehaviour
+public class Sprout : MonoBehaviour
 {
     private GameObject stem;
     public Sprite sprite;
@@ -19,8 +19,6 @@ public class LeafSprout : MonoBehaviour
     public float heightOffsetPower;
     public Vector3 offsetSpawnPoint;
     public Vector3 leafScale;
-    public Color color;
-    public Color ripeColor;
     private GameObject [] leaves;
 
     public bool debug;
@@ -55,7 +53,6 @@ public class LeafSprout : MonoBehaviour
             leaf.AddComponent<SpriteRenderer>();
             SpriteRenderer leafSpriteRenderer = leaf.GetComponent<SpriteRenderer>();
             leafSpriteRenderer.sprite = sprite;
-            leafSpriteRenderer.color = color;
 
             //setting the scale and default position of each leaf
             //each leaf has a node (not visible) at the bottom of the sprite.
@@ -99,6 +96,12 @@ public class LeafSprout : MonoBehaviour
         //anglePower is a float from 0 -> 1
         float maxAngle = newAngle * anglePower;
         float interval = maxAngle / (leaves.Length - 1);
+
+        if (debug)
+        {
+            print("Current max angle: " + maxAngle.ToString());
+            print("Angle interval: " + interval.ToString());
+        }
         int midInd = leaves.Length / 2;
         if (leaves.Length % 2 == 0)
         {
@@ -128,6 +131,7 @@ public class LeafSprout : MonoBehaviour
         //offsetAmount represents the amount of skew used the further
         //the leaf is from the center
         //skewAmount and offSetAMount are floats from  0 -> 1
+
         int midInd = leaves.Length / 2;
         if (leaves.Length % 2 == 0)
         {
@@ -157,8 +161,10 @@ public class LeafSprout : MonoBehaviour
         }
     }
 
-    public void SetBackgroundColor()
+    public void SetColor()
     {
+        Color chosenColor = GetComponent<TimeToColor>().realTimeColor;
+        //color the fore and background components
         for (int i = 0; i < leaves.Length; i++)
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
@@ -166,12 +172,12 @@ public class LeafSprout : MonoBehaviour
             if (i % 2 != 0)
             {
                 tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2]+12);
-                sr.color = color;
+                sr.color = chosenColor;
             }
             else
             {
                 tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2] + 16);
-                sr.color = new Color(color[0] / 1.5f, color[1] / 1.5f, color[2] / 1.5f);
+                sr.color = new Color(chosenColor[0] / 1.5f, chosenColor[1] / 1.5f, chosenColor[2] / 1.5f, chosenColor[3]);
             }
         }
     }
@@ -190,18 +196,10 @@ public class LeafSprout : MonoBehaviour
 
         PlantRates plant = transform.root.gameObject.GetComponent<PlantRates>();
 
-        float growthAmount = plant.GetGrowthAmount(growthStages);
+        float growthAmount = plant.GrowthAmount(growthStages);
 
         SetLeavesRotation(angle*growthAmount, sproutSize*growthAmount, rotationOffset*growthAmount);
         SetHeightSkew(heightOffset*growthAmount, heightOffsetPower*growthAmount, invHeightSkew, leafScale*growthAmount);
-        SetBackgroundColor();
-
-        if (debug)
-        {
-            print("Growth amount: " + growthAmount.ToString());
-            Color tesy = new Color(0.5f - color[0],0.5f - color[1], 0.5f - color[2], color[3]);
-            stem.GetComponent<SpriteRenderer>().color = tesy;
-            print(tesy);
-        }
+        SetColor();
     }
 }

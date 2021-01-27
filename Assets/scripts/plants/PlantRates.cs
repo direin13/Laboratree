@@ -109,6 +109,7 @@ public class PlantRates : MonoBehaviour
 
     public float GetCurrentEfficiency(GameObject[] values)
     {
+        //Sum up all the efficiencies of the dependencies and return how well plant is doing from 0-1f(0-100%)
         float currEffic = 0f;
         string text = name + " Current Efficiency >> ";
         foreach (GameObject obj in values)
@@ -157,26 +158,32 @@ public class PlantRates : MonoBehaviour
 
             timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
             currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
-        }
 
-        //constant countdown
-        if (TimeStamps().TimeUp(name + "tick"))
+            //constant countdown
+            if (TimeStamps().TimeUp(name + "tick"))
+            {
+                TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
+                timeElapsed = timeElapsed + 1;
+            }
+        }
+        else
         {
-            TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
-            timeElapsed = timeElapsed + 1;
+            TimeToColor[] allColors = GetComponentsInChildren<TimeToColor>();
+            for (int i=0; i < allColors.Length; i++)
+            {
+                allColors[i].alphaValue = 0.25f;
+            }
         }
 
         if (debug)
         {
             print("Plant health: " + Health().ToString());
-            print("Time elapsed: " + timeElapsed);
-            print("Death Time: " + timeAliveLeft);
-            print("Full grow time: " + currGrowTime);
+            print(String.Format("TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed));
         }
 
     }
 
-    public float GetGrowthAmount(float numOfStages)
+    public float GrowthAmount(float numOfStages)
     {
         float growthAmount;
         if (numOfStages <= 0)
@@ -186,10 +193,6 @@ public class PlantRates : MonoBehaviour
         else
         {
             float stageInterval = NumOp.Cutoff((float)currGrowTime, 0f, (float)currGrowTime) / numOfStages;
-            if (debug)
-            {
-                print(stageInterval);
-            }    
             float stage = (float)timeElapsed / stageInterval;
             growthAmount = NumOp.Cutoff(stage / numOfStages, 0f, 1f);
         }
