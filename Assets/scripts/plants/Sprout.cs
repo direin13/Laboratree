@@ -6,6 +6,7 @@ using MiscFunctions;
 
 public class Sprout : MonoBehaviour
 {
+    //used to sprout sprites from a point across a given angle
     private GameObject stem;
     public Sprite sprite;
     public int leafCount;
@@ -185,7 +186,7 @@ public class Sprout : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        //set variables within appropriate ranges
         rotationOffset = NumOp.Cutoff(rotationOffset, 0f, 1f);
         sproutSize = NumOp.Cutoff(sproutSize, 0f, 1f);
         heightOffset = NumOp.Cutoff(heightOffset, 0f, 1f);
