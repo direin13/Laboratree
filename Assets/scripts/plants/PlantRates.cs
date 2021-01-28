@@ -178,7 +178,7 @@ public class PlantRates : MonoBehaviour
         if (debug)
         {
             print("Plant health: " + Health().ToString());
-            print(String.Format("TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed));
+            print(String.Format("Name: {3}, TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed, name));
         }
 
     }
