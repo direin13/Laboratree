@@ -20,7 +20,7 @@ public class Sprout : MonoBehaviour
     public float heightOffsetPower;
     public Vector3 offsetSpawnPoint;
     public Vector3 leafScale;
-    private GameObject [] leaves;
+    private GameObject[] leaves;
 
     public bool debug;
 
@@ -30,7 +30,7 @@ public class Sprout : MonoBehaviour
         return new Vector3(vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
     }
 
-    public GameObject [] CreateLeaves(int amount)
+    public GameObject[] CreateLeaves(int amount)
     {
         if (leaves != null)
         {
@@ -43,7 +43,7 @@ public class Sprout : MonoBehaviour
                                  stemSprite.transform.position[1],
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
 
-        GameObject [] newLeaves = new GameObject[amount];
+        GameObject[] newLeaves = new GameObject[amount];
 
         //creating each leaf
         for (int i = 0; i < amount; i++)
@@ -77,8 +77,8 @@ public class Sprout : MonoBehaviour
     {
         stem = transform.parent.gameObject;
         SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
-        spawnPoint = new Vector3(stemSprite.transform.position[0], 
-                                 stemSprite.transform.position[1], 
+        spawnPoint = new Vector3(stemSprite.transform.position[0],
+                                 stemSprite.transform.position[1],
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
 
 
@@ -87,7 +87,7 @@ public class Sprout : MonoBehaviour
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
     {
-        obj.transform.parent.localScale = scale;        
+        obj.transform.parent.localScale = scale;
     }
 
     public void SetLeavesRotation(float newAngle, float anglePower, float rotationOffset)
@@ -113,7 +113,7 @@ public class Sprout : MonoBehaviour
         {
             //get angles on one side and mirror to the other side
             float zAngle = (maxAngle / 2) - (interval * i);
-            zAngle = zAngle - ( (zAngle * rotationOffset) * ((i+1)/(1+(float)midInd)) );
+            zAngle = zAngle - ((zAngle * rotationOffset) * ((i + 1) / (1 + (float)midInd)));
             zAngle = NumOp.Cutoff(zAngle, 0, 360f);
 
             if (zAngle >= 0)
@@ -142,8 +142,8 @@ public class Sprout : MonoBehaviour
         for (int i = 0; i <= midInd; i++)
         {
 
-            Vector3 interval = leafScale - ((leafScale * skewAmount) *  ( (i)/( (float)midInd+1) ));
-            
+            Vector3 interval = leafScale - ((leafScale * skewAmount) * ((i) / ((float)midInd + 1)));
+
             if (reverseSkew)
             {
                 SetLocalScale(leaves[i], interval);
@@ -172,7 +172,7 @@ public class Sprout : MonoBehaviour
             Transform tf = leaves[i].transform;
             if (i % 2 != 0)
             {
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2]+12);
+                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2] + 12);
                 sr.color = chosenColor;
             }
             else
@@ -199,8 +199,8 @@ public class Sprout : MonoBehaviour
 
         float growthAmount = plant.GrowthAmount(growthStages);
 
-        SetLeavesRotation(angle*growthAmount, sproutSize*growthAmount, rotationOffset*growthAmount);
-        SetHeightSkew(heightOffset*growthAmount, heightOffsetPower*growthAmount, invHeightSkew, leafScale*growthAmount);
+        SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
+        SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale * growthAmount);
         SetColor();
     }
 }
