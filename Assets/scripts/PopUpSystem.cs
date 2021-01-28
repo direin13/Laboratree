@@ -1,3 +1,6 @@
+//used to animate pop up
+//can be removed from repo
+
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
