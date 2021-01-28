@@ -1,11 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Reflection;
+using UnityEngine.Events;
 
 public class MouseInteraction : MonoBehaviour
 {
-    private bool isHovering;
-    public delegate void OnClick();
+    public bool isHovering;
+    public UnityEvent onMouseClick;
+
+    void Awake()
+    {
+        if (onMouseClick == null)
+            onMouseClick = new UnityEvent();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +24,7 @@ public class MouseInteraction : MonoBehaviour
     public void OnMouseDown()
     {
         print(transform.root.gameObject.name + "Clicked");
+        onMouseClick.Invoke();
     }
 
     public void OnMouseOver()
