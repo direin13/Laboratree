@@ -6,6 +6,6 @@ public class PanelCloser : MonoBehaviour
 {
     public void ClosePanel()
     {
-         this.transform.parent.gameObject.SetActive(false);
+         this.transform.parent.gameObject.SetActive(false);     //sets panel as inactive to make sure it is not visible to user
     }
 }
