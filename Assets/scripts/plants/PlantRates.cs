@@ -60,8 +60,7 @@ public class PlantRates : MonoBehaviour
         timeElapsed = 0f;
 
         BalanceFloats(allDependencies, 0, maxEfficiency);
-
-        TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
+        TimeStamps().getTicks = true;
     }
 
 
@@ -160,9 +159,8 @@ public class PlantRates : MonoBehaviour
             currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
             //constant countdown
-            if (TimeStamps().TimeUp(name + "tick"))
+            if (TimeStamps().Tick())
             {
-                TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
                 timeElapsed = timeElapsed + 1;
             }
         }
