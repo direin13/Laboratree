@@ -23,10 +23,12 @@ public class StemGrow : MonoBehaviour
 
     public bool debug;
 
+
     public Vector3 mulVec(Vector3 vec1, Vector3 vec2)
     {
         return new Vector3(vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +38,7 @@ public class StemGrow : MonoBehaviour
         spawnPoint = new Vector3(stemSprite.transform.position[0],
                                  stemSprite.transform.position[1],
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
+
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)

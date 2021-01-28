@@ -354,10 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91f728589955964ea7e22787e8a43f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHovering: 0
-  onMouseClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!212 &1690736157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -568,7 +564,7 @@ Transform:
   m_GameObject: {fileID: 2652030684054046656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 324, y: 205, z: -31.47513}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 43.18122, y: 36.644653, z: 1}
   m_Children:
   - {fileID: 2911030037602206598}
   - {fileID: 269094082}
@@ -665,7 +661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  getTicks: 0
 --- !u!1 &2911030037602206599
 GameObject:
   m_ObjectHideFlags: 0
