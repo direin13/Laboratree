@@ -9,12 +9,20 @@ public class Timer : MonoBehaviour
     private readonly Dictionary<string, float> onGoingTimeStamps = new Dictionary<string, float>();
     private readonly Dictionary<string, float> tickSpeeds = new Dictionary<string, float>();
     public float speed;
+    public readonly float maxSpeed = 0.00001f;
+    private bool hasTicked = false;
+    public bool getTicks;
 
     // Start is called before the first frame update
     void Start()
     {
-        Set("test", 10f, 1f);
+        Set("<<tick>>", maxSpeed, maxSpeed);
         speed = NumOp.Cutoff(speed, 0f, 1f);
+    }
+
+    public bool Tick()
+    {
+        return hasTicked;
     }
 
     public void Set(string name, float newTime, float tickSpeed)
@@ -80,7 +88,21 @@ public class Timer : MonoBehaviour
             {
                 onGoingTimeStamps[key] = onGoingTimeStamps[key] + dist;
                 timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key]*speed), 0, timeStamps[key]);
+                if (key == "<<tick>>" && getTicks)
+                {
+                    hasTicked = true;
+                }
             }
+
+            else if (key == "<<tick>>")
+            {
+                hasTicked = false;
+            }
+        }
+
+        if (TimeUp("<<tick>>"))
+        {
+            Set("<<tick>>", 0.00001f, 0.00001f);
         }
     }
 }

@@ -2995,6 +2995,32 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1464943734}
   m_CullTransparentMesh: 1
+--- !u!1 &1481251395 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 269094081, guid: 2ef9a12991ca73a46828f7836aef8be2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603216479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1481251399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481251395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
+  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  growthStages: 400
+  healthRatio: 0.15
+  debug: 0
 --- !u!1 &1493627625
 GameObject:
   m_ObjectHideFlags: 0
@@ -3355,9 +3381,25 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
       value: 
       objectReference: {fileID: 730175966}
+    - target: {fileID: 1690736158, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: myUnityEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690736158, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: myUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1690736158, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: myUnityEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3417,6 +3459,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Aloe
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911030037602206599, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
