@@ -7,10 +7,12 @@ using MiscFunctions;
 
 public class PlantRates : MonoBehaviour
 {
-    public int secondsTillDeath;
-    public int secondsTillGrowth;
-    private int secondsTillGrowthOrigin;
-    private int secondsTillDeathOrigin;
+    //unit of time == hours
+    public int expectedLifetime;
+    private int timeAliveLeft;
+    public int expectedGrowTime;
+    private int currGrowTime;
+    private float timeElapsed;
 
     //Efficiency of a plant is how close each of it's dependencies efficiency
     //are to 100%. This is calculated by summing up the individual efficiencies
@@ -35,6 +37,11 @@ public class PlantRates : MonoBehaviour
         return dep.GetComponent<DependenceAttribute>();
     }
 
+    public Timer TimeStamps()
+    {
+        return GetComponent<Timer>();
+    }
+
     public float DepRateSum(GameObject [] values)
     {
         float sum = 0;
@@ -48,12 +55,13 @@ public class PlantRates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        secondsTillDeathOrigin = secondsTillDeath;
-        secondsTillGrowthOrigin = secondsTillGrowth;
+        timeAliveLeft = expectedLifetime;
+        currGrowTime = expectedGrowTime;
+        timeElapsed = 0f;
 
         BalanceFloats(allDependencies, 0, maxEfficiency);
 
-        timeStampObject.GetComponent<Timer>().Set(name + " currentSecondsTillDeath", secondsTillDeath);
+        TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
     }
 
 
@@ -101,8 +109,9 @@ public class PlantRates : MonoBehaviour
 
     public float GetCurrentEfficiency(GameObject[] values)
     {
+        //Sum up all the efficiencies of the dependencies and return how well plant is doing from 0-1f(0-100%)
         float currEffic = 0f;
-        string text = name + " currentSfficiency >> ";
+        string text = name + " Current Efficiency >> ";
         foreach (GameObject obj in values)
         {
             float subEffic = GetDepComp(obj).dependencyAmount * GetDepComp(obj).dependencyEfficiency;
@@ -110,7 +119,7 @@ public class PlantRates : MonoBehaviour
             text = text + String.Format("{0}: {1} ", obj.name, subEffic);
         }
         if (debug)
-            print(text + " Current Efficiency: " + currEffic);
+            print(text + ", Current Efficiency: " + currEffic);
         return currEffic;
     }
 
@@ -118,8 +127,14 @@ public class PlantRates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //make sure variables stay in acceptable range
+        expectedLifetime = NumOp.Cutoff(expectedLifetime, 1, expectedLifetime);
+        expectedGrowTime = NumOp.Cutoff(expectedGrowTime, 1, expectedGrowTime);
+        deathTimeSkew = NumOp.Cutoff(deathTimeSkew, 0f, 1f);
+        growthTimeSkew = NumOp.Cutoff(growthTimeSkew, 0f, 1f); 
+        
 
-        //get changed dependancy and balance
+        //get changed dependancy and balance based on the change
         int changedIndex = -1;
 
         for (int i=0; i < allDependencies.Length; i++)
@@ -132,33 +147,43 @@ public class PlantRates : MonoBehaviour
         {
             BalanceFloats(allDependencies, changedIndex, maxEfficiency);
         }
-        float currEffic = GetCurrentEfficiency(allDependencies);
 
-        deathTimeSkew = NumOp.Cutoff(deathTimeSkew, 0f, 1f);
-        growthTimeSkew = NumOp.Cutoff(growthTimeSkew, 0f, 1f);
-
-        //time till death decreases as efficiency lowers whereas it increases growth time
-        float actualDeathEffic = (currEffic - (currEffic * deathTimeSkew));
-        float actualGrowthEffic = (currEffic - (currEffic * growthTimeSkew));
-
-        int currentSecondsTillDeath = (int)((float)secondsTillDeath * actualDeathEffic );
-        secondsTillGrowth = secondsTillGrowthOrigin + ( secondsTillGrowthOrigin - (int)( (float)secondsTillGrowthOrigin * actualGrowthEffic) );
-
-        timeStampObject.GetComponent<Timer>().Change(name + " currentSecondsTillDeath", currentSecondsTillDeath);
-
-        //constant countdown
-        if (timeStampObject.GetComponent<Timer>().Tick())
+        if (timeElapsed < timeAliveLeft)
         {
-            secondsTillDeath = NumOp.Cutoff(secondsTillDeath-1, 0, secondsTillDeath);
+            float currEffic = GetCurrentEfficiency(allDependencies);
+
+            //time till death decreases as efficiency lowers whereas it increases growth time
+            float actualDeathEffic = (currEffic - (currEffic * deathTimeSkew));
+            float actualGrowthEffic = (currEffic - (currEffic * growthTimeSkew));
+
+            timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
+            currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
+
+            //constant countdown
+            if (TimeStamps().TimeUp(name + "tick"))
+            {
+                TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
+                timeElapsed = timeElapsed + 1;
+            }
+        }
+        else
+        {
+            TimeToColor[] allColors = GetComponentsInChildren<TimeToColor>();
+            for (int i=0; i < allColors.Length; i++)
+            {
+                allColors[i].alphaValue = 0.25f;
+            }
         }
 
         if (debug)
         {
-            timeStampObject.GetComponent<Timer>().PrintTime(name + " currentSecondsTillDeath");
+            print("Plant health: " + Health().ToString());
+            print(String.Format("Name: {3}, TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed, name));
         }
+
     }
 
-    public float GetGrowthAmount(float timeElapsed, int numOfStages)
+    public float GrowthAmount(float numOfStages)
     {
         float growthAmount;
         if (numOfStages <= 0)
@@ -167,17 +192,16 @@ public class PlantRates : MonoBehaviour
         }
         else
         {
-            float stageInterval = (float)secondsTillGrowth / numOfStages;
-            float stage = (int)((float)timeElapsed / stageInterval);
+            float stageInterval = NumOp.Cutoff((float)currGrowTime, 0f, (float)currGrowTime) / numOfStages;
+            float stage = (float)timeElapsed / stageInterval;
             growthAmount = NumOp.Cutoff(stage / numOfStages, 0f, 1f);
         }
 
         return growthAmount;
     }
 
-    public float GetLifeAmount()
+    public float Health()
     {
-        float lifePercentLeft = 0;
-        return lifePercentLeft;
+        return 1f - ( (float)timeElapsed/(float)timeAliveLeft );
     }
 }
