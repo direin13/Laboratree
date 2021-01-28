@@ -28,6 +28,11 @@ public class DisplayPlants : MonoBehaviour
             newObj.GetComponent<Transform>().localScale = new Vector3(30,30,1);
 
             newObj = (GameObject)Instantiate(prefab, new Vector3((i * 20.0F) + 10 , -100, -35), Quaternion.identity);
+            newObj = (GameObject)Instantiate(prefab, new Vector3((i * 20.0F) + 10 , -100, -35), Quaternion.identity);
+            
+            //trying to fix issue with aloe not displaying correctly with grid layout component
+            // newObj.transform.position = new Vector3(newObj.transform.position.x,newObj.transform.position.y, 0);
+            // DontDestroyOnLoad(newObj);
         }
 
     }
