@@ -37,6 +37,17 @@ public class PlantRates : MonoBehaviour
         return dep.GetComponent<DependenceAttribute>();
     }
 
+    public DependenceAttribute GetDepComp(string name)
+    {
+        DependenceAttribute dep = null;
+        foreach(GameObject obj in allDependencies)
+        {
+            if (obj.name == name)
+                dep = obj.GetComponent<DependenceAttribute>();
+        }
+        return dep;
+    }
+
     public Timer TimeStamps()
     {
         return GetComponent<Timer>();
