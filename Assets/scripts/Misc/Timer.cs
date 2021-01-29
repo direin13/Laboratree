@@ -26,7 +26,7 @@ public class Timer : MonoBehaviour
     }
 
     public void Set(string name, float newTime, float tickSpeed)
-    {   
+    {
         newTime = NumOp.Cutoff(newTime, 0, newTime);
         if (timeStamps.ContainsKey(name) != true)
         {
@@ -82,13 +82,13 @@ public class Timer : MonoBehaviour
         }
 
         foreach (string key in keys)
-        { 
+        {
             float dist = Time.time - onGoingTimeStamps[key];
-            if (dist >= tickSpeeds[key]*speed)
+            if (dist >= tickSpeeds[key] * speed)
             {
                 onGoingTimeStamps[key] = onGoingTimeStamps[key] + dist;
-                timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key]*speed), 0, timeStamps[key]);
-                if (key == "<<tick>>" && getTicks)
+                timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key] * speed), 0, timeStamps[key]);
+                if (key == "<<tick>>")
                 {
                     hasTicked = true;
                 }
@@ -100,9 +100,14 @@ public class Timer : MonoBehaviour
             }
         }
 
+        if (getTicks != true)
+        {
+            hasTicked = false;
+        }
+
         if (TimeUp("<<tick>>"))
         {
-            Set("<<tick>>", 0.00001f, 0.00001f);
+            Set("<<tick>>", maxSpeed, maxSpeed);
         }
     }
 }
