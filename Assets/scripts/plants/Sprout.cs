@@ -13,8 +13,8 @@ public class Sprout : MonoBehaviour
     public int growthStages;
     private Vector3 spawnPoint;
     public float angle;
-    public float sproutSize;
     public float rotationOffset;
+    public float sproutSize;
     public bool invHeightSkew;
     public float heightOffset;
     public float heightOffsetPower;

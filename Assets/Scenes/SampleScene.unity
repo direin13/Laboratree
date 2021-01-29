@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &178733589
 RectTransform:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c4c4dfc2ccd8d4fbbea89f20ad4a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+  prefab: {fileID: 4610257621217981586, guid: 7fe6dc73edaa5324e9c3c36f96dbb707, type: 3}
   numberToCreate: 20
 --- !u!114 &178733591
 MonoBehaviour:
@@ -1407,7 +1407,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d014787f21387a409297ec75b542312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalTimeSpeed: 0.0000001
+  globalTimeSpeed: 1
   plantCollection:
   - {fileID: 783001752}
   - {fileID: 1182155835}
@@ -2521,22 +2521,22 @@ PrefabInstance:
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 67.15793
+      value: 43.63211
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 55.37455
+      value: 41.431236
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 169.7
+      value: 179.6928
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 125.9
+      value: 119.8
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
@@ -2586,7 +2586,7 @@ PrefabInstance:
     - target: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1673303321, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
@@ -2667,6 +2667,33 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253472329}
   m_CullTransparentMesh: 1
+--- !u!1 &1259534916 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 269094081, guid: 2ef9a12991ca73a46828f7836aef8be2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603216479}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1259534919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1259534916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
+  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  growthStages: 400
+  healthRatio: 0.15
+  setSpriteRendererColor: 1
+  debug: 0
 --- !u!1 &1340730531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3293,10 +3320,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 269094081, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: m_Name
+      value: Main Stem
+      objectReference: {fileID: 0}
+    - target: {fileID: 961655843, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: healthRatio
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: debug
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
       value: 
       objectReference: {fileID: 730175966}
+    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: expectedGrowTime
+      value: 2300
+      objectReference: {fileID: 0}
+    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: expectedLifetime
+      value: 8760
+      objectReference: {fileID: 0}
+    - target: {fileID: 2092136192, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: dependencyEfficiency
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_RootOrder
@@ -3305,27 +3356,27 @@ PrefabInstance:
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 59.947186
+      value: 43.389774
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 53.531506
+      value: 39.586548
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71.1
+      value: 79.3786
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 128.3
+      value: 121.3285
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -20
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}

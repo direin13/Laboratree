@@ -60,8 +60,6 @@ public class PlantRates : MonoBehaviour
         timeElapsed = 0f;
 
         BalanceFloats(allDependencies, 0, maxEfficiency);
-
-        TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
     }
 
 
@@ -160,9 +158,8 @@ public class PlantRates : MonoBehaviour
             currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
             //constant countdown
-            if (TimeStamps().TimeUp(name + "tick"))
+            if (TimeStamps().Tick())
             {
-                TimeStamps().Set(name + "tick", 0.00001f, 0.00001f);
                 timeElapsed = timeElapsed + 1;
             }
         }
@@ -177,9 +174,8 @@ public class PlantRates : MonoBehaviour
 
         if (debug)
         {
-            print("Plant health: " + Health().ToString());
+            print("Plant Time Left (%): " + Health().ToString());
             print(String.Format("Name: {3}, TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed, name));
-            print("Position: " + transform.position);
         }
 
     }

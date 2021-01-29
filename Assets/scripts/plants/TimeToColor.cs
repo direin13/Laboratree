@@ -16,6 +16,7 @@ public class TimeToColor : MonoBehaviour
     public float alphaValue;
     public float growthStages;
     public float healthRatio;
+    public bool setSpriteRendererColor;
     public bool debug;
 
     // Start is called before the first frame update
@@ -68,5 +69,9 @@ public class TimeToColor : MonoBehaviour
         growthStages = NumOp.Cutoff(growthStages, 1, growthStages);
 
         SetColor();
+        if (setSpriteRendererColor)
+        {
+            GetComponent<SpriteRenderer>().color = realTimeColor;
+        }
     }
 }

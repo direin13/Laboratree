@@ -9,16 +9,24 @@ public class Timer : MonoBehaviour
     private readonly Dictionary<string, float> onGoingTimeStamps = new Dictionary<string, float>();
     private readonly Dictionary<string, float> tickSpeeds = new Dictionary<string, float>();
     public float speed;
+    public readonly float maxSpeed = 0.00001f;
+    private bool hasTicked = false;
+    public bool getTicks;
 
     // Start is called before the first frame update
     void Start()
     {
-        Set("test", 10f, 1f);
+        Set("<<tick>>", maxSpeed, maxSpeed);
         speed = NumOp.Cutoff(speed, 0f, 1f);
     }
 
+    public bool Tick()
+    {
+        return hasTicked;
+    }
+
     public void Set(string name, float newTime, float tickSpeed)
-    {   
+    {
         newTime = NumOp.Cutoff(newTime, 0, newTime);
         if (timeStamps.ContainsKey(name) != true)
         {
@@ -74,13 +82,32 @@ public class Timer : MonoBehaviour
         }
 
         foreach (string key in keys)
-        { 
+        {
             float dist = Time.time - onGoingTimeStamps[key];
-            if (dist >= tickSpeeds[key]*speed)
+            if (dist >= tickSpeeds[key] * speed)
             {
                 onGoingTimeStamps[key] = onGoingTimeStamps[key] + dist;
-                timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key]*speed), 0, timeStamps[key]);
+                timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key] * speed), 0, timeStamps[key]);
+                if (key == "<<tick>>")
+                {
+                    hasTicked = true;
+                }
             }
+
+            else if (key == "<<tick>>")
+            {
+                hasTicked = false;
+            }
+        }
+
+        if (getTicks != true)
+        {
+            hasTicked = false;
+        }
+
+        if (TimeUp("<<tick>>"))
+        {
+            Set("<<tick>>", maxSpeed, maxSpeed);
         }
     }
 }
