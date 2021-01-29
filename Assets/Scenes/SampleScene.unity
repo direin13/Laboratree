@@ -1407,11 +1407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d014787f21387a409297ec75b542312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalTimeSpeed: 1
+  globalTimeSpeed: 0.000001
   plantCollection:
-  - {fileID: 783001752}
-  - {fileID: 1182155835}
-  inLabSpace:
   - {fileID: 783001752}
   - {fileID: 1182155835}
 --- !u!1 &748760898
@@ -2667,33 +2664,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1253472329}
   m_CullTransparentMesh: 1
---- !u!1 &1259534916 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 269094081, guid: 2ef9a12991ca73a46828f7836aef8be2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1603216479}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1259534919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1259534916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
-  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
-  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
-  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
-  alphaValue: 1
-  growthStages: 400
-  healthRatio: 0.15
-  setSpriteRendererColor: 1
-  debug: 0
 --- !u!1 &1340730531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3320,14 +3290,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 269094081, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: m_Name
-      value: Main Stem
-      objectReference: {fileID: 0}
-    - target: {fileID: 961655843, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: healthRatio
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: debug
       value: 1
@@ -3336,32 +3298,10 @@ PrefabInstance:
       propertyPath: timeStampObject
       value: 
       objectReference: {fileID: 730175966}
-    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: expectedGrowTime
-      value: 2300
-      objectReference: {fileID: 0}
-    - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: expectedLifetime
-      value: 8760
-      objectReference: {fileID: 0}
-    - target: {fileID: 2092136192, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: dependencyEfficiency
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_RootOrder
       value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 43.389774
-      objectReference: {fileID: 0}
-    - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 39.586548
       objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}

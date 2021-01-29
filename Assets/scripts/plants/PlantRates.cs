@@ -180,7 +180,7 @@ public class PlantRates : MonoBehaviour
 
     }
 
-    public float GrowthAmount(float numOfStages)
+    public float GrowthAmount(float numOfStages, int timeElapsed)
     {
         float growthAmount;
         if (numOfStages <= 0)

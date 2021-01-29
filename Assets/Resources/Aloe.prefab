@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 269094082}
   - component: {fileID: 269094083}
+  - component: {fileID: 1259534919}
+  - component: {fileID: 1259534920}
   m_Layer: 6
-  m_Name: stem
+  m_Name: Main Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +86,41 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1259534919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269094081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
+  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  growthStages: 400
+  healthRatio: 0.15
+  setSpriteRendererColor: 1
+  debug: 0
+--- !u!114 &1259534920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269094081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  getTicks: 0
 --- !u!1 &353368829
 GameObject:
   m_ObjectHideFlags: 0
@@ -144,6 +181,7 @@ GameObject:
   - component: {fileID: 565172580}
   - component: {fileID: 565172581}
   - component: {fileID: 961655843}
+  - component: {fileID: 406645338}
   m_Layer: 6
   m_Name: leaves
   m_TagString: Untagged
@@ -181,8 +219,8 @@ MonoBehaviour:
   leafCount: 5
   growthStages: 400
   angle: 140
-  sproutSize: 0.8
   rotationOffset: 0.6
+  sproutSize: 0.8
   invHeightSkew: 0
   heightOffset: 0.23
   heightOffsetPower: 0.9
@@ -208,7 +246,22 @@ MonoBehaviour:
   alphaValue: 1
   growthStages: 400
   healthRatio: 0.15
+  setSpriteRendererColor: 0
   debug: 0
+--- !u!114 &406645338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565172579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  getTicks: 0
 --- !u!1 &1427151331
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,10 +406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91f728589955964ea7e22787e8a43f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isHovering: 0
-  onMouseClick:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!212 &1690736157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -534,7 +583,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dependencyAmount: 0.3
-  dependencyEfficiency: 1
+  dependencyEfficiency: 0.1
   minValue: 1000
   maxValue: 10000
   optimumValue: 5500
@@ -567,7 +616,7 @@ Transform:
   m_GameObject: {fileID: 2652030684054046656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 43.389774, y: 39.586548, z: 1}
   m_Children:
   - {fileID: 2911030037602206598}
   - {fileID: 269094082}
@@ -641,7 +690,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expectedLifetime: 8760
-  expectedGrowTime: 1000
+  expectedGrowTime: 2300
   deathTimeSkew: 0.02
   growthTimeSkew: 0
   timeStampObject: {fileID: 0}

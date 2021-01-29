@@ -30,10 +30,15 @@ public class PlantManager : MonoBehaviour
             
     }
 
-
     public bool PlantActive(GameObject plant)
     {
         return plantStatus[plant.name];
+    }
+
+    public void RemovePlant(GameObject plant)
+    {
+        plantCollection.Remove(plant);
+        plantStatus.Remove(plant.name);
     }
 
     // Update is called once per frame
@@ -41,6 +46,7 @@ public class PlantManager : MonoBehaviour
     {
         float maxSpeed = 0.000001f;
         globalTimeSpeed = NumOp.Cutoff(globalTimeSpeed, maxSpeed, 1f);
+        int i = 0;
         foreach (GameObject plant in plantCollection)
         {
             plant.GetComponent<Timer>().getTicks = PlantActive(plant);
@@ -51,6 +57,11 @@ public class PlantManager : MonoBehaviour
                 timer.getTicks = PlantActive(plant);
                 timer.speed = globalTimeSpeed/maxSpeed;
             }
+            if (PlantActive(plant))
+            {
+                //Place on lab space position according to index
+            }
+            i++;
         }
     }
 }
