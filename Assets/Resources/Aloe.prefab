@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 269094083}
   - component: {fileID: 1259534919}
   - component: {fileID: 1259534920}
+  - component: {fileID: 1468277971}
   m_Layer: 6
   m_Name: Main Stem
   m_TagString: Untagged
@@ -103,7 +104,6 @@ MonoBehaviour:
   lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
   realTimeColor: {r: 0, g: 0, b: 0, a: 0}
   alphaValue: 1
-  growthStages: 400
   healthRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
@@ -121,6 +121,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   getTicks: 0
+--- !u!114 &1468277971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 269094081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeElapsed: 0
+  expectedGrowTime: 1000
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  growthAmount: 0
 --- !u!1 &353368829
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +200,7 @@ GameObject:
   - component: {fileID: 565172581}
   - component: {fileID: 961655843}
   - component: {fileID: 406645338}
+  - component: {fileID: 1971357898}
   m_Layer: 6
   m_Name: leaves
   m_TagString: Untagged
@@ -217,7 +236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
   leafCount: 5
-  growthStages: 400
   angle: 140
   rotationOffset: 0.6
   sproutSize: 0.8
@@ -244,7 +262,6 @@ MonoBehaviour:
   lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
   realTimeColor: {r: 0, g: 0, b: 0, a: 0}
   alphaValue: 1
-  growthStages: 400
   healthRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
@@ -262,6 +279,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   getTicks: 0
+--- !u!114 &1971357898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565172579}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeElapsed: 0
+  expectedGrowTime: 1000
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  growthAmount: 0
 --- !u!1 &1427151331
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,9 +725,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expectedLifetime: 8760
-  expectedGrowTime: 2300
   deathTimeSkew: 0.02
-  growthTimeSkew: 0
+  currEfficiency: 0
   timeStampObject: {fileID: 0}
   allDependencies:
   - {fileID: 2092136190}

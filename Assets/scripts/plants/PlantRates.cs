@@ -10,8 +10,6 @@ public class PlantRates : MonoBehaviour
     //unit of time == hours
     public int expectedLifetime;
     private int timeAliveLeft;
-    public int expectedGrowTime;
-    private int currGrowTime;
     private float timeElapsed;
 
     //Efficiency of a plant is how close each of it's dependencies efficiency
@@ -25,7 +23,7 @@ public class PlantRates : MonoBehaviour
     //rates used to skew the current time of the death(speed up) and growth(slow down)
     //depending on the level of efficiency of a plant
     public float deathTimeSkew;
-    public float growthTimeSkew;
+    public float currEfficiency;
     public GameObject timeStampObject;
 
     public GameObject[] allDependencies;
@@ -67,7 +65,6 @@ public class PlantRates : MonoBehaviour
     void Start()
     {
         timeAliveLeft = expectedLifetime;
-        currGrowTime = expectedGrowTime;
         timeElapsed = 0f;
 
         BalanceFloats(allDependencies, 0, maxEfficiency);
@@ -138,10 +135,7 @@ public class PlantRates : MonoBehaviour
     {
         //make sure variables stay in acceptable range
         expectedLifetime = NumOp.Cutoff(expectedLifetime, 1, expectedLifetime);
-        expectedGrowTime = NumOp.Cutoff(expectedGrowTime, 1, expectedGrowTime);
-        deathTimeSkew = NumOp.Cutoff(deathTimeSkew, 0f, 1f);
-        growthTimeSkew = NumOp.Cutoff(growthTimeSkew, 0f, 1f); 
-        
+        deathTimeSkew = NumOp.Cutoff(deathTimeSkew, 0f, 1f);      
 
         //get changed dependancy and balance based on the change
         int changedIndex = -1;
@@ -159,14 +153,12 @@ public class PlantRates : MonoBehaviour
 
         if (timeElapsed < timeAliveLeft)
         {
-            float currEffic = GetCurrentEfficiency(allDependencies);
+            currEfficiency = GetCurrentEfficiency(allDependencies);
 
             //time till death decreases as efficiency lowers whereas it increases growth time
-            float actualDeathEffic = (currEffic - (currEffic * deathTimeSkew));
-            float actualGrowthEffic = (currEffic - (currEffic * growthTimeSkew));
+            float actualDeathEffic = (currEfficiency - (currEfficiency * deathTimeSkew));
 
             timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
-            currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
             //constant countdown
             if (TimeStamps().Tick())
@@ -186,26 +178,9 @@ public class PlantRates : MonoBehaviour
         if (debug)
         {
             print("Plant Time Left (%): " + Health().ToString());
-            print(String.Format("Name: {3}, TimeAlive: {0}hrs, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", timeAliveLeft, currGrowTime, timeElapsed, name));
+            print(String.Format("Name: {0}, TimeAlive: {1}hrs, TimeElapsed: {2}hrs", name, timeAliveLeft, timeElapsed));
         }
 
-    }
-
-    public float GrowthAmount(float numOfStages, int timeElapsed)
-    {
-        float growthAmount;
-        if (numOfStages <= 0)
-        {
-            growthAmount = 1f;
-        }
-        else
-        {
-            float stageInterval = NumOp.Cutoff((float)currGrowTime, 0f, (float)currGrowTime) / numOfStages;
-            float stage = (float)timeElapsed / stageInterval;
-            growthAmount = NumOp.Cutoff(stage / numOfStages, 0f, 1f);
-        }
-
-        return growthAmount;
     }
 
     public float Health()

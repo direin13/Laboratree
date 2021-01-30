@@ -10,7 +10,6 @@ public class Sprout : MonoBehaviour
     private GameObject stem;
     public Sprite sprite;
     public int leafCount;
-    public int growthStages;
     private Vector3 spawnPoint;
     public float angle;
     public float rotationOffset;
@@ -21,7 +20,6 @@ public class Sprout : MonoBehaviour
     public Vector3 offsetSpawnPoint;
     public Vector3 leafScale;
     private GameObject[] leaves;
-    private int timeElapsed;
 
     public bool debug;
 
@@ -83,7 +81,6 @@ public class Sprout : MonoBehaviour
                                  stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
 
         leaves = CreateLeaves(leafCount);
-        timeElapsed = 0;
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
@@ -196,17 +193,10 @@ public class Sprout : MonoBehaviour
         if (leafCount != leaves.Length)
             leaves = CreateLeaves(leafCount);
 
-        PlantRates plant = transform.root.gameObject.GetComponent<PlantRates>();
-
-        float growthAmount = plant.GrowthAmount(growthStages, timeElapsed);
+        float growthAmount = GetComponent<Grow>().growthAmount;
 
         SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
         SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale * growthAmount);
         SetColor();
-
-        if (GetComponent<Timer>().Tick())
-        {
-            timeElapsed++;
-        }
     }
 }
