@@ -7,29 +7,27 @@ using MiscFunctions;
 public class Sprout : MonoBehaviour
 {
     //used to sprout sprites from a point across a given angle
-    private GameObject stem;
     public Sprite sprite;
     public int leafCount;
-    public int growthStages;
-    private Vector3 spawnPoint;
+
     public float angle;
     public float rotationOffset;
     public float sproutSize;
     public bool invHeightSkew;
     public float heightOffset;
     public float heightOffsetPower;
-    public Vector3 offsetSpawnPoint;
-    public Vector3 leafScale;
+
+    private Vector3 spawnPoint;
+    public int zLayer;
+    public readonly int maxZLayer = 30;
+    public Vector2 offsetSpawnPoint;
+    public Vector2 leafScale;
     private GameObject[] leaves;
-    private int timeElapsed;
 
     public bool debug;
 
 
-    public Vector3 mulVec(Vector3 vec1, Vector3 vec2)
-    {
-        return new Vector3(vec1[0] * vec2[0], vec1[1] * vec2[1], vec1[2] * vec2[2]);
-    }
+
 
     public GameObject[] CreateLeaves(int amount)
     {
@@ -39,10 +37,14 @@ public class Sprout : MonoBehaviour
                 Destroy(leaf.transform.parent.gameObject); //LeafNode
         }
 
+        GameObject stem = transform.parent.gameObject;
         SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
+
+        Vector3 offset = new Vector3(offsetSpawnPoint[0] * transform.root.localScale[0], offsetSpawnPoint[1] * transform.root.localScale[1], 0);
+
         spawnPoint = new Vector3(stemSprite.transform.position[0],
                                  stemSprite.transform.position[1],
-                                 stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
+                                 stem.transform.position[2] + (float)zLayer - 14) + offset;
 
         GameObject[] newLeaves = new GameObject[amount];
 
@@ -65,9 +67,10 @@ public class Sprout : MonoBehaviour
 
             float stemHeight = stemSprite.bounds.size.y;
             leaf.transform.position = leaf.transform.position + new Vector3(0, (leafSpriteRenderer.bounds.size.y / 2), 0);
+            leaf.transform.position = new Vector3(leaf.transform.position[0], leaf.transform.position[1], 0);
             leafNode.transform.position = spawnPoint + new Vector3(0, (stemHeight / 2), 0);
 
-            SetLocalScale(leaf, leafScale);
+            SetLocalScale(leaf, new Vector3(leafScale[0], leafScale[1], 1));
 
         }
         return newLeaves;
@@ -76,14 +79,7 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        stem = transform.parent.gameObject;
-        SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
-        spawnPoint = new Vector3(stemSprite.transform.position[0],
-                                 stemSprite.transform.position[1],
-                                 stemSprite.transform.position[2] + 2) + mulVec(offsetSpawnPoint, transform.root.localScale);
-
-        leaves = CreateLeaves(leafCount);
-        timeElapsed = 0;
+        leaves = new GameObject[0];
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
@@ -127,7 +123,7 @@ public class Sprout : MonoBehaviour
         }
     }
 
-    public void SetHeightSkew(float skewAmount, float offsetAmount, bool reverseSkew, Vector3 leafScale)
+    public void SetHeightSkew(float skewAmount, float offsetAmount, bool reverseSkew, Vector2 leafScale)
     {
         //sets how much the leaves' height are skewed from the centre
         //offsetAmount represents the amount of skew used the further
@@ -144,6 +140,7 @@ public class Sprout : MonoBehaviour
         {
 
             Vector3 interval = leafScale - ((leafScale * skewAmount) * ((i) / ((float)midInd + 1)));
+            interval = new Vector3(interval[0], interval[1], 1);
 
             if (reverseSkew)
             {
@@ -171,16 +168,7 @@ public class Sprout : MonoBehaviour
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
             Transform tf = leaves[i].transform;
-            if (i % 2 != 0)
-            {
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2] + 12);
-                sr.color = chosenColor;
-            }
-            else
-            {
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], tf.root.position[2] + 16);
-                sr.color = new Color(chosenColor[0] / 1.5f, chosenColor[1] / 1.5f, chosenColor[2] / 1.5f, chosenColor[3]);
-            }
+            sr.color = chosenColor;
         }
     }
 
@@ -192,21 +180,15 @@ public class Sprout : MonoBehaviour
         sproutSize = NumOp.Cutoff(sproutSize, 0f, 1f);
         heightOffset = NumOp.Cutoff(heightOffset, 0f, 1f);
         angle = NumOp.Cutoff(angle, 0f, 360f);
+        zLayer = NumOp.Cutoff(zLayer, 0, maxZLayer);
 
         if (leafCount != leaves.Length)
             leaves = CreateLeaves(leafCount);
 
-        PlantRates plant = transform.root.gameObject.GetComponent<PlantRates>();
-
-        float growthAmount = plant.GrowthAmount(growthStages, timeElapsed);
+        float growthAmount = GetComponent<Grow>().growthAmount;
 
         SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
-        SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale * growthAmount);
+        SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale*growthAmount);
         SetColor();
-
-        if (GetComponent<Timer>().Tick())
-        {
-            timeElapsed++;
-        }
     }
 }

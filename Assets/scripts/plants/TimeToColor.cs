@@ -14,16 +14,13 @@ public class TimeToColor : MonoBehaviour
     public Color lateColor;
     public Color realTimeColor;
     public float alphaValue;
-    public float growthStages;
     public float healthRatio;
     public bool setSpriteRendererColor;
     public bool debug;
-    private int timeElapsed;
 
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {        
     }
 
     public void SetColor()
@@ -41,13 +38,13 @@ public class TimeToColor : MonoBehaviour
         if (pr.Health() >= healthRatio)
         {
             Color.RGBToHSV(earlyColor, out H2, out S2, out V2);
-            colorPerc = NumOp.Cutoff(pr.Health() - pr.GrowthAmount(growthStages, timeElapsed), 0f, 1f);
+            colorPerc = NumOp.Cutoff(pr.Health() - GetComponent<Grow>().growthAmount, 0f, 1f);
         }
         else
         {
             Color.RGBToHSV(lateColor, out H2, out S2, out V2);
             float tmp = (healthRatio - pr.Health()) * (1f / healthRatio);
-            colorPerc = NumOp.Cutoff(1f - (pr.GrowthAmount(growthStages, timeElapsed) - tmp), 0f, 1f);
+            colorPerc = NumOp.Cutoff(1f - (GetComponent<Grow>().growthAmount - tmp), 0f, 1f);
         }
 
         Vector3 dist = (new Vector3(H2 - H1, S2 - S1, V2 - V1)) * colorPerc;
@@ -67,17 +64,11 @@ public class TimeToColor : MonoBehaviour
     {
         healthRatio = NumOp.Cutoff(healthRatio, 0f, 1f);
         alphaValue = NumOp.Cutoff(alphaValue, 0f, 1f);
-        growthStages = NumOp.Cutoff(growthStages, 1, growthStages);
 
         SetColor();
         if (setSpriteRendererColor)
         {
             GetComponent<SpriteRenderer>().color = realTimeColor;
-        }
-
-        if (GetComponent<Timer>().Tick())
-        {
-            timeElapsed++;
         }
     }
 }
