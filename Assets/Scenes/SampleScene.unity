@@ -2750,7 +2750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d014787f21387a409297ec75b542312, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  globalTimeSpeed: 1
+  globalTimeSpeed: 0
   plantCollection:
   - {fileID: 1603216480}
   - {fileID: 1253354242}
@@ -6830,12 +6830,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 353368830, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 353368830, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: maxValue
       value: 8760
       objectReference: {fileID: 0}
     - target: {fileID: 353368830, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: minValue
       value: 168
+      objectReference: {fileID: 0}
+    - target: {fileID: 353368830, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: currValue
+      value: 1289
       objectReference: {fileID: 0}
     - target: {fileID: 353368830, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: optimumPercentage
@@ -6851,7 +6859,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1427151333, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: currValue
-      value: 30
+      value: 486
       objectReference: {fileID: 0}
     - target: {fileID: 1427151333, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: optimumPercentage
@@ -6863,7 +6871,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: debug
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject

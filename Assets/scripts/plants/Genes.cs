@@ -16,7 +16,6 @@ public class Genes : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print(genesMappings[0].name);
     }
 
     // Update is called once per frame
