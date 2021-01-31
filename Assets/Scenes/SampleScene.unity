@@ -1916,6 +1916,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da79c2f1796d4bb4481173d1dede1249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  plantManager: {fileID: 0}
 --- !u!1 &464853231
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,8 +2543,9 @@ MonoBehaviour:
   dependencyEfficiency: 0
   minValue: 0
   maxValue: 0
-  optimumValue: 0
+  optimumPercentage: 0
   currValue: 0
+  debug: 0
 --- !u!1 &676310055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,6 +2751,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalTimeSpeed: 1
+  plantCollection:
+  - {fileID: 1603216480}
+  - {fileID: 1253354242}
 --- !u!1 &734216625
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,8 +4247,9 @@ MonoBehaviour:
   dependencyEfficiency: 0
   minValue: 0
   maxValue: 0
-  optimumValue: 0
+  optimumPercentage: 0
   currValue: 0
+  debug: 0
 --- !u!1 &1059958516
 GameObject:
   m_ObjectHideFlags: 0
@@ -5186,6 +5192,12 @@ PrefabInstance:
     - {fileID: 1673303321, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
     - {fileID: 2911030038140038826, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+--- !u!1 &1253354242 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1253354241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1253472329
 GameObject:
   m_ObjectHideFlags: 0
@@ -6917,6 +6929,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+--- !u!1 &1603216480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1603216479}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &1608189053
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -8136,8 +8154,9 @@ MonoBehaviour:
   dependencyEfficiency: 0
   minValue: 0
   maxValue: 0
-  optimumValue: 0
+  optimumPercentage: 0
   currValue: 0
+  debug: 0
 --- !u!1 &1978191763
 GameObject:
   m_ObjectHideFlags: 0

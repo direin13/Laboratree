@@ -6,10 +6,9 @@ using MiscFunctions;
 
 public class NavigateCollection : MonoBehaviour
 {
-    public List<GameObject> plantCollection = PlantManager.plantCollection;
+    public GameObject plantManager;
 
     void Start(){
-        print(plantCollection[1]);
     }
 
 }

@@ -8,7 +8,7 @@ public class PlantManager : MonoBehaviour
 {
     //This is the script that manages all the plants in the game
     public float globalTimeSpeed;
-    public static List<GameObject> plantCollection;
+    public List<GameObject> plantCollection;
     public readonly Dictionary<string, bool> plantStatus = new Dictionary<string, bool>();
     // Start is called before the first frame update
     void Start()
@@ -28,7 +28,7 @@ public class PlantManager : MonoBehaviour
             plantStatus.Add(plant.name, status);
         }
         plantStatus[plant.name] = status;
-            
+
     }
 
     public bool PlantActive(GameObject plant)
@@ -51,12 +51,12 @@ public class PlantManager : MonoBehaviour
         foreach (GameObject plant in plantCollection)
         {
             plant.GetComponent<Timer>().getTicks = PlantActive(plant);
-            plant.GetComponent<Timer>().speed = globalTimeSpeed/maxSpeed;
+            plant.GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
 
             foreach (Timer timer in plant.GetComponentsInChildren<Timer>())
             {
                 timer.getTicks = PlantActive(plant);
-                timer.speed = globalTimeSpeed/maxSpeed;
+                timer.speed = globalTimeSpeed / maxSpeed;
             }
             if (PlantActive(plant))
             {
