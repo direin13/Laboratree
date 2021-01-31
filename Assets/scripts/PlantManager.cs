@@ -7,7 +7,7 @@ using MiscFunctions;
 public class PlantManager : MonoBehaviour
 {
     public float globalTimeSpeed;
-    public List<GameObject> plantCollection;
+    public static List<GameObject> plantCollection;
     public readonly Dictionary<string, bool> plantStatus = new Dictionary<string, bool>();
     // Start is called before the first frame update
     void Start()
