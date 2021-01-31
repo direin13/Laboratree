@@ -43,9 +43,14 @@ public class Grow : MonoBehaviour
         }
         else
         {
-            float stageInterval = NumOp.Cutoff((float)currGrowTime, 0f, (float)currGrowTime) / growthStages;
-            int stage = timeElapsed / (int)stageInterval;
-            growthAmount = NumOp.Cutoff((float)stage / growthStages, 0f, 1f);
+            int stageInterval = NumOp.Cutoff(currGrowTime, 0, currGrowTime) / growthStages;
+            if (stageInterval <= 0)
+                growthAmount = 1f;
+            else
+            {
+                int stage = timeElapsed / stageInterval;
+                growthAmount = NumOp.Cutoff((float)stage / growthStages, 0f, 1f);
+            }
         }
 
 

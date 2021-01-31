@@ -1,5 +1,115 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &148416705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 148416706}
+  - component: {fileID: 148416710}
+  - component: {fileID: 148416709}
+  - component: {fileID: 148416708}
+  - component: {fileID: 148416707}
+  m_Layer: 6
+  m_Name: leaves 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &148416706
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148416705}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
+  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
+  m_Children: []
+  m_Father: {fileID: 269094082}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &148416710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148416705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a2d12c5ae83f44e86ec48a783ce884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
+  leafCount: 3
+  angle: 170
+  rotationOffset: 0.6
+  sproutSize: 0.8
+  invHeightSkew: 0
+  heightOffset: 0.9
+  heightOffsetPower: 0.9
+  zLayer: 10
+  offsetSpawnPoint: {x: 0.008, y: -0.2}
+  leafScale: {x: 0.29, y: 0.2}
+  debug: 0
+--- !u!114 &148416709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148416705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.19607846, g: 0.48366013, b: 0.28496733, a: 1}
+  optimumColor: {r: 0.06013072, g: 0.23790853, b: 0.115032665, a: 1}
+  lateColor: {r: 0.4287582, g: 0.3764706, b: 0.14117646, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  healthRatio: 0.15
+  setSpriteRendererColor: 0
+  debug: 0
+--- !u!114 &148416708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148416705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  getTicks: 0
+--- !u!114 &148416707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 148416705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expectedGrowTime: 1000
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  timeElapsed: 0
+  growthAmount: 0
 --- !u!1 &269094081
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +142,7 @@ Transform:
   m_LocalScale: {x: 0.09162116, y: 0.89747137, z: 1}
   m_Children:
   - {fileID: 565172580}
+  - {fileID: 148416706}
   m_Father: {fileID: 1487364218792195063}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -133,11 +244,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeElapsed: 0
   expectedGrowTime: 1000
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
+  timeElapsed: 0
   growthAmount: 0
 --- !u!1 &353368829
 GameObject:
@@ -216,7 +327,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565172579}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: -15}
+  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
   m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
   m_Children: []
   m_Father: {fileID: 269094082}
@@ -235,15 +346,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
-  leafCount: 5
-  angle: 140
+  leafCount: 2
+  angle: 100
   rotationOffset: 0.6
   sproutSize: 0.8
   invHeightSkew: 0
   heightOffset: 0.23
   heightOffsetPower: 0.9
-  offsetSpawnPoint: {x: 0.008, y: -0.2, z: 0}
-  leafScale: {x: 0.29, y: 0.2, z: 0}
+  zLayer: 5
+  offsetSpawnPoint: {x: 0.008, y: -0.2}
+  leafScale: {x: 0.29, y: 0.175}
   debug: 0
 --- !u!114 &961655843
 MonoBehaviour:
@@ -291,11 +403,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeElapsed: 0
   expectedGrowTime: 1000
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
+  timeElapsed: 0
   growthAmount: 0
 --- !u!1 &1427151331
 GameObject:
@@ -773,7 +885,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2911030037602206599}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.000093430695, y: -0.01861067, z: 11}
+  m_LocalPosition: {x: -0.000093430695, y: -0.01861067, z: 0}
   m_LocalScale: {x: 0.09942397, y: 0.15489633, z: 1}
   m_Children: []
   m_Father: {fileID: 1487364218792195063}

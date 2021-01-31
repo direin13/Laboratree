@@ -5977,18 +5977,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1468277971, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: growthStages
-      value: 400
+    - target: {fileID: 148416710, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: leafScale.y
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
       value: 
       objectReference: {fileID: 730175966}
-    - target: {fileID: 1971357898, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-      propertyPath: growthStages
-      value: 400
-      objectReference: {fileID: 0}
     - target: {fileID: 1487364218792195063, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_RootOrder
