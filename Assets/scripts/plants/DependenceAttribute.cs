@@ -18,8 +18,10 @@ public class DependenceAttribute : MonoBehaviour
     public float dependencyEfficiency;
     public float minValue;
     public float maxValue;
-    public float optimumValue;
+    public float optimumPercentage;
     public float currValue;
+
+    public bool debug;
     // Start is called before the first frame update
 
     void Start()
@@ -34,6 +36,9 @@ public class DependenceAttribute : MonoBehaviour
         currValue = NumOp.Cutoff(currValue, 0, 100000000);
         minValue = NumOp.Cutoff(minValue, 0, minValue);
         maxValue = NumOp.Cutoff(maxValue, minValue, maxValue);
+        optimumPercentage = NumOp.Cutoff(optimumPercentage, 0f, 1f);
+        float optimumValue = (maxValue - minValue) * optimumPercentage;
+
         if (optimumValue < minValue || optimumValue > maxValue)
             optimumValue = minValue + (Math.Abs(maxValue - minValue) / 2);
 
@@ -50,6 +55,11 @@ public class DependenceAttribute : MonoBehaviour
         {
             depAmountChanged = true;
             prevDepAmount = dependencyAmount;
+        }
+
+        if (debug)
+        {
+            print("Optimum Value: " + optimumValue.ToString());
         }
     }
 

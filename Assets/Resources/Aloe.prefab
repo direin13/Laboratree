@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 148416708}
   - component: {fileID: 148416707}
   m_Layer: 6
-  m_Name: leaves 2
+  m_Name: leaves<BG>
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,7 @@ MonoBehaviour:
   heightOffsetPower: 0.9
   zLayer: 10
   offsetSpawnPoint: {x: 0.008, y: -0.2}
-  leafScale: {x: 0.29, y: 0.2}
+  leafScale: {x: 0.29, y: 0.19}
   debug: 0
 --- !u!114 &148416709
 MonoBehaviour:

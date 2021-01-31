@@ -19,6 +19,7 @@ public class Sprout : MonoBehaviour
 
     private Vector3 spawnPoint;
     public int zLayer;
+    public readonly int maxZLayer = 30;
     public Vector2 offsetSpawnPoint;
     public Vector2 leafScale;
     private GameObject[] leaves;
@@ -78,8 +79,7 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        zLayer = NumOp.Cutoff(zLayer, 0, zLayer);
-        leaves = CreateLeaves(leafCount);
+        leaves = new GameObject[0];
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
@@ -180,7 +180,7 @@ public class Sprout : MonoBehaviour
         sproutSize = NumOp.Cutoff(sproutSize, 0f, 1f);
         heightOffset = NumOp.Cutoff(heightOffset, 0f, 1f);
         angle = NumOp.Cutoff(angle, 0f, 360f);
-        zLayer = NumOp.Cutoff(zLayer, 0, zLayer);
+        zLayer = NumOp.Cutoff(zLayer, 0, maxZLayer);
 
         if (leafCount != leaves.Length)
             leaves = CreateLeaves(leafCount);
