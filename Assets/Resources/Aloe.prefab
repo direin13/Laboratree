@@ -90,8 +90,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  getTicks: 0
+  speed: 100000
+  getTicks: 1
 --- !u!114 &148416707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,8 +230,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  getTicks: 0
+  speed: 100000
+  getTicks: 1
 --- !u!114 &1468277971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,7 +647,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1487364218792195063
 Transform:
   m_ObjectHideFlags: 0
@@ -752,8 +752,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  getTicks: 0
+  speed: 100000
+  getTicks: 1
 --- !u!1001 &5992389405763933849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -761,6 +761,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 269094082}
     m_Modifications:
+    - target: {fileID: 5992389405361536195, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
+        type: 3}
+      propertyPath: speed
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992389405361536195, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
+        type: 3}
+      propertyPath: getTicks
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5992389406327066618, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
         type: 3}
       propertyPath: m_Name

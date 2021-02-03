@@ -51,7 +51,6 @@ public class PlantManager : MonoBehaviour
     {
         float maxSpeed = 0.00001f;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
-        print(timeElapsed);
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
 
