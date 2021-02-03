@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using MiscFunctions;
+using UnityEngine.UI;
 
 public class PlantManager : MonoBehaviour
 {
     //This is the script that manages all the plants in the game
-    public float globalTimeSpeed;
+    public GameObject timeSlider;
+    private float globalTimeSpeed;
     public List<GameObject> plantCollection;
     public readonly Dictionary<string, bool> plantStatus = new Dictionary<string, bool>();
+    private int timeElapsed;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +22,7 @@ public class PlantManager : MonoBehaviour
         }
 
         SetPlantStatus(plantCollection[0], true);
+        GetComponent<Timer>().getTicks = true;
     }
 
     public void SetPlantStatus(GameObject plant, bool status)
@@ -45,24 +49,31 @@ public class PlantManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float maxSpeed = 0.000001f;
-        globalTimeSpeed = NumOp.Cutoff(globalTimeSpeed, maxSpeed, 1f);
+        float maxSpeed = 0.00001f;
+        globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
+
+        GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
+
         int i = 0;
         foreach (GameObject plant in plantCollection)
         {
             plant.GetComponent<Timer>().getTicks = PlantActive(plant);
-            plant.GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
+            plant.GetComponent<Timer>().speed = GetComponent<Timer>().speed;
 
             foreach (Timer timer in plant.GetComponentsInChildren<Timer>())
             {
                 timer.getTicks = PlantActive(plant);
-                timer.speed = globalTimeSpeed / maxSpeed;
+                timer.speed = GetComponent<Timer>().speed;
             }
             if (PlantActive(plant))
             {
                 //Place on lab space position according to index
             }
             i++;
+        }
+        if (GetComponent<Timer>().Tick())
+        {
+            timeElapsed++;
         }
     }
 }

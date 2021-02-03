@@ -10,13 +10,14 @@ public class MainMenu : MonoBehaviour
     public GameObject folderHead;
     private Vector3 followPoint;
     public bool isOpen;
+    public bool fullyOpen;
 
     // Start is called before the first frame update
     void Start()
     {
         Transform tr = gameObject.transform;
         //scaleFactor = (Screen.height / tr.root.gameObject.GetComponent<CanvasScaler>().referenceResolution.x) * 10;
-        ChangePosition(new Vector3(GetPosition()[0], 4f, GetPosition()[2]));
+        ChangePosition(new Vector3(GetPosition()[0], 6f, GetPosition()[2]));
         ChangeFollowPoint(GetPosition());
         SetOpen(isOpen);
     }
@@ -39,11 +40,12 @@ public class MainMenu : MonoBehaviour
 
     public void followY(Vector3 point, float speed)
     {
+
         Vector3 curr_pos = GetPosition();
         float y_dist = curr_pos[1] - point[1];
         if (y_dist > 0)
         {
-            //bove the follow point
+            //above the follow point
             ChangePosition(GetPosition() + new Vector3(0, -speed, 0));
             curr_pos = GetPosition();
             if (curr_pos[1] < point[1])
@@ -61,7 +63,18 @@ public class MainMenu : MonoBehaviour
                 ChangePosition(new Vector3(curr_pos[0], point[1], curr_pos[2]));
             }
         }
-        //else level
+        else
+        {
+            if (isOpen)
+            {
+                fullyOpen = true;
+            }
+            else
+            {
+                fullyOpen = false;
+            }
+        }
+
     }
 
 
@@ -70,13 +83,13 @@ public class MainMenu : MonoBehaviour
         if (b)
         {
             isOpen = true;
-            ChangeFollowPoint(new Vector3(0, 170f, GetPosition()[2]));
+            ChangeFollowPoint(new Vector3(0, 180f, GetPosition()[2]));
         }
 
         else
         {
             isOpen = false;
-            ChangeFollowPoint(new Vector3(0, 4f, GetPosition()[2]));
+            ChangeFollowPoint(new Vector3(0, 6f, GetPosition()[2]));
         }
     }
 
