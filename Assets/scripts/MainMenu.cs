@@ -83,7 +83,7 @@ public class MainMenu : MonoBehaviour
         if (b)
         {
             isOpen = true;
-            ChangeFollowPoint(new Vector3(0, 170f, GetPosition()[2]));
+            ChangeFollowPoint(new Vector3(0, 180f, GetPosition()[2]));
         }
 
         else

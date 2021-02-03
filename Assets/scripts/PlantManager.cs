@@ -58,12 +58,12 @@ public class PlantManager : MonoBehaviour
         foreach (GameObject plant in plantCollection)
         {
             plant.GetComponent<Timer>().getTicks = PlantActive(plant);
-            plant.GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
+            plant.GetComponent<Timer>().speed = GetComponent<Timer>().speed;
 
             foreach (Timer timer in plant.GetComponentsInChildren<Timer>())
             {
                 timer.getTicks = PlantActive(plant);
-                timer.speed = globalTimeSpeed / maxSpeed;
+                timer.speed = GetComponent<Timer>().speed;
             }
             if (PlantActive(plant))
             {
