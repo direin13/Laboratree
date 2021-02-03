@@ -13,24 +13,29 @@ public class NavigateCollection : MonoBehaviour
     public Button rightButton;
     public Transform parent;
     public TextMeshProUGUI nameText;
-    private List<GameObject> plantList;
+    private List<GameObject> originalPlantList;
+    private List<GameObject> plantList = new List<GameObject>();     //for creating a deep copy of original list 
     private int indexNum;
 
     void Start(){
         GameObject plantCollectionHolder = GameObject.Find("GameManager");
         PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
-        plantList = plantManager.plantCollection;
+        originalPlantList = plantManager.plantCollection;
         indexNum = 0;   //starts at 0
 
         //when instantiated, the object is not a child of any object or any canvas so no images will appear on screen
         //Setting the parent to Plant Display object        
         // display first plant in the list
-        for (int i = 0; i <plantList.Count; i++) {
+        for (int i = 0; i < originalPlantList.Count; i++) {
             //instantiate object - set position, rotation, and parent
-            GameObject plant = Instantiate(plantList[i], new Vector3(70,-100,-20),Quaternion.identity, parent);
+            //use new Vector3(70,-100,-20) when working with image
+            GameObject plant = Instantiate(originalPlantList[i], new Vector3(70,20,-20),Quaternion.identity);   //create clone
+            plant.name = plant.name.Replace("(Clone)", "");     //remove clone indicator
+            plantList.Add(plant);
 
             plant.SetActive(false);     //make them inactive so they do not show on collection
         }
+
         display();
     }
 
