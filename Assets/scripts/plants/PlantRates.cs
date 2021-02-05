@@ -24,7 +24,6 @@ public class PlantRates : MonoBehaviour
     //depending on the level of efficiency of a plant
     public float deathTimeSkew;
     public float currEfficiency;
-    public GameObject timeStampObject;
 
     public GameObject[] allDependencies;
     public bool debug;
@@ -75,7 +74,7 @@ public class PlantRates : MonoBehaviour
             }
             catch (Exception e)
             {
-                print(e.ToString());
+                print(e);
                 Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
             }
         }

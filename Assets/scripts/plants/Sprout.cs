@@ -101,7 +101,7 @@ public class Sprout : MonoBehaviour
             }
             catch (Exception e)
             {
-                print(e.ToString());
+                print(e);
                 Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
             }
         }
