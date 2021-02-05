@@ -64,12 +64,31 @@ public class PlantRates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeAliveLeft = expectedLifetime;
-        timeElapsed = 0f;
+        //reading gene script for variable values
+        Genes genes = GetComponent<Genes>();
+        if (genes != null)
+        {
+            try
+            {
+                expectedLifetime = Int32.Parse(genes.GetValue("expectedLifetime"));
+                deathTimeSkew = float.Parse(genes.GetValue("deathTimeSkew"));
+            }
+            catch (Exception e)
+            {
+                print(e.ToString());
+                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
+        }
 
+
+        timeElapsed = 0f;
+        timeAliveLeft = expectedLifetime;
         BalanceFloats(allDependencies, 0, maxEfficiency);
     }
-
 
     private void BalanceFloats(GameObject [] values, int pivotIndex, float cutOff)
     {

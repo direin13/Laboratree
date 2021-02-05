@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5992389406327066621}
+  - component: {fileID: 7615036232150635797}
   - component: {fileID: 5992389406327066620}
   - component: {fileID: 5992389405909590714}
   - component: {fileID: 5992389405361536195}
@@ -34,6 +35,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7615036232150635797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: earlyColor
+    allelePair: Hh
+    dominantVal: '#4BB96D'
+    recessiveVal: '#1FB060'
+  - name: optimumColor
+    allelePair: Hh
+    dominantVal: '#175B2C'
+    recessiveVal: '#137641'
+  - name: lateColor
+    allelePair: Hh
+    dominantVal: '#A49036'
+    recessiveVal: '#A6822C'
+  - name: healthToColorRatio
+    allelePair: Hh
+    dominantVal: 0.15
+    recessiveVal: 0.3
+  - name: expectedGrowTime
+    allelePair: Hh
+    dominantVal: 1000
+    recessiveVal: 900
+  - name: growthTimeSkew
+    allelePair: Hh
+    dominantVal: 0
+    recessiveVal: 0.2
+  - name: leafCount
+    allelePair: Hh
+    dominantVal: 2
+    recessiveVal: 3
+  - name: angle
+    allelePair: Hh
+    dominantVal: 100
+    recessiveVal: 100
+  - name: rotationOffset
+    allelePair: Hh
+    dominantVal: 0.6
+    recessiveVal: 0.7
+  - name: sproutSize
+    allelePair: Hh
+    dominantVal: 0.8
+    recessiveVal: 0.8
+  - name: invHeightSkew
+    allelePair: Hh
+    dominantVal: true
+    recessiveVal: true
+  - name: heightOffset
+    allelePair: Hh
+    dominantVal: 0.23
+    recessiveVal: 0.19
+  - name: heightOffsetPower
+    allelePair: Hh
+    dominantVal: 0.9
+    recessiveVal: 0.8
+  - name: offsetSpawnPoint
+    allelePair: Hh
+    dominantVal: 0.008,-0.2
+    recessiveVal: 0.008,-0.25
+  - name: leafScale
+    allelePair: Hh
+    dominantVal: 0.29,0.175
+    recessiveVal: 0.32,0.172
 --- !u!114 &5992389406327066620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,7 +149,7 @@ MonoBehaviour:
   lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
   realTimeColor: {r: 0, g: 0, b: 0, a: 0}
   alphaValue: 1
-  healthRatio: 0.15
+  healthToColorRatio: 0
   setSpriteRendererColor: 0
   debug: 0
 --- !u!114 &5992389405361536195

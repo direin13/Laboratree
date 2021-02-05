@@ -26,9 +26,32 @@ public class DependenceAttribute : MonoBehaviour
 
     void Start()
     {
+        //reading gene script for variable values
+        Genes genes = GetComponent<Genes>();
+        if (genes != null)
+        {
+            try
+            {
+                dependencyAmount = float.Parse(genes.GetValue("dependencyAmount"));
+                minValue = float.Parse(genes.GetValue("minValue"));
+                maxValue = float.Parse(genes.GetValue("maxValue"));
+                optimumPercentage = float.Parse(genes.GetValue("optimumPercentage"));
+            }
+            catch (Exception e)
+            {
+                print(e.ToString());
+                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
+        }
+
         depAmountChanged = false;
         prevDepAmount = dependencyAmount;
     }
+
 
     // Update is called once per frame
     void Update()

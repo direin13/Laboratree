@@ -14,13 +14,33 @@ public class TimeToColor : MonoBehaviour
     public Color lateColor;
     public Color realTimeColor;
     public float alphaValue;
-    public float healthRatio;
+    public float healthToColorRatio; //when color starts to change in the lifecycle of the object
     public bool setSpriteRendererColor;
     public bool debug;
 
     // Start is called before the first frame update
     void Start()
-    {        
+    {
+        Genes genes = GetComponent<Genes>();
+        if (genes != null)
+        {
+            try
+            {
+                ColorUtility.TryParseHtmlString(genes.GetValue("earlyColor"), out earlyColor);
+                ColorUtility.TryParseHtmlString(genes.GetValue("optimumColor"), out optimumColor);
+                ColorUtility.TryParseHtmlString(genes.GetValue("lateColor"), out lateColor);
+                healthToColorRatio = float.Parse(genes.GetValue("healthToColorRatio"));
+            }
+            catch (Exception e)
+            {
+                print(e.ToString());
+                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
+        }
     }
 
     public void SetColor()
@@ -35,7 +55,7 @@ public class TimeToColor : MonoBehaviour
 
         float H2, S2, V2;
 
-        if (pr.Health() >= healthRatio)
+        if (pr.Health() >= healthToColorRatio)
         {
             Color.RGBToHSV(earlyColor, out H2, out S2, out V2);
             colorPerc = NumOp.Cutoff(pr.Health() - GetComponent<Grow>().growthAmount, 0f, 1f);
@@ -43,7 +63,7 @@ public class TimeToColor : MonoBehaviour
         else
         {
             Color.RGBToHSV(lateColor, out H2, out S2, out V2);
-            float tmp = (healthRatio - pr.Health()) * (1f / healthRatio);
+            float tmp = (healthToColorRatio - pr.Health()) * (1f / healthToColorRatio);
             colorPerc = NumOp.Cutoff(1f - (GetComponent<Grow>().growthAmount - tmp), 0f, 1f);
         }
 
@@ -62,7 +82,7 @@ public class TimeToColor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthRatio = NumOp.Cutoff(healthRatio, 0f, 1f);
+        healthToColorRatio = NumOp.Cutoff(healthToColorRatio, 0f, 1f);
         alphaValue = NumOp.Cutoff(alphaValue, 0f, 1f);
 
         SetColor();
