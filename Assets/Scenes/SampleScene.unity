@@ -1723,11 +1723,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 419380997}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 419380999}, m_TargetAssemblyTypeName: 'NavigateButtons,
-            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
-            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 419380999}
+        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &419380997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3118,11 +3126,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 742596859}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 742596861}, m_TargetAssemblyTypeName: 'NavigateButtons,
-            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
-            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 742596861}
+        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
+        m_MethodName: OnMouseDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &742596859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6755,6 +6771,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565172581, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
+      propertyPath: enableBackgroundLeaves
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
       value: 
@@ -6819,8 +6839,43 @@ PrefabInstance:
       propertyPath: m_Name
       value: Aloe
       objectReference: {fileID: 0}
-    m_RemovedComponents: [{fileID: 877257713, guid: 2ef9a12991ca73a46828f7836aef8be2,
-        type: 3}]
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[6].dominantVal
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[7].dominantVal
+      value: 140
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[10].dominantVal
+      value: false
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[11].dominantVal
+      value: 0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[6].recessiveVal
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[7].recessiveVal
+      value: 130
+      objectReference: {fileID: 0}
+    - target: {fileID: 4217398336565461900, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: genes.Array.data[10].recessiveVal
+      value: false
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 877257713, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
 --- !u!850595691 &1608189053
 LightingSettings:
