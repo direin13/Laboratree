@@ -247,7 +247,7 @@ MonoBehaviour:
   expectedGrowTime: 1000
   growthTimeSkew: 0
   growthStages: 400
-  debug: 0
+  debug: 1
   timeElapsed: 0
   growthAmount: 0
 --- !u!1 &353368829
@@ -419,7 +419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1690736154
 Transform:
   m_ObjectHideFlags: 0
@@ -657,7 +657,7 @@ Transform:
   m_GameObject: {fileID: 2652030684054046656}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 43.389774, y: 39.586548, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2911030037602206598}
   - {fileID: 269094082}
@@ -761,6 +761,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 269094082}
     m_Modifications:
+    - target: {fileID: 5992389404916653651, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5992389405361536195, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
         type: 3}
       propertyPath: speed
@@ -775,6 +780,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: leaves
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992389406327066620, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
+        type: 3}
+      propertyPath: debug
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5992389406327066621, guid: 8e79e1c05b33ecd45b86ebd92552b8af,
         type: 3}
@@ -850,6 +860,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pot
+      objectReference: {fileID: 0}
+    - target: {fileID: 6197001290637479274, guid: a256c31a7e705d04699e4f311d077d5b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6197001290637479275, guid: a256c31a7e705d04699e4f311d077d5b,
         type: 3}

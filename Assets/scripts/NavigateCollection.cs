@@ -23,17 +23,27 @@ public class NavigateCollection : MonoBehaviour
         originalPlantList = plantManager.plantCollection;
         indexNum = 0;   //starts at 0
 
-        //when instantiated, the object is not a child of any object or any canvas so no images will appear on screen
-        //Setting the parent to Plant Display object        
+        
+
+
         // display first plant in the list
         for (int i = 0; i < originalPlantList.Count; i++) {
-            //instantiate object - set position, rotation, and parent
+            //instantiate object - set position, rotation
             //use new Vector3(70,-100,-20) when working with image
-            GameObject plant = Instantiate(originalPlantList[i], new Vector3(70,20,-20),Quaternion.identity);   //create clone
-            plant.name = plant.name.Replace("(Clone)", "");     //remove clone indicator
-            plantList.Add(plant);
-
+            GameObject plant = Instantiate(originalPlantList[i]);   //create clone
+            plant.transform.localScale = new Vector3(35,35,1);
+            plant.transform.position = new Vector3(70,63,-20);
             plant.SetActive(false);     //make them inactive so they do not show on collection
+            plant.name = plant.name.Replace("(Clone)", "");     //remove clone indicator
+
+            
+            //when instantiated, the object is not a child of any object or any canvas
+            //this is used to make the sprite appear on the screen
+            //FakeFollow will set the Plant Collection Page its fake parent object        
+            //script will make it move to follow folder as if it were its child
+            plant.AddComponent<FakeFollow>();
+
+            plantList.Add(plant);       //add clone to local copy
         }
 
         display();
@@ -41,6 +51,9 @@ public class NavigateCollection : MonoBehaviour
 
     void display(){
 
+        //change scale
+        // plantList[indexNum].transform.localScale = new Vector3(35,35,1);
+        // plantList[indexNum].transform.position = new Vector3(70,63,-20);
         plantList[indexNum].SetActive(true);    //make plant visible
 
         //change name to current plant
@@ -48,7 +61,10 @@ public class NavigateCollection : MonoBehaviour
 
         //set index amount
         indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
+        print(plantList[indexNum].transform.position);
 
+        // //make it stop responding to time
+        // plantList[indexNum].GetComponent<Timer>().getTicks = false;
     }
 
     void Update(){
@@ -96,10 +112,10 @@ public class NavigateCollection : MonoBehaviour
 
             Debug.Log("Exception caught: " + e1);
             button.GetComponent<NavigateButtons>().clicked = false;         //reset button status
-            display();
-            
         }     
-        // finally {}      //do nothing
+        finally {
+            display();
+        }
 
     }
 

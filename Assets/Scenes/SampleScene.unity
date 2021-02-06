@@ -3001,8 +3001,7 @@ MonoBehaviour:
   plantCollection:
   - {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
   - {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
-  - {fileID: 4610257621217981586, guid: 7fe6dc73edaa5324e9c3c36f96dbb707, type: 3}
-  - {fileID: 4610257621217981586, guid: 7fe6dc73edaa5324e9c3c36f96dbb707, type: 3}
+  - {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
 --- !u!1 &734216625
 GameObject:
   m_ObjectHideFlags: 0
@@ -6943,7 +6942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: debug
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1651670677, guid: 2ef9a12991ca73a46828f7836aef8be2, type: 3}
       propertyPath: timeStampObject
@@ -7059,6 +7058,11 @@ PrefabInstance:
       value: Aloe
       objectReference: {fileID: 0}
     - target: {fileID: 2652030684054046656, guid: 2ef9a12991ca73a46828f7836aef8be2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2911030037602206599, guid: 2ef9a12991ca73a46828f7836aef8be2,
         type: 3}
       propertyPath: m_IsActive
       value: 1
