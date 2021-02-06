@@ -191,5 +191,10 @@ public class PlantManager : MonoBehaviour
         {
           SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
         }
+
+        if (timeElapsed == 20)
+        {
+            SetPlantStatus(MakePlant("joes plant 2", "Aloe"), true);
+        }
     }
 }
