@@ -66,18 +66,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.1
     recessiveVal: 0.2
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 168
     recessiveVal: 150
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 8760
     recessiveVal: 6990
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.15
     recessiveVal: 0.1
 --- !u!1 &2448902413661577123
@@ -184,10 +188,12 @@ MonoBehaviour:
   genes:
   - name: expectedLifetime
     allelePair: Hh
+    valueType: int
     dominantVal: 8760
     recessiveVal: 6690
   - name: deathTimeSkew
     allelePair: Hh
+    valueType: float
     dominantVal: 0.02
     recessiveVal: 0.1
 --- !u!114 &8477308398532171784
@@ -328,26 +334,32 @@ MonoBehaviour:
   genes:
   - name: earlyColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#4BB96D'
     recessiveVal: '#1FB060'
   - name: optimumColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#175B2C'
     recessiveVal: '#137641'
   - name: lateColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#A49036'
     recessiveVal: '#A6822C'
   - name: healthToColorRatio
     allelePair: Hh
+    valueType: float
     dominantVal: 0.15
     recessiveVal: 0.3
   - name: expectedGrowTime
     allelePair: Hh
+    valueType: int
     dominantVal: 1000
     recessiveVal: 900
   - name: growthTimeSkew
     allelePair: Hh
+    valueType: float
     dominantVal: 0
     recessiveVal: 0.2
 --- !u!114 &1225476191998704355
@@ -452,62 +464,77 @@ MonoBehaviour:
   genes:
   - name: earlyColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#4BB96D'
     recessiveVal: '#1FB060'
   - name: optimumColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#175B2C'
     recessiveVal: '#137641'
   - name: lateColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#A49036'
     recessiveVal: '#A6822C'
   - name: healthToColorRatio
     allelePair: Hh
+    valueType: float
     dominantVal: 0.15
     recessiveVal: 0.3
   - name: expectedGrowTime
     allelePair: Hh
+    valueType: int
     dominantVal: 1000
     recessiveVal: 900
   - name: growthTimeSkew
     allelePair: Hh
+    valueType: float
     dominantVal: 0
     recessiveVal: 0.2
   - name: leafCount
     allelePair: Hh
+    valueType: int
     dominantVal: 5
     recessiveVal: 6
   - name: angle
     allelePair: Hh
+    valueType: float
     dominantVal: 140
     recessiveVal: 130
   - name: rotationOffset
     allelePair: Hh
+    valueType: float
     dominantVal: 0.6
     recessiveVal: 0.7
   - name: sproutSize
     allelePair: Hh
+    valueType: float
     dominantVal: 0.8
     recessiveVal: 0.8
   - name: invHeightSkew
     allelePair: Hh
+    valueType: bool
     dominantVal: false
     recessiveVal: false
   - name: heightOffset
     allelePair: Hh
+    valueType: float
     dominantVal: 0.22
     recessiveVal: 0.19
   - name: heightOffsetPower
     allelePair: Hh
+    valueType: float
     dominantVal: 0.9
     recessiveVal: 0.8
   - name: offsetSpawnPoint
     allelePair: Hh
+    valueType: Vector2
     dominantVal: 0.008,-0.2
     recessiveVal: 0.008,-0.25
   - name: leafScale
     allelePair: Hh
+    valueType: Vector2
     dominantVal: 0.29,0.175
     recessiveVal: 0.32,0.172
 --- !u!114 &3643725074588179010
@@ -687,18 +714,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.3
     recessiveVal: 0.4
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 360
     recessiveVal: 340
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 3600
     recessiveVal: 4000
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.15
     recessiveVal: 0.3
 --- !u!1 &6038273100408203648
@@ -710,8 +741,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3572825718783950367}
-  - component: {fileID: 8433413158800378653}
   - component: {fileID: 7943173938803738242}
+  - component: {fileID: 8433413158800378653}
   m_Layer: 6
   m_Name: Lighting
   m_TagString: Untagged
@@ -733,6 +764,39 @@ Transform:
   m_Father: {fileID: 6164391990503077295}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7943173938803738242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6038273100408203648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: dependencyAmount
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.25
+  - name: minValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 1000
+    recessiveVal: 900
+  - name: maxValue
+    allelePair: HH
+    valueType: int
+    dominantVal: 10000
+    recessiveVal: 8000
+  - name: optimumPercentage
+    allelePair: hh
+    valueType: float
+    dominantVal: 0.61
+    recessiveVal: 0.4
 --- !u!114 &8433413158800378653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,35 +816,6 @@ MonoBehaviour:
   optimumPercentage: 0.61
   currValue: 3600
   debug: 0
---- !u!114 &7943173938803738242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6038273100408203648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  genes:
-  - name: dependencyAmount
-    allelePair: Hh
-    dominantVal: 0.3
-    recessiveVal: 0.25
-  - name: minValue
-    allelePair: Hh
-    dominantVal: 1000
-    recessiveVal: 900
-  - name: maxValue
-    allelePair: HH
-    dominantVal: 10000
-    recessiveVal: 8000
-  - name: optimumPercentage
-    allelePair: hh
-    dominantVal: 0.61
-    recessiveVal: 0.4
 --- !u!1 &7682611242822625595
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,17 +964,21 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.3
     recessiveVal: 0.2
   - name: minValue
     allelePair: HH
+    valueType: int
     dominantVal: 10
     recessiveVal: 6
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 30
     recessiveVal: 13
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.5
     recessiveVal: 0.4

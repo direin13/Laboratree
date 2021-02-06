@@ -66,18 +66,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.25
     recessiveVal: 0.25
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 10
     recessiveVal: 10
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 1000
     recessiveVal: 1000
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.5
     recessiveVal: 0.5
 --- !u!1 &787227396498965759
@@ -184,10 +188,12 @@ MonoBehaviour:
   genes:
   - name: expectedLifetime
     allelePair: Hh
+    valueType: int
     dominantVal: 10000
     recessiveVal: 10000
   - name: deathTimeSkew
     allelePair: Hh
+    valueType: float
     dominantVal: 0.2
     recessiveVal: 0.2
 --- !u!114 &8654293670897953713
@@ -373,18 +379,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.25
     recessiveVal: 0.25
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 10
     recessiveVal: 10
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 30
     recessiveVal: 30
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.5
     recessiveVal: 0.5
 --- !u!1 &4371056187739296337
@@ -453,18 +463,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.25
     recessiveVal: 0.25
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 0
     recessiveVal: 0
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 10000
     recessiveVal: 10000
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.5
     recessiveVal: 0.5
 --- !u!1 &5589505556137104399
@@ -533,18 +547,22 @@ MonoBehaviour:
   genes:
   - name: dependencyAmount
     allelePair: Hh
+    valueType: float
     dominantVal: 0.25
     recessiveVal: 0.25
   - name: minValue
     allelePair: Hh
+    valueType: int
     dominantVal: 10
     recessiveVal: 10
   - name: maxValue
     allelePair: Hh
+    valueType: int
     dominantVal: 1000
     recessiveVal: 1000
   - name: optimumPercentage
     allelePair: Hh
+    valueType: float
     dominantVal: 0.5
     recessiveVal: 0.5
 --- !u!1 &7548149064760046106
@@ -649,26 +667,32 @@ MonoBehaviour:
   genes:
   - name: earlyColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#4BB96D'
     recessiveVal: '#1FB060'
   - name: optimumColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#175B2C'
     recessiveVal: '#137641'
   - name: lateColor
     allelePair: Hh
+    valueType: Color
     dominantVal: '#A49036'
     recessiveVal: '#A6822C'
   - name: healthToColorRatio
     allelePair: Hh
+    valueType: float
     dominantVal: 0.3
     recessiveVal: 0.3
   - name: expectedGrowTime
     allelePair: Hh
+    valueType: int
     dominantVal: 5000
     recessiveVal: 5000
   - name: growthTimeSkew
     allelePair: Hh
+    valueType: float
     dominantVal: 0
     recessiveVal: 0
 --- !u!114 &3326379265821909443

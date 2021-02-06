@@ -69,8 +69,8 @@ public class PlantRates : MonoBehaviour
         {
             try
             {
-                expectedLifetime = Int32.Parse(genes.GetValue("expectedLifetime"));
-                deathTimeSkew = float.Parse(genes.GetValue("deathTimeSkew"));
+                expectedLifetime = genes.GetValue<int>("expectedLifetime");
+                deathTimeSkew = genes.GetValue<float>("deathTimeSkew");
             }
             catch (Exception e)
             {

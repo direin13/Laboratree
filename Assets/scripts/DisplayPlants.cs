@@ -12,7 +12,7 @@ public class DisplayPlants : MonoBehaviour
 
     void Start()
     {
-        Populate();
+        //Populate();
     }
 
     void Populate()
@@ -20,21 +20,18 @@ public class DisplayPlants : MonoBehaviour
         GameObject newObj;  //creating new instance
 
         //loop to instantiate prefabs - currently instantiates only one type
-        for (int i = 0; i < numberToCreate; i++)
-        {
-            //creates and positions prefabs
-            newObj = (GameObject)Instantiate(prefab, new Vector3((i * 20.0F) + 10 , -100, -20), Quaternion.identity);
-            newObj.GetComponent<Transform>().SetParent(GetComponent<Transform>());
-            newObj.GetComponent<Transform>().localScale = new Vector3(30,30,1);
 
-            newObj = (GameObject)Instantiate(prefab, new Vector3((i * 20.0F) + 10 , -100, -35), Quaternion.identity);
-            newObj = (GameObject)Instantiate(prefab, new Vector3((i * 20.0F) + 10 , -100, -35), Quaternion.identity);
-            
-            //trying to fix issue with aloe not displaying correctly with grid layout component
-            // newObj.transform.position = new Vector3(newObj.transform.position.x,newObj.transform.position.y, 0);
-            // DontDestroyOnLoad(newObj);
-        }
+        //creates and positions prefabs
+        float x = 40f;
+        float y = -200f;
+        newObj = (GameObject)Instantiate(prefab);
+        newObj.transform.position = new Vector3(x, y, -35);
+        newObj.GetComponent<Transform>().SetParent(GetComponent<Transform>());
+        newObj.GetComponent<Transform>().localScale = new Vector3(30,30,1);
 
+        //trying to fix issue with aloe not displaying correctly with grid layout component
+        // newObj.transform.position = new Vector3(newObj.transform.position.x,newObj.transform.position.y, 0);
+        // DontDestroyOnLoad(newObj);
     }
 
 }

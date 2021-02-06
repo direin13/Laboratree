@@ -26,10 +26,10 @@ public class TimeToColor : MonoBehaviour
         {
             try
             {
-                ColorUtility.TryParseHtmlString(genes.GetValue("earlyColor"), out earlyColor);
-                ColorUtility.TryParseHtmlString(genes.GetValue("optimumColor"), out optimumColor);
-                ColorUtility.TryParseHtmlString(genes.GetValue("lateColor"), out lateColor);
-                healthToColorRatio = float.Parse(genes.GetValue("healthToColorRatio"));
+                ColorUtility.TryParseHtmlString(genes.GetValue<string>("earlyColor"), out earlyColor);
+                ColorUtility.TryParseHtmlString(genes.GetValue<string>("optimumColor"), out optimumColor);
+                ColorUtility.TryParseHtmlString(genes.GetValue<string>("lateColor"), out lateColor);
+                healthToColorRatio = genes.GetValue<float>("healthToColorRatio");
             }
             catch (Exception e)
             {

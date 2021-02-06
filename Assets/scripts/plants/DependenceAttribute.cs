@@ -32,10 +32,10 @@ public class DependenceAttribute : MonoBehaviour
         {
             try
             {
-                dependencyAmount = float.Parse(genes.GetValue("dependencyAmount"));
-                minValue = float.Parse(genes.GetValue("minValue"));
-                maxValue = float.Parse(genes.GetValue("maxValue"));
-                optimumPercentage = float.Parse(genes.GetValue("optimumPercentage"));
+                dependencyAmount = genes.GetValue<float>("dependencyAmount");
+                minValue = genes.GetValue<int>("minValue");
+                maxValue = genes.GetValue<int>("maxValue");
+                optimumPercentage = genes.GetValue<float>("optimumPercentage");
             }
             catch (Exception e)
             {
