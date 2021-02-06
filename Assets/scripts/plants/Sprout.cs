@@ -9,6 +9,7 @@ public class Sprout : MonoBehaviour
     //used to sprout sprites from a point across a given angle
     public Sprite sprite;
     public int leafCount;
+    public bool enableBackgroundLeaves;
 
     public float angle;
     public float rotationOffset;
@@ -80,6 +81,34 @@ public class Sprout : MonoBehaviour
     void Start()
     {
         leaves = new GameObject[0];
+
+        //reading gene script for variable values
+        Genes genes = GetComponent<Genes>();
+        if (genes != null)
+        {
+            try
+            {
+                leafCount = Int32.Parse(genes.GetValue("leafCount"));
+                angle = float.Parse(genes.GetValue("angle"));
+                rotationOffset = float.Parse(genes.GetValue("rotationOffset"));
+                sproutSize = float.Parse(genes.GetValue("sproutSize"));
+                invHeightSkew = bool.Parse(genes.GetValue("invHeightSkew"));
+                heightOffset = float.Parse(genes.GetValue("heightOffset"));
+                heightOffsetPower = float.Parse(genes.GetValue("heightOffsetPower"));
+                offsetSpawnPoint = Parse.Vec2(genes.GetValue("offsetSpawnPoint"));
+                leafScale = Parse.Vec2(genes.GetValue("leafScale"));
+
+            }
+            catch (Exception e)
+            {
+                print(e);
+                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+            }
+        }
+        else
+        {
+            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
+        }
     }
 
     public void SetLocalScale(GameObject obj, Vector3 scale)
@@ -168,7 +197,16 @@ public class Sprout : MonoBehaviour
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
             Transform tf = leaves[i].transform;
-            sr.color = chosenColor;
+            if (!enableBackgroundLeaves || i % 2 != 0)
+            {
+                sr.color = chosenColor;
+            }
+            else
+            {
+                //move leaf back and lower the colour value
+                sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f, chosenColor[3]);
+                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2] + 4);
+            }
         }
     }
 

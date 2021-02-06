@@ -1,0 +1,187 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5992389406327066618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5992389406327066621}
+  - component: {fileID: 7615036232150635797}
+  - component: {fileID: 5992389406327066620}
+  - component: {fileID: 5992389405909590714}
+  - component: {fileID: 5992389405361536195}
+  - component: {fileID: 5992389404916653651}
+  m_Layer: 6
+  m_Name: leaves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5992389406327066621
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
+  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7615036232150635797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: earlyColor
+    allelePair: Hh
+    dominantVal: '#4BB96D'
+    recessiveVal: '#1FB060'
+  - name: optimumColor
+    allelePair: Hh
+    dominantVal: '#175B2C'
+    recessiveVal: '#137641'
+  - name: lateColor
+    allelePair: Hh
+    dominantVal: '#A49036'
+    recessiveVal: '#A6822C'
+  - name: healthToColorRatio
+    allelePair: Hh
+    dominantVal: 0.15
+    recessiveVal: 0.3
+  - name: expectedGrowTime
+    allelePair: Hh
+    dominantVal: 1000
+    recessiveVal: 900
+  - name: growthTimeSkew
+    allelePair: Hh
+    dominantVal: 0
+    recessiveVal: 0.2
+  - name: leafCount
+    allelePair: Hh
+    dominantVal: 5
+    recessiveVal: 6
+  - name: angle
+    allelePair: Hh
+    dominantVal: 140
+    recessiveVal: 130
+  - name: rotationOffset
+    allelePair: Hh
+    dominantVal: 0.6
+    recessiveVal: 0.7
+  - name: sproutSize
+    allelePair: Hh
+    dominantVal: 0.8
+    recessiveVal: 0.8
+  - name: invHeightSkew
+    allelePair: Hh
+    dominantVal: false
+    recessiveVal: false
+  - name: heightOffset
+    allelePair: Hh
+    dominantVal: 0.22
+    recessiveVal: 0.19
+  - name: heightOffsetPower
+    allelePair: Hh
+    dominantVal: 0.9
+    recessiveVal: 0.8
+  - name: offsetSpawnPoint
+    allelePair: Hh
+    dominantVal: 0.008,-0.2
+    recessiveVal: 0.008,-0.25
+  - name: leafScale
+    allelePair: Hh
+    dominantVal: 0.29,0.175
+    recessiveVal: 0.32,0.172
+--- !u!114 &5992389406327066620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a2d12c5ae83f44e86ec48a783ce884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
+  leafCount: 2
+  enableBackgroundLeaves: 1
+  angle: 100
+  rotationOffset: 0.6
+  sproutSize: 0.8
+  invHeightSkew: 0
+  heightOffset: 0.23
+  heightOffsetPower: 0.9
+  zLayer: 5
+  offsetSpawnPoint: {x: 0.008, y: -0.2}
+  leafScale: {x: 0.29, y: 0.175}
+  debug: 0
+--- !u!114 &5992389405909590714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
+  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  healthToColorRatio: 0.15
+  setSpriteRendererColor: 0
+  debug: 0
+--- !u!114 &5992389405361536195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100000
+  getTicks: 1
+--- !u!114 &5992389404916653651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5992389406327066618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expectedGrowTime: 1000
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  timeElapsed: 0
+  growthAmount: 0
