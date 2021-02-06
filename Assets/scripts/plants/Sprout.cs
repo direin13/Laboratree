@@ -204,7 +204,7 @@ public class Sprout : MonoBehaviour
             else
             {
                 //move leaf back and lower the colour value
-                sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f);
+                sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f, chosenColor[3]);
                 tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2] + 4);
             }
         }
