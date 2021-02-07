@@ -530,13 +530,13 @@ MonoBehaviour:
   - name: offsetSpawnPoint
     allelePair: Hh
     valueType: Vector2
-    dominantVal: 0.008,-0.2
-    recessiveVal: 0.008,-0.25
+    dominantVal: (0.008,-0.2)
+    recessiveVal: (0.008,-0.25)
   - name: leafScale
     allelePair: Hh
     valueType: Vector2
-    dominantVal: 0.29,0.175
-    recessiveVal: 0.32,0.172
+    dominantVal: (0.29,0.175)
+    recessiveVal: (0.32,0.172)
 --- !u!114 &3643725074588179010
 MonoBehaviour:
   m_ObjectHideFlags: 0

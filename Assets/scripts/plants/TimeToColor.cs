@@ -45,36 +45,27 @@ public class TimeToColor : MonoBehaviour
 
     public void SetColor()
     {
-        PlantRates pr = transform.root.gameObject.GetComponent<PlantRates>();
-
-        //get percentage of opposite color used based on health. Get dist from this and optimum color 
+        //get percentage of opposite color used based on health. Get that percentage of the dist from this and optimum color 
         //and add that onto the optimum to get a blend of the 2 colors
-        float colorPerc;
-        float H1, S1, V1;
-        Color.RGBToHSV(optimumColor, out H1, out S1, out V1);
 
-        float H2, S2, V2;
+        PlantRates pr = transform.root.gameObject.GetComponent<PlantRates>();
+        float colorPerc;
 
         if (pr.Health() >= healthToColorRatio)
         {
-            Color.RGBToHSV(earlyColor, out H2, out S2, out V2);
             colorPerc = NumOp.Cutoff(pr.Health() - GetComponent<Grow>().growthAmount, 0f, 1f);
+            realTimeColor = NumOp.GetColorBlend(optimumColor, earlyColor, colorPerc);
         }
         else
         {
-            Color.RGBToHSV(lateColor, out H2, out S2, out V2);
             float tmp = (healthToColorRatio - pr.Health()) * (1f / healthToColorRatio);
             colorPerc = NumOp.Cutoff(1f - (GetComponent<Grow>().growthAmount - tmp), 0f, 1f);
+            realTimeColor = NumOp.GetColorBlend(optimumColor, lateColor, colorPerc);
         }
 
-        Vector3 dist = (new Vector3(H2 - H1, S2 - S1, V2 - V1)) * colorPerc;
-
-        realTimeColor = Color.HSVToRGB(H1 + dist[0], S1 + dist[1], V1 + dist[2]);
         realTimeColor = new Color(realTimeColor[0], realTimeColor[1], realTimeColor[2], alphaValue);
         if (debug)
         {
-            print(String.Format("Hue1: {0}, Sat1: {1}, Val1: {2}", H1, S1, V1));
-            print(String.Format("Hue2: {0}, Sat2: {1}, Val2: {2}", H2, S2, V2));
             print("percentage of opposite used: " + colorPerc.ToString());
         }
     }
