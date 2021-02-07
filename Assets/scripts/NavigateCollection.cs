@@ -38,7 +38,7 @@ public class NavigateCollection : MonoBehaviour
 
             GameObject plant = Instantiate(originalPlantList[i]);   //create clone
             plant.transform.localScale = new Vector3(35,35,1);
-            plant.transform.position = new Vector3(70,63,-20);
+            plant.transform.position = new Vector3(70,-112,-20);
             plant.SetActive(false);     //make them inactive so they do not show on collection
             plant.name = plant.name.Replace("(Clone)", "");     //remove clone indicator
 

@@ -23,8 +23,8 @@ public class Grow : MonoBehaviour
         {
             try
             {
-                expectedGrowTime = Int32.Parse(genes.GetValue("expectedGrowTime"));
-                growthTimeSkew = float.Parse(genes.GetValue("growthTimeSkew"));
+                expectedGrowTime = genes.GetValue<int>("expectedGrowTime");
+                growthTimeSkew = genes.GetValue<float>("growthTimeSkew");
             }
             catch (Exception e)
             {

@@ -42,6 +42,7 @@ public class PlantManager : MonoBehaviour
             SetPlantStatus(plant, false);
         }
 
+        //testing manually set first plant active, will remove later
         plantStatus[plantCollection[0].name] = true;
         GetComponent<Timer>().getTicks = true;
     }
@@ -74,12 +75,12 @@ public class PlantManager : MonoBehaviour
 
         if (numberActive >= maxActivePlants && status)
         {
-            throw new Exception("Active plants are greater than the quota. Must deactivate already active plant before adding new ones!");
+            throw new ArgumentException("Active plants are greater than the quota. Must deactivate already active plant before adding new ones!");
         }
 
         if (!inCollection)
         {
-            throw new Exception(String.Format("'{0}' is not in the plant collection!", plant.name));
+            throw new ArgumentException(String.Format("'{0}' is not in the plant collection!", plant.name));
         }
 
         //set status
@@ -90,10 +91,12 @@ public class PlantManager : MonoBehaviour
         plantStatus[plant.name] = status;
     }
 
+
     public bool PlantActive(GameObject plant)
     {
         return plantStatus[plant.name];
     }
+
 
     public void RemovePlant(GameObject plant)
     {
@@ -101,8 +104,10 @@ public class PlantManager : MonoBehaviour
         plantStatus.Remove(plant.name);
     }
 
+
     public GameObject MakePlant(string name)
     {
+        //Load and instantiate basic plant object
         foreach(GameObject p in plantCollection)
         {
             if (p.name == name)
@@ -110,7 +115,7 @@ public class PlantManager : MonoBehaviour
                 throw new Exception(String.Format("'{0}' is already in the plant collection!", name));
             }
         }
-        //Loads basic plant object
+
         GameObject plant = GameObject.Instantiate(prefabMappings["Basic Plant"]);
         plant.name = name;
         plantStatus[plant.name] = false;
@@ -118,8 +123,10 @@ public class PlantManager : MonoBehaviour
         return plant;
     }
 
+
     public GameObject MakePlant(string name, string prefab)
     {
+        //Load and instantiates plant object from given plant prefab
         foreach (GameObject p in plantCollection)
         {
             if (p.name == name)
@@ -127,7 +134,7 @@ public class PlantManager : MonoBehaviour
                 throw new Exception(String.Format("'{0}' is already in the plant collection!", name));
             }
         }
-        //Loads plant object from given plant prefab
+
         GameObject plant = GameObject.Instantiate(prefabMappings[prefab]);
         plant.name = name;
         plantStatus[plant.name] = false;
@@ -138,6 +145,7 @@ public class PlantManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //setting the timer speed for every plant in the collection
         float maxSpeed = 0.01f;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
 
@@ -187,9 +195,46 @@ public class PlantManager : MonoBehaviour
             timeElapsed++;
         }
         
+
+        //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
+          SetPlantStatus(MakePlant("joes plant"), true);
         }
+
+        if (timeElapsed == 20)
+        {
+            SetPlantStatus(MakePlant("joes plant 2", "Aloe"), true);
+        }
+
+        if (timeElapsed == 100)
+        {
+            Breed(plantCollection[0], plantCollection[1], "AloexJoe");
+        }
+    }
+
+    public GameObject Breed(GameObject plant1, GameObject plant2, string outName)
+    {
+        //make new plant from basic prefab
+        GameObject outPlant = MakePlant(outName);
+
+        //mix life expectancy of plant
+        plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
+
+        //mix dependencies
+        string[] dependencyNames = { "Lighting", "Temperature", "Water", "Fertiliser" };
+        foreach (string dep in dependencyNames)
+        {
+            Genes dep1Gene = plant1.GetComponent<PlantRates>().GetDepComp(dep).gameObject.GetComponent<Genes>();
+            Genes dep2Gene = plant2.GetComponent<PlantRates>().GetDepComp(dep).gameObject.GetComponent<Genes>();
+            Genes outGene = outPlant.GetComponent<PlantRates>().GetDepComp(dep).gameObject.GetComponent<Genes>();
+
+            dep1Gene.CrossGenes(dep1Gene, outGene);
+        }
+
+        //mix main stem
+        //get representative sub-objects of main stem
+        //mix these sub objects
+        return outPlant;
     }
 }

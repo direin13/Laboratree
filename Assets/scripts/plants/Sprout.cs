@@ -88,15 +88,15 @@ public class Sprout : MonoBehaviour
         {
             try
             {
-                leafCount = Int32.Parse(genes.GetValue("leafCount"));
-                angle = float.Parse(genes.GetValue("angle"));
-                rotationOffset = float.Parse(genes.GetValue("rotationOffset"));
-                sproutSize = float.Parse(genes.GetValue("sproutSize"));
-                invHeightSkew = bool.Parse(genes.GetValue("invHeightSkew"));
-                heightOffset = float.Parse(genes.GetValue("heightOffset"));
-                heightOffsetPower = float.Parse(genes.GetValue("heightOffsetPower"));
-                offsetSpawnPoint = Parse.Vec2(genes.GetValue("offsetSpawnPoint"));
-                leafScale = Parse.Vec2(genes.GetValue("leafScale"));
+                leafCount = genes.GetValue<int>("leafCount");
+                angle = genes.GetValue<float>("angle");
+                rotationOffset = genes.GetValue<float>("rotationOffset");
+                sproutSize = genes.GetValue<float>("sproutSize");
+                invHeightSkew = genes.GetValue<bool>("invHeightSkew");
+                heightOffset = genes.GetValue<float>("heightOffset");
+                heightOffsetPower = genes.GetValue<float>("heightOffsetPower");
+                offsetSpawnPoint = Parse.Vec2(genes.GetValue<string>("offsetSpawnPoint"));
+                leafScale = Parse.Vec2(genes.GetValue<string>("leafScale"));
 
             }
             catch (Exception e)
