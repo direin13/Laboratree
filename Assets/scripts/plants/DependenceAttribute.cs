@@ -63,7 +63,7 @@ public class DependenceAttribute : MonoBehaviour
         float optimumValue = minValue + ((maxValue - minValue) * optimumPercentage);
         optimumValue = NumOp.Cutoff(optimumValue, minValue, maxValue);
 
-        //currValue = optimumValue;
+        currValue = optimumValue;
 
         //Get efficiency of dependency, the closer to the optimum it is, the higher the efficiency
         if (currValue <= optimumValue)

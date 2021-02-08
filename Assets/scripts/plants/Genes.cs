@@ -238,8 +238,21 @@ public class Gene
             Vector2 rec1 = Parse.Vec2(recessiveVal);
             Vector2 rec2 = Parse.Vec2(gene2.recessiveVal);
 
-            newDominantVal = GetValueMix(dom1, dom2, 0.5f).ToString();
-            newRecessiveVal = GetValueMix(rec1, rec2, 0.5f).ToString();
+            //Vec.ToString() rounds up each value to 1 decimal place so I have to make the string directly
+            Vector2 tmpDom = GetValueMix(dom1, dom2, 0.5f);
+            newDominantVal = String.Format("({0}, {1})", tmpDom[0], tmpDom[1]);
+
+            Vector2 tmpRec = GetValueMix(rec1, rec2, 0.5f);
+            newRecessiveVal = String.Format("({0}, {1})", tmpRec[0], tmpRec[1]);
+
+            if (name == "leafScale")
+            {
+                Debug.Log("mixing leafscale");
+                Debug.Log(newDominantVal);
+                Debug.Log(dom1);
+                Debug.Log(dom2);
+
+            }
         }
 
         else
