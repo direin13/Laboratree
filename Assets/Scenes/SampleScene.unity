@@ -1580,8 +1580,14 @@ MonoBehaviour:
   indexText: {fileID: 1059958518}
   leftButton: {fileID: 419380996}
   rightButton: {fileID: 742596858}
-  parent: {fileID: 436741107}
   nameText: {fileID: 581301462}
+  lightInput: {fileID: 1953305752}
+  tempInput: {fileID: 2039001284}
+  waterInput: {fileID: 911950803}
+  fertiliserInput: {fileID: 1267166143}
+  parent: {fileID: 436741107}
+  plantList: []
+  indexNum: 0
 --- !u!1 &395429823
 GameObject:
   m_ObjectHideFlags: 0
@@ -3004,6 +3010,7 @@ MonoBehaviour:
   allPrefabs:
   - Basic Plant
   - Aloe
+  - Echeveria
 --- !u!1 &734216625
 GameObject:
   m_ObjectHideFlags: 0
@@ -9169,6 +9176,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140253841}
   m_CullTransparentMesh: 1
+--- !u!1001 &282585105612717153
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2456659089476139467, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_Name
+      value: Echeveria
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e33ee773101dfd4faa805a595d08c60, type: 3}
 --- !u!224 &3931112567042445903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3931112566986534476, guid: 7fe6dc73edaa5324e9c3c36f96dbb707,

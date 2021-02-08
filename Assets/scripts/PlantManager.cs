@@ -5,6 +5,8 @@ using System;
 using MiscFunctions;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
+using UnityEditor;
 
 public class PlantManager : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class PlantManager : MonoBehaviour
     private int timeElapsed;
     private readonly int maxActivePlants = 3;
 
+    private readonly static string prefabPath = "plant prefabs/";
     public List<string> allPrefabs;
     private readonly Dictionary<string, GameObject> prefabMappings = new Dictionary<string, GameObject>();
 
@@ -28,7 +31,7 @@ public class PlantManager : MonoBehaviour
         //load all the given prefabs
         foreach (string prefab in allPrefabs)
         {
-            GameObject plant = (GameObject)Resources.Load("plant prefabs/"+prefab);
+            GameObject plant = (GameObject)Resources.Load(prefabPath+prefab);
             if (prefabMappings.ContainsKey(prefab))
             {
                 prefabMappings.Remove(prefab);
@@ -200,7 +203,7 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
+          SetPlantStatus(MakePlant("joes plant", "Echeveria"), true);
         }
 
 

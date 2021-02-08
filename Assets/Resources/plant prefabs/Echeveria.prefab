@@ -1,0 +1,1020 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2056307087766561766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6238164663021491949}
+  - component: {fileID: 6409129520147029}
+  - component: {fileID: 7423527856568792641}
+  m_Layer: 6
+  m_Name: Fertiliser
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6238164663021491949
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056307087766561766}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226121425101673415}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6409129520147029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056307087766561766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.1
+  dependencyEfficiency: 1
+  minValue: 168
+  maxValue: 8760
+  optimumPercentage: 0.15
+  currValue: 1289
+  debug: 0
+--- !u!114 &7423527856568792641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056307087766561766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: dependencyAmount
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.1
+    recessiveVal: 0.2
+  - name: minValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 168
+    recessiveVal: 150
+  - name: maxValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 8760
+    recessiveVal: 6990
+  - name: optimumPercentage
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.15
+    recessiveVal: 0.1
+--- !u!1 &2456659089476139467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5909881898777592350}
+  - component: {fileID: 1666062044604088416}
+  - component: {fileID: 2784941663207525348}
+  - component: {fileID: 8524894883731914336}
+  - component: {fileID: 2908806705631293502}
+  m_Layer: 6
+  m_Name: Echeveria
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5909881898777592350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456659089476139467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 41, y: 195, z: 0}
+  m_LocalScale: {x: 44.35939, y: 39.317795, z: 1}
+  m_Children:
+  - {fileID: 2110254016664915452}
+  - {fileID: 7988254079994122976}
+  - {fileID: 6226121425101673415}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1666062044604088416
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456659089476139467}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
+    type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &2784941663207525348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456659089476139467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: expectedLifetime
+    allelePair: Hh
+    valueType: int
+    dominantVal: 8760
+    recessiveVal: 6690
+  - name: deathTimeSkew
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.02
+    recessiveVal: 0.1
+--- !u!114 &8524894883731914336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456659089476139467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3180c11263f04f4eb6244919a356b76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expectedLifetime: 8760
+  deathTimeSkew: 0.02
+  currEfficiency: 0
+  allDependencies:
+  - {fileID: 5775779440486256616}
+  - {fileID: 7590334375058939727}
+  - {fileID: 5724850599274539759}
+  - {fileID: 2056307087766561766}
+  debug: 0
+--- !u!114 &2908806705631293502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2456659089476139467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100000
+  getTicks: 0
+--- !u!1 &2696777647148962612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1361768035421041227}
+  - component: {fileID: 1272373391928515930}
+  - component: {fileID: 1175747815399731440}
+  - component: {fileID: 1362960878761630859}
+  - component: {fileID: 6276896906148052074}
+  - component: {fileID: 8031748551857023122}
+  m_Layer: 6
+  m_Name: Stem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1361768035421041227
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.014999981, y: 0.04500004, z: 15}
+  m_LocalScale: {x: 0.09162117, y: 0.8974713, z: 1}
+  m_Children:
+  - {fileID: 5039766249224637460}
+  m_Father: {fileID: 7988254079994122976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1272373391928515930
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4,
+    type: 3}
+  m_Color: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &1175747815399731440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: earlyColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#6BD4DB'
+    recessiveVal: '#42CBD4'
+  - name: optimumColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#339877'
+    recessiveVal: '#209364'
+  - name: lateColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#9D9F5F'
+    recessiveVal: '#9FA255'
+  - name: healthToColorRatio
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.4
+  - name: expectedGrowTime
+    allelePair: Hh
+    valueType: int
+    dominantVal: 2000
+    recessiveVal: 2520
+  - name: growthTimeSkew
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0
+    recessiveVal: 0.2
+--- !u!114 &1362960878761630859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.29411766, g: 0.7254902, b: 0.42745098, a: 1}
+  optimumColor: {r: 0.09019608, g: 0.35686275, b: 0.17254902, a: 1}
+  lateColor: {r: 0.6431373, g: 0.5647059, b: 0.21176471, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  healthToColorRatio: 0.15
+  setSpriteRendererColor: 1
+  debug: 0
+--- !u!114 &6276896906148052074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100000
+  getTicks: 1
+--- !u!114 &8031748551857023122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expectedGrowTime: 1000
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  timeElapsed: 0
+  growthAmount: 0
+--- !u!1 &3133198579604828187
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5039766249224637460}
+  - component: {fileID: 4548330150819597711}
+  - component: {fileID: 3565422700871793706}
+  - component: {fileID: 9031393000997793142}
+  - component: {fileID: 565542478543960557}
+  - component: {fileID: 8928279261268285707}
+  m_Layer: 6
+  m_Name: Leaves
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5039766249224637460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
+  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1361768035421041227}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4548330150819597711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: earlyColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#6BD4DB'
+    recessiveVal: '#42CBD4'
+  - name: optimumColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#339877'
+    recessiveVal: '#209364'
+  - name: lateColor
+    allelePair: Hh
+    valueType: Color
+    dominantVal: '#9D9F5F'
+    recessiveVal: '#9FA255'
+  - name: healthToColorRatio
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.4
+  - name: expectedGrowTime
+    allelePair: Hh
+    valueType: int
+    dominantVal: 2000
+    recessiveVal: 2520
+  - name: growthTimeSkew
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0
+    recessiveVal: 0.2
+  - name: leafCount
+    allelePair: Hh
+    valueType: int
+    dominantVal: 5
+    recessiveVal: 7
+  - name: angle
+    allelePair: Hh
+    valueType: float
+    dominantVal: 150
+    recessiveVal: 160
+  - name: rotationOffset
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.4
+    recessiveVal: 0.7
+  - name: sproutSize
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.8
+    recessiveVal: 0.8
+  - name: invHeightSkew
+    allelePair: Hh
+    valueType: bool
+    dominantVal: false
+    recessiveVal: false
+  - name: heightOffset
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.14
+    recessiveVal: 0.1
+  - name: heightOffsetPower
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.4
+    recessiveVal: 0.35
+  - name: offsetSpawnPoint
+    allelePair: Hh
+    valueType: Vector2
+    dominantVal: (0.008,-0.2)
+    recessiveVal: (0.008,-0.2)
+  - name: leafScale
+    allelePair: Hh
+    valueType: Vector2
+    dominantVal: (0.19,0.1)
+    recessiveVal: (0.18,0.15)
+  - name: sprite
+    allelePair: Hh
+    valueType: string
+    dominantVal: echeveriaLeaf
+    recessiveVal: echeveriaLeaf
+--- !u!114 &3565422700871793706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a2d12c5ae83f44e86ec48a783ce884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
+  leafCount: 2
+  enableBackgroundLeaves: 1
+  angle: 150
+  rotationOffset: 0.4
+  sproutSize: 0.8
+  invHeightSkew: 0
+  heightOffset: 0.14
+  heightOffsetPower: 0.4
+  zLayer: 5
+  offsetSpawnPoint: {x: 0.008, y: -0.2}
+  leafScale: {x: 0.19, y: 0.1}
+  debug: 0
+--- !u!114 &9031393000997793142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba335bde503f4f443aa41076a1b51f4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  earlyColor: {r: 0.25584427, g: 0.79429215, b: 0.8301887, a: 1}
+  optimumColor: {r: 0.12305678, g: 0.5754717, b: 0.38953918, a: 1}
+  lateColor: {r: 0.62269616, g: 0.6320754, b: 0.33193895, a: 1}
+  realTimeColor: {r: 0, g: 0, b: 0, a: 0}
+  alphaValue: 1
+  healthToColorRatio: 0.15
+  setSpriteRendererColor: 0
+  debug: 0
+--- !u!114 &565542478543960557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100000
+  getTicks: 1
+--- !u!114 &8928279261268285707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expectedGrowTime: 0
+  growthTimeSkew: 0
+  growthStages: 400
+  debug: 0
+  timeElapsed: 0
+  growthAmount: 0
+--- !u!1 &3718783906031590718
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6226121425101673415}
+  m_Layer: 6
+  m_Name: Dependencies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6226121425101673415
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3718783906031590718}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 3638569471275145335}
+  - {fileID: 1817150127151689702}
+  - {fileID: 8900549399557262648}
+  - {fileID: 6238164663021491949}
+  m_Father: {fileID: 5909881898777592350}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4622451853500471278
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7988254079994122976}
+  m_Layer: 6
+  m_Name: Structure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7988254079994122976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4622451853500471278}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1361768035421041227}
+  m_Father: {fileID: 5909881898777592350}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5724850599274539759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8900549399557262648}
+  - component: {fileID: 2958066565617294257}
+  - component: {fileID: 4672468529789493955}
+  m_Layer: 6
+  m_Name: Water
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8900549399557262648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724850599274539759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226121425101673415}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2958066565617294257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724850599274539759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.3
+  dependencyEfficiency: 1
+  minValue: 360
+  maxValue: 3600
+  optimumPercentage: 0.15
+  currValue: 486
+  debug: 0
+--- !u!114 &4672468529789493955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5724850599274539759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: dependencyAmount
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.4
+  - name: minValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 360
+    recessiveVal: 340
+  - name: maxValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 3600
+    recessiveVal: 4000
+  - name: optimumPercentage
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.15
+    recessiveVal: 0.3
+--- !u!1 &5775779440486256616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3638569471275145335}
+  - component: {fileID: 7912863255529857258}
+  - component: {fileID: 8566533951440973173}
+  m_Layer: 6
+  m_Name: Lighting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3638569471275145335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775779440486256616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226121425101673415}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7912863255529857258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775779440486256616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: dependencyAmount
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.25
+  - name: minValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 1000
+    recessiveVal: 900
+  - name: maxValue
+    allelePair: HH
+    valueType: int
+    dominantVal: 10000
+    recessiveVal: 8000
+  - name: optimumPercentage
+    allelePair: hh
+    valueType: float
+    dominantVal: 0.61
+    recessiveVal: 0.4
+--- !u!114 &8566533951440973173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5775779440486256616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.25
+  dependencyEfficiency: 1
+  minValue: 1000
+  maxValue: 10000
+  optimumPercentage: 0.61
+  currValue: 3600
+  debug: 0
+--- !u!1 &7590334375058939727
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817150127151689702}
+  - component: {fileID: 100581255827102249}
+  - component: {fileID: 5616446849533424979}
+  m_Layer: 6
+  m_Name: Temperature
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1817150127151689702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590334375058939727}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6226121425101673415}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &100581255827102249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590334375058939727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.3
+  dependencyEfficiency: 1
+  minValue: 10
+  maxValue: 30
+  optimumPercentage: 0.5
+  currValue: 20
+  debug: 0
+--- !u!114 &5616446849533424979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7590334375058939727}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e3bcd4e6aed684f8df5d98c8c025e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  genes:
+  - name: dependencyAmount
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.3
+    recessiveVal: 0.2
+  - name: minValue
+    allelePair: HH
+    valueType: int
+    dominantVal: 10
+    recessiveVal: 6
+  - name: maxValue
+    allelePair: Hh
+    valueType: int
+    dominantVal: 30
+    recessiveVal: 13
+  - name: optimumPercentage
+    allelePair: Hh
+    valueType: float
+    dominantVal: 0.5
+    recessiveVal: 0.4
+--- !u!1 &7599243350802026323
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2110254016664915452}
+  - component: {fileID: 6713093861049555678}
+  m_Layer: 6
+  m_Name: pot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2110254016664915452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599243350802026323}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.000093430695, y: -0.01861067, z: 0}
+  m_LocalScale: {x: 0.09942397, y: 0.15489633, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5909881898777592350}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &6713093861049555678
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599243350802026323}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: d2c493bdc8154f545848363fb21e8bc4, type: 3}
+  m_Color: {r: 1, g: 0.3929708, b: 0.24313724, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
