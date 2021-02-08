@@ -98,6 +98,7 @@ public class PlantManager : MonoBehaviour
 
     public bool PlantActive(GameObject plant)
     {
+        print(plant.name);
         return plantStatus[plant.name];
     }
 
