@@ -67,8 +67,6 @@ public class NavigateCollection : MonoBehaviour
 
     void Update(){
 
-        print(gameObject.activeSelf);
-
         //switch to next/previous plant
         if (leftButton.GetComponent<NavigateButtons>().clicked == true) {
             navigate(false,leftButton);

@@ -98,6 +98,7 @@ public class PlantManager : MonoBehaviour
 
     public bool PlantActive(GameObject plant)
     {
+        print(plant.name);
         return plantStatus[plant.name];
     }
 
@@ -150,7 +151,7 @@ public class PlantManager : MonoBehaviour
     void Update()
     {
         //setting the timer speed for every plant in the collection
-        float maxSpeed = 0.0001f;
+        float maxSpeed = 0.01f;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
