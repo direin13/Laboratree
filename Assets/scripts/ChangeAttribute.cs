@@ -24,8 +24,9 @@ public class ChangeAttribute : MonoBehaviour
         if (button.GetComponent<NavigateButtons>().clicked == true) {
 
             indexNum = GameObject.Find("PlantCollectionPage").GetComponent<NavigateCollection>().indexNum;
+            // print("index num is " + indexNum.ToString());
             print("Apply button clicked");
-            print(indexNum);
+
             //name of attribute to be changed
             string attribute = this.name;
             
@@ -44,8 +45,6 @@ public class ChangeAttribute : MonoBehaviour
             input.text = "";
             button.GetComponent<NavigateButtons>().clicked = false;
         }
-
-
 
     }
 }
