@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 0
+  timeElapsed: 0
 --- !u!1 &2696777647148962612
 GameObject:
   m_ObjectHideFlags: 0
@@ -341,7 +342,7 @@ MonoBehaviour:
     allelePair: Hh
     valueType: Color
     dominantVal: '#339877'
-    recessiveVal: '#209364'
+    recessiveVal: '#63BCD2'
   - name: lateColor
     allelePair: Hh
     valueType: Color
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 1
+  timeElapsed: 0
 --- !u!114 &8031748551857023122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,7 +414,6 @@ MonoBehaviour:
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
-  timeElapsed: 0
   growthAmount: 0
 --- !u!1 &3133198579604828187
 GameObject:
@@ -471,7 +472,7 @@ MonoBehaviour:
     allelePair: Hh
     valueType: Color
     dominantVal: '#339877'
-    recessiveVal: '#209364'
+    recessiveVal: '#63BCD2'
   - name: lateColor
     allelePair: Hh
     valueType: Color
@@ -601,6 +602,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 1
+  timeElapsed: 0
 --- !u!114 &8928279261268285707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,7 +619,6 @@ MonoBehaviour:
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
-  timeElapsed: 0
   growthAmount: 0
 --- !u!1 &3718783906031590718
 GameObject:

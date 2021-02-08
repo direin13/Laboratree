@@ -10,7 +10,6 @@ public class PlantRates : MonoBehaviour
     //unit of time == hours
     public int expectedLifetime;
     private int timeAliveLeft;
-    private float timeElapsed;
 
     //Efficiency of a plant is how close each of it's dependencies efficiency
     //are to 100%. This is calculated by summing up the individual efficiencies
@@ -28,14 +27,10 @@ public class PlantRates : MonoBehaviour
     public GameObject[] allDependencies;
     public bool debug;
 
-    public void SetTimeElapsed(int time)
-    {
-        timeElapsed = NumOp.Cutoff(time, 0, time);
-    }
 
     public bool PlantAlive()
     {
-        return (timeElapsed < timeAliveLeft);
+        return (GetComponent<Timer>().timeElapsed < timeAliveLeft);
     }
     public DependenceAttribute GetDepComp(GameObject dep)
     {
@@ -91,8 +86,6 @@ public class PlantRates : MonoBehaviour
             Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
 
-
-        timeElapsed = 0f;
         timeAliveLeft = expectedLifetime;
         BalanceFloats(allDependencies, 0, maxEfficiency);
     }
@@ -190,10 +183,6 @@ public class PlantRates : MonoBehaviour
             timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
 
             //constant countdown
-            if (TimeStamps().Tick())
-            {
-                timeElapsed = timeElapsed + 1;
-            }
         }
         else
         {
@@ -208,13 +197,14 @@ public class PlantRates : MonoBehaviour
         {
             print("actual death efficiency: " + actualDeathEffic.ToString());
             print("Plant Time Left (%): " + Health().ToString());
-            print(String.Format("Name: {0}, TimeAlive: {1}hrs, TimeElapsed: {2}hrs", name, timeAliveLeft, timeElapsed));
+            print(String.Format("Name: {0}, TimeAlive: {1}hrs, TimeElapsed: {2}hrs", name, timeAliveLeft, GetComponent<Timer>().timeElapsed));
         }
 
     }
 
     public float Health()
     {
+        int timeElapsed = GetComponent<Timer>().timeElapsed;
         return 1f - ( (float)timeElapsed/(float)timeAliveLeft );
     }
 }

@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour
     public readonly float maxSpeed = 0.00001f;
     private bool hasTicked = false;
     public bool getTicks;
+    public int timeElapsed;
 
     // Start is called before the first frame update
     void Start()
@@ -91,6 +92,7 @@ public class Timer : MonoBehaviour
                 if (key == "<<tick>>")
                 {
                     hasTicked = true;
+                    timeElapsed++;
                 }
             }
 

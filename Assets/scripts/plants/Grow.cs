@@ -12,14 +12,7 @@ public class Grow : MonoBehaviour
     public float growthTimeSkew;
     public int growthStages;
     public bool debug;
-    public int timeElapsed;
     public float growthAmount;
-
-
-    public void SetTimeElapsed(int time)
-    {
-        timeElapsed = NumOp.Cutoff(time, 0, time);
-    }
 
 
     // Start is called before the first frame update
@@ -44,7 +37,6 @@ public class Grow : MonoBehaviour
             Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
 
-        timeElapsed = 0;
         currGrowTime = expectedGrowTime;
     }
 
@@ -63,6 +55,7 @@ public class Grow : MonoBehaviour
 
         currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
+        int timeElapsed = transform.root.GetComponent<Timer>().timeElapsed;
         if (growthStages <= 0)
         {
             growthAmount = 1f;
@@ -76,15 +69,6 @@ public class Grow : MonoBehaviour
             {
                 int stage = timeElapsed / stageInterval;
                 growthAmount = NumOp.Cutoff((float)stage / growthStages, 0f, 1f);
-            }
-        }
-
-        if (transform.root.gameObject.GetComponent<PlantRates>().PlantAlive())
-        {
-            //constant countdown
-            if (GetComponent<Timer>().Tick())
-            {
-                timeElapsed = timeElapsed + 1;
             }
         }
 

@@ -159,14 +159,10 @@ public class PlantManager : MonoBehaviour
         int i = 0;
         foreach (GameObject plant in plantCollection)
         {
+
             plant.GetComponent<Timer>().getTicks = PlantActive(plant);
             plant.GetComponent<Timer>().speed = GetComponent<Timer>().speed;
-
-            foreach (Timer timer in plant.GetComponentsInChildren<Timer>())
-            {
-                timer.getTicks = PlantActive(plant);
-                timer.speed = GetComponent<Timer>().speed;
-            }
+            
 
             if (PlantActive(plant))
             {
@@ -253,7 +249,7 @@ public class PlantManager : MonoBehaviour
             unchosenStruct = plant1Struct;
         }
         childStruct.name = "Structure";
-        outPlant.BroadcastMessage("SetTimeElapsed", 0, 0);
+        outPlant.GetComponent<Timer>().timeElapsed = 0;
 
 
         //mix unchosen structure into child structure

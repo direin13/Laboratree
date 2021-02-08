@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 2448902413661577123}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 380, y: 140, z: 0}
-  m_LocalScale: {x: 35, y: 35, z: 1}
+  m_LocalScale: {x: 44.35939, y: 39.31779, z: 1}
   m_Children:
   - {fileID: 2207557049631894420}
   - {fileID: 7867801103743448200}
@@ -800,25 +800,6 @@ Transform:
   m_Father: {fileID: 6164391990503077295}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8433413158800378653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6038273100408203648}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dependencyAmount: 0.25
-  dependencyEfficiency: 1
-  minValue: 1000
-  maxValue: 10000
-  optimumPercentage: 0.61
-  currValue: 90
-  debug: 0
 --- !u!114 &7943173938803738242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,6 +833,25 @@ MonoBehaviour:
     valueType: float
     dominantVal: 0.61
     recessiveVal: 0.4
+--- !u!114 &8433413158800378653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6038273100408203648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9688b29b5b55d146a709c5dd4b99c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dependencyAmount: 0.25
+  dependencyEfficiency: 1
+  minValue: 1000
+  maxValue: 10000
+  optimumPercentage: 0.61
+  currValue: 90
+  debug: 0
 --- !u!1 &7682611242822625595
 GameObject:
   m_ObjectHideFlags: 0
