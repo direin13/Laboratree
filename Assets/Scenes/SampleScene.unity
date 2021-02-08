@@ -7519,6 +7519,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184269037934722113, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1225476191998704355, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: realTimeColor.b
@@ -7554,10 +7559,20 @@ PrefabInstance:
       propertyPath: genes.Array.data[0].allelePair
       value: Hh
       objectReference: {fileID: 0}
+    - target: {fileID: 3643725074588179010, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: leafCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4392447268228017127, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: genes.Array.data[14].dominantVal
       value: (0.29,0.175)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392447268228017127, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: genes.Array.data[15].dominantVal
+      value: aloeLeaf
       objectReference: {fileID: 0}
     - target: {fileID: 5904201443408536694, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
@@ -7612,6 +7627,11 @@ PrefabInstance:
     - target: {fileID: 5904201443408536694, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433413158800378653, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

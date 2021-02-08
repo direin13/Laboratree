@@ -116,7 +116,7 @@ Transform:
   m_LocalScale: {x: 44.35939, y: 39.317795, z: 1}
   m_Children:
   - {fileID: 2207557049631894420}
-  - {fileID: 1228930159526024227}
+  - {fileID: 7867801103743448200}
   - {fileID: 6164391990503077295}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -246,7 +246,7 @@ GameObject:
   - component: {fileID: 6122632504804596226}
   - component: {fileID: 7826536422204149498}
   m_Layer: 6
-  m_Name: Main Stem
+  m_Name: Stem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,13 +259,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776206745038992732}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.015, y: 0.045, z: 15}
-  m_LocalScale: {x: 0.09162116, y: 0.89747137, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.014999981, y: 0.04500004, z: 15}
+  m_LocalScale: {x: 0.09162117, y: 0.8974713, z: 1}
   m_Children:
   - {fileID: 5051676605409733244}
-  m_Father: {fileID: 5904201443408536694}
-  m_RootOrder: 1
+  m_Father: {fileID: 7867801103743448200}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1316055443291667250
 SpriteRenderer:
@@ -429,7 +429,7 @@ GameObject:
   - component: {fileID: 302519953378058117}
   - component: {fileID: 8650411060713668451}
   m_Layer: 6
-  m_Name: leaves
+  m_Name: Leaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -537,6 +537,11 @@ MonoBehaviour:
     valueType: Vector2
     dominantVal: (0.29,0.175)
     recessiveVal: (0.32,0.172)
+  - name: sprite
+    allelePair: Hh
+    valueType: string
+    dominantVal: aloeLeaf
+    recessiveVal: aloeLeaf
 --- !u!114 &3643725074588179010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -647,6 +652,37 @@ Transform:
   - {fileID: 6159121218014998661}
   m_Father: {fileID: 5904201443408536694}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4885788565439345030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7867801103743448200}
+  m_Layer: 6
+  m_Name: Structure
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7867801103743448200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4885788565439345030}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1228930159526024227}
+  m_Father: {fileID: 5904201443408536694}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5519496565076544647
 GameObject:

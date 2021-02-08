@@ -28,14 +28,17 @@ public class Sprout : MonoBehaviour
     public bool debug;
 
 
-
-
     public GameObject[] CreateLeaves(int amount)
     {
         if (leaves != null)
         {
-            foreach (GameObject leaf in leaves)
-                Destroy(leaf.transform.parent.gameObject); //LeafNode
+            //delete leaves
+            foreach (Transform t in transform)
+            {
+                GameObject obj = t.gameObject;
+                if (obj.name.Contains("<<node>>"))
+                    Destroy(obj);
+            }
         }
 
         GameObject stem = transform.parent.gameObject;
@@ -52,7 +55,7 @@ public class Sprout : MonoBehaviour
         //creating each leaf
         for (int i = 0; i < amount; i++)
         {
-            GameObject leaf = new GameObject(name + "' child " + i.ToString());
+            GameObject leaf = new GameObject("Sprout Object");
             newLeaves[i] = leaf;
 
             leaf.AddComponent<SpriteRenderer>();
@@ -62,7 +65,7 @@ public class Sprout : MonoBehaviour
             //setting the scale and default position of each leaf
             //each leaf has a node (not visible) at the bottom of the sprite.
             //Use this node to move/rotate leaf around an axis
-            GameObject leafNode = new GameObject(leaf.name + " node");
+            GameObject leafNode = new GameObject(name + " <<node>>");
             leafNode.transform.parent = gameObject.transform;
             leaf.transform.parent = leafNode.transform;
 
@@ -88,6 +91,15 @@ public class Sprout : MonoBehaviour
         {
             try
             {
+                Sprite tmpSprite = Resources.Load<Sprite>("sprites/" + genes.GetValue<string>("sprite"));
+                if (tmpSprite == null)
+                {
+                    throw new Exception(String.Format("There's no sprite 'Resources/sprites/{0}'", genes.GetValue<string>("sprite")));
+                }
+                else
+                {
+                    sprite = tmpSprite;
+                }
                 leafCount = genes.GetValue<int>("leafCount");
                 angle = genes.GetValue<float>("angle");
                 rotationOffset = genes.GetValue<float>("rotationOffset");

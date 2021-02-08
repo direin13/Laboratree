@@ -60,10 +60,10 @@ public class DependenceAttribute : MonoBehaviour
         minValue = NumOp.Cutoff(minValue, 0, minValue);
         maxValue = NumOp.Cutoff(maxValue, minValue, maxValue);
         optimumPercentage = NumOp.Cutoff(optimumPercentage, 0f, 1f);
-        float optimumValue = (maxValue - minValue) * optimumPercentage;
+        float optimumValue = minValue + ((maxValue - minValue) * optimumPercentage);
+        optimumValue = NumOp.Cutoff(optimumValue, minValue, maxValue);
 
-        if (optimumValue < minValue || optimumValue > maxValue)
-            optimumValue = minValue + (Math.Abs(maxValue - minValue) / 2);
+        //currValue = optimumValue;
 
         //Get efficiency of dependency, the closer to the optimum it is, the higher the efficiency
         if (currValue <= optimumValue)
@@ -72,7 +72,7 @@ public class DependenceAttribute : MonoBehaviour
         }
         else
         {
-            dependencyEfficiency = NumOp.Cutoff((float)(currValue - maxValue) / (float)(optimumValue - maxValue), 0, 1f);
+            dependencyEfficiency = NumOp.Cutoff((float)(maxValue - currValue) / (float)(maxValue - optimumValue), 0, 1f);
         }
         if (dependencyAmount != prevDepAmount)
         {
@@ -83,6 +83,7 @@ public class DependenceAttribute : MonoBehaviour
         if (debug)
         {
             print("Optimum Value: " + optimumValue.ToString());
+            print("Dependency efficieiency: " + dependencyEfficiency.ToString());
         }
     }
 
