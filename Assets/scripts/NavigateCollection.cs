@@ -15,6 +15,7 @@ public class NavigateCollection : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput;
 
+    public GameObject FollowPoint;
     public Transform parent;
     public List<GameObject> plantList;
     private GameObject currPlant;
@@ -28,9 +29,9 @@ public class NavigateCollection : MonoBehaviour
 
     GameObject makeClone(){
         GameObject plant = Instantiate(plantList[indexNum]);
+        plant.SetActive(true);
         plant.transform.localScale = new Vector3(35,35,1);
         plant.transform.position = new Vector3(70,-112,-20);
-        plant.AddComponent<FakeFollow>();
         return plant;
     }
 
@@ -66,6 +67,8 @@ public class NavigateCollection : MonoBehaviour
 
     void Update(){
 
+        print(gameObject.activeSelf);
+
         //switch to next/previous plant
         if (leftButton.GetComponent<NavigateButtons>().clicked == true) {
             navigate(false,leftButton);
@@ -75,6 +78,8 @@ public class NavigateCollection : MonoBehaviour
             navigate(true,rightButton);
         }
         
+        currPlant.transform.position = new Vector3(FollowPoint.transform.position.x,FollowPoint.transform.position.y,currPlant.transform.position.z);
+
         //set index amount
         indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
         // print("current lighting val is " + getCurrVal("Lighting").ToString());
@@ -110,6 +115,14 @@ public class NavigateCollection : MonoBehaviour
             display();
         }
 
+    }
+
+    public void OnDisable() {
+        Destroy(currPlant);
+    }
+
+    public void OnEnable() {
+        Start();
     }
 
 }
