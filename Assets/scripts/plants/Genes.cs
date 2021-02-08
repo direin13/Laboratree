@@ -16,7 +16,7 @@ public class Gene
     public string dominantVal;
     public string recessiveVal;
 
-    private static readonly string[] acceptedTypes = { "float", "bool", "int", "Color", "Vector2" };
+    private static readonly string[] acceptedTypes = { "float", "string", "bool", "int", "Color", "Vector2" };
 
 
     public Gene(string name, string allelePair, string valueType, string dominantVal, string recessiveVal)
@@ -87,7 +87,6 @@ public class Gene
     }
 
     //GetValueMix mixes the 2 values into one, depending on the specified type
-    //supports float, int, bool, Color, Vector2
     public static float GetValueMix(float val1, float val2, float offsetPercentage)
     {
         return val1 + ((val2 - val1) * offsetPercentage);
@@ -136,6 +135,19 @@ public class Gene
         }
     }
 
+    public static string GetValueMix(string val1, string val2)
+    {
+        int rint = Random.Range(0, 2);
+        if (rint == 0)
+        {
+            return val1;
+        }
+        else
+        {
+            return val2;
+        }
+    }
+
     public Gene CrossGene(Gene gene2, string newGeneName)
     {
         //Takes this and another gene and crosses them to get a mix of the 2 genes
@@ -159,84 +171,95 @@ public class Gene
         string newDominantVal;
         string newRecessiveVal;
 
-        if (Homozygous(newAllelePair))
+
+        //mix the dominant of the 2 genes, and the recessives.
+        //get the halfway points depending on the type of value
+        //set new dominant and recessive values as these 2 halfway points
+        if (valueType == "float")
         {
-            //set dominant as allele 1 val, and recessive as allele 2 val
-            newDominantVal = AlleleToValue<string>(allele1);
-            newRecessiveVal = gene2.AlleleToValue<string>(allele2);
+            float dom1 = float.Parse(dominantVal);
+            float dom2 = float.Parse(gene2.dominantVal);
+            float rec1 = float.Parse(recessiveVal);
+            float rec2 = float.Parse(gene2.recessiveVal);
+
+            newDominantVal = GetValueMix(dom1, dom2, 0.5f).ToString();
+            newRecessiveVal = GetValueMix(rec1, rec2, 0.5f).ToString();
         }
+        else if (valueType == "int")
+        {
+            int dom1 = Int32.Parse(dominantVal);
+            int dom2 = Int32.Parse(gene2.dominantVal);
+            int rec1 = Int32.Parse(recessiveVal);
+            int rec2 = Int32.Parse(gene2.recessiveVal);
+
+            newDominantVal = GetValueMix(dom1, dom2, 2).ToString();
+            newRecessiveVal = GetValueMix(rec1, rec2, 2).ToString();
+        }
+
+        else if (valueType == "string")
+        {
+            newDominantVal = GetValueMix(dominantVal, gene2.dominantVal);
+            newRecessiveVal = GetValueMix(recessiveVal, gene2.recessiveVal);
+        }
+
+        else if (valueType == "bool")
+        {
+            bool dom1 = bool.Parse(dominantVal);
+            bool dom2 = bool.Parse(gene2.dominantVal);
+            bool rec1 = bool.Parse(recessiveVal);
+            bool rec2 = bool.Parse(gene2.recessiveVal);
+
+            newDominantVal = GetValueMix(dom1, dom2).ToString();
+            newRecessiveVal = GetValueMix(rec1, rec2).ToString();
+        }
+
+        else if (valueType == "Color")
+        {
+            //get halfway color between the genes
+            Color dom1;
+            ColorUtility.TryParseHtmlString(dominantVal, out dom1);
+            Color dom2;
+            ColorUtility.TryParseHtmlString(gene2.dominantVal, out dom2);
+
+            Color rec1;
+            ColorUtility.TryParseHtmlString(recessiveVal, out rec1);
+            Color rec2;
+            ColorUtility.TryParseHtmlString(gene2.recessiveVal, out rec2);
+
+            newDominantVal = "#" + ColorUtility.ToHtmlStringRGB( GetValueMix(dom1, dom2, 0.5f) );
+
+            newRecessiveVal = "#" + ColorUtility.ToHtmlStringRGB( GetValueMix(rec1, rec2, 0.5f) );
+        }
+
+        else if (valueType == "Vector2")
+        {
+            Vector2 dom1 = Parse.Vec2(dominantVal);
+            Vector2 dom2 = Parse.Vec2(gene2.dominantVal);
+            Vector2 rec1 = Parse.Vec2(recessiveVal);
+            Vector2 rec2 = Parse.Vec2(gene2.recessiveVal);
+
+            //Vec.ToString() rounds up each value to 1 decimal place so I have to make the string directly
+            Vector2 tmpDom = GetValueMix(dom1, dom2, 0.5f);
+            newDominantVal = String.Format("({0}, {1})", tmpDom[0], tmpDom[1]);
+
+            Vector2 tmpRec = GetValueMix(rec1, rec2, 0.5f);
+            newRecessiveVal = String.Format("({0}, {1})", tmpRec[0], tmpRec[1]);
+
+            if (name == "leafScale")
+            {
+                Debug.Log("mixing leafscale");
+                Debug.Log(newDominantVal);
+                Debug.Log(dom1);
+                Debug.Log(dom2);
+
+            }
+        }
+
         else
         {
-            //mix the dominant of the 2 genes, and the recessives.
-            //get the halfway points depending on the type of value
-            //set new dominant and recessive values as these 2 halfway points
-
-            if (valueType == "float")
-            {
-                float dom1 = float.Parse(dominantVal);
-                float dom2 = float.Parse(gene2.dominantVal);
-                float rec1 = float.Parse(recessiveVal);
-                float rec2 = float.Parse(gene2.recessiveVal);
-
-                newDominantVal = GetValueMix(dom1, dom2, 0.5f).ToString();
-                newRecessiveVal = GetValueMix(rec1, rec2, 0.5f).ToString();
-            }
-            else if (valueType == "int")
-            {
-                int dom1 = Int32.Parse(dominantVal);
-                int dom2 = Int32.Parse(gene2.dominantVal);
-                int rec1 = Int32.Parse(recessiveVal);
-                int rec2 = Int32.Parse(gene2.recessiveVal);
-
-                newDominantVal = GetValueMix(dom1, dom2, 2).ToString();
-                newRecessiveVal = GetValueMix(rec1, rec2, 2).ToString();
-            }
-
-            else if (valueType == "bool")
-            {
-                bool dom1 = bool.Parse(dominantVal);
-                bool dom2 = bool.Parse(gene2.dominantVal);
-                bool rec1 = bool.Parse(recessiveVal);
-                bool rec2 = bool.Parse(gene2.recessiveVal);
-
-                newDominantVal = GetValueMix(dom1, dom2).ToString();
-                newRecessiveVal = GetValueMix(rec1, rec2).ToString();
-            }
-
-            else if (valueType == "Color")
-            {
-                //get halfway color between the genes
-                Color dom1;
-                ColorUtility.TryParseHtmlString(dominantVal, out dom1);
-                Color dom2;
-                ColorUtility.TryParseHtmlString(gene2.dominantVal, out dom2);
-
-                Color rec1;
-                ColorUtility.TryParseHtmlString(recessiveVal, out rec1);
-                Color rec2;
-                ColorUtility.TryParseHtmlString(gene2.recessiveVal, out rec2);
-
-                newDominantVal = "#" + ColorUtility.ToHtmlStringRGB( GetValueMix(dom1, dom2, 0.5f) );
-
-                newRecessiveVal = "#" + ColorUtility.ToHtmlStringRGB( GetValueMix(rec1, rec2, 0.5f) );
-            }
-
-            else if (valueType == "Vector2")
-            {
-                Vector2 dom1 = Parse.Vec2(dominantVal);
-                Vector2 dom2 = Parse.Vec2(gene2.dominantVal);
-                Vector2 rec1 = Parse.Vec2(recessiveVal);
-                Vector2 rec2 = Parse.Vec2(gene2.recessiveVal);
-
-                newDominantVal = GetValueMix(dom1, dom2, 0.5f).ToString();
-                newRecessiveVal = GetValueMix(rec1, rec2, 0.5f).ToString();
-            }
-
-            else
-            {
-                throw new ArgumentException( String.Format("'{0}' has an unsupported type '{1}'!", name, valueType) );
-            }
+            throw new ArgumentException( String.Format("'{0}' has an unsupported type '{1}'!", name, valueType) );
         }
+
         //if (Homozygous(newAllelePair))
         //{
         //    Debug.Log("mixing " + name);
@@ -357,13 +380,13 @@ public class Genes : MonoBehaviour
     public Genes CrossGenes(Genes other, Genes out_)
     {
         //crosses all genes on object and puts result into out_
-        out_.genes.Clear();
+        List<Gene> newGenes = new List<Gene>();
         foreach (Gene gene in genes)
         {
             try
             {
                 Gene matching = other.GetGene(gene.name);
-                out_.SetGene( gene.CrossGene(matching, gene.name) );
+                newGenes.Add( gene.CrossGene(matching, gene.name) );
             }
             catch (ArgumentException e)
             {
@@ -371,6 +394,13 @@ public class Genes : MonoBehaviour
                 Debug.LogWarning(String.Format("'{0}' Could not find a matching gene for '{1}' in '{2}', skipping...", name, gene.name, other.gameObject.name), gameObject);
             }
         }
+
+        out_.genes.Clear();
+        foreach (Gene gene in newGenes)
+        {
+            out_.SetGene(gene);
+        }
+
         return out_;
     }
 

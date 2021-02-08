@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using MiscFunctions;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
+using Object = UnityEngine.Object;
+using UnityEditor;
 
 public class PlantManager : MonoBehaviour
 {
@@ -17,6 +20,7 @@ public class PlantManager : MonoBehaviour
     private int timeElapsed;
     private readonly int maxActivePlants = 3;
 
+    private readonly static string prefabPath = "plant prefabs/";
     public List<string> allPrefabs;
     private readonly Dictionary<string, GameObject> prefabMappings = new Dictionary<string, GameObject>();
 
@@ -27,7 +31,7 @@ public class PlantManager : MonoBehaviour
         //load all the given prefabs
         foreach (string prefab in allPrefabs)
         {
-            GameObject plant = (GameObject)Resources.Load("plant prefabs/"+prefab);
+            GameObject plant = (GameObject)Resources.Load(prefabPath+prefab);
             if (prefabMappings.ContainsKey(prefab))
             {
                 prefabMappings.Remove(prefab);
@@ -199,29 +203,26 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant"), true);
+          SetPlantStatus(MakePlant("joes plant", "Echeveria"), true);
         }
 
-        if (timeElapsed == 20)
-        {
-            SetPlantStatus(MakePlant("joes plant 2", "Aloe"), true);
-        }
 
         if (timeElapsed == 100)
         {
-            Breed(plantCollection[0], plantCollection[1], "AloexJoe");
+            SetPlantStatus(Breed(plantCollection[0], plantCollection[1], "AloexJoe"), true);
         }
     }
 
+
     public GameObject Breed(GameObject plant1, GameObject plant2, string outName)
     {
-        //make new plant from basic prefab
-        GameObject outPlant = MakePlant(outName);
+        //breed/crossbreeds 2 plants and returns new plant of name outName
 
+
+        GameObject outPlant = MakePlant(outName);
         //mix life expectancy of plant
         plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
 
-        //mix dependencies
         string[] dependencyNames = { "Lighting", "Temperature", "Water", "Fertiliser" };
         foreach (string dep in dependencyNames)
         {
@@ -232,9 +233,64 @@ public class PlantManager : MonoBehaviour
             dep1Gene.CrossGenes(dep1Gene, outGene);
         }
 
-        //mix main stem
-        //get representative sub-objects of main stem
-        //mix these sub objects
+        //choose structure passed down
+        GameObject plant1Struct = plant1.transform.Find("Structure").gameObject;
+        GameObject plant2Struct = plant2.transform.Find("Structure").gameObject;
+        Destroy(outPlant.transform.Find("Structure").gameObject);
+
+        GameObject childStruct;
+        GameObject unchosenStruct;
+        int rInt = Random.Range(0, 2);
+        if (rInt == 0)
+        {
+            childStruct = (GameObject)Instantiate(plant1Struct, outPlant.transform);
+            unchosenStruct = plant2Struct;
+        }
+        else
+        {
+            childStruct = (GameObject)Instantiate(plant2Struct, outPlant.transform);
+            unchosenStruct = plant1Struct;
+        }
+        childStruct.name = "Structure";
+        outPlant.BroadcastMessage("SetTimeElapsed", 0, 0);
+
+
+        //mix unchosen structure into child structure
+        //get every obj in chosen structure and mix it with
+        //obj of the same type in unchosen structure
+        GameObject[] allChildStructObj = getSubObjects(childStruct);
+        GameObject[] allParentStructObj = getSubObjects(unchosenStruct);
+
+        foreach (GameObject obj in allChildStructObj)
+        {
+            Genes objGenes = obj.GetComponent<Genes>();
+            if (objGenes != null)
+            {
+                foreach (GameObject otherObj in allParentStructObj)
+                {
+                    print(obj.name + " " + otherObj.name);
+                    print(otherObj.GetComponent<Genes>());
+                    if (otherObj.name == obj.name)
+                    {
+                        print("mixing");
+                        objGenes.CrossGenes(otherObj.GetComponent<Genes>(), objGenes);
+                    }
+                }
+            }
+        }
+
         return outPlant;
+    }
+
+    public GameObject[] getSubObjects(GameObject obj)
+    {
+        Transform[] allTrans = obj.GetComponentsInChildren<Transform>();
+        GameObject[] out_ = new GameObject[allTrans.Length-1];
+        for (int i = 1; i < allTrans.Length; i++)
+        {
+            GameObject gObj = allTrans[i].gameObject;
+            out_[i-1] = gObj;
+        }
+        return out_;
     }
 }

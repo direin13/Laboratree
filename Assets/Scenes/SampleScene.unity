@@ -1580,14 +1580,14 @@ MonoBehaviour:
   indexText: {fileID: 1059958518}
   leftButton: {fileID: 419380996}
   rightButton: {fileID: 742596858}
+  parent: {fileID: 436741107}
+  plantList: []
+  indexNum: 0
   nameText: {fileID: 581301462}
   lightInput: {fileID: 1953305752}
   tempInput: {fileID: 2039001284}
   waterInput: {fileID: 911950803}
   fertiliserInput: {fileID: 1267166143}
-  parent: {fileID: 436741107}
-  plantList: []
-  indexNum: 0
 --- !u!1 &395429823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,19 +2359,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 523164779}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 523164781}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 523164781}, m_TargetAssemblyTypeName: 'NavigateButtons,
+            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!114 &523164779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3038,6 +3030,7 @@ MonoBehaviour:
   allPrefabs:
   - Basic Plant
   - Aloe
+  - Echeveria
 --- !u!1 &734216625
 GameObject:
   m_ObjectHideFlags: 0
@@ -4018,19 +4011,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1020393186}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1020393188}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1020393188}, m_TargetAssemblyTypeName: 'NavigateButtons,
+            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!114 &1020393186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7304,19 +7289,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1676672973}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1676672975}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1676672975}, m_TargetAssemblyTypeName: 'NavigateButtons,
+            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!114 &1676672973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7718,6 +7695,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 184269037934722113, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: debug
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1225476191998704355, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: realTimeColor.b
@@ -7753,10 +7735,20 @@ PrefabInstance:
       propertyPath: genes.Array.data[0].allelePair
       value: Hh
       objectReference: {fileID: 0}
+    - target: {fileID: 3643725074588179010, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: leafCount
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4392447268228017127, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: genes.Array.data[14].dominantVal
       value: (0.29,0.175)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4392447268228017127, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: genes.Array.data[15].dominantVal
+      value: aloeLeaf
       objectReference: {fileID: 0}
     - target: {fileID: 5904201443408536694, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
@@ -7811,6 +7803,11 @@ PrefabInstance:
     - target: {fileID: 5904201443408536694, guid: b09575fbd63dcb84898b23e3aeb0b20d,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8433413158800378653, guid: b09575fbd63dcb84898b23e3aeb0b20d,
+        type: 3}
+      propertyPath: debug
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -8122,19 +8119,11 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1949006831}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1949006833}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1949006833}, m_TargetAssemblyTypeName: 'NavigateButtons,
+            Assembly-CSharp', m_MethodName: OnMouseDown, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
 --- !u!114 &1949006831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9475,6 +9464,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140253841}
   m_CullTransparentMesh: 1
+--- !u!1001 &282585105612717153
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2456659089476139467, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_Name
+      value: Echeveria
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 41
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 8e33ee773101dfd4faa805a595d08c60, type: 3}
 --- !u!224 &3931112567042445903 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3931112566986534476, guid: 7fe6dc73edaa5324e9c3c36f96dbb707,

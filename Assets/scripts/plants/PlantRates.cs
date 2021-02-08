@@ -28,7 +28,15 @@ public class PlantRates : MonoBehaviour
     public GameObject[] allDependencies;
     public bool debug;
 
+    public void SetTimeElapsed(int time)
+    {
+        timeElapsed = NumOp.Cutoff(time, 0, time);
+    }
 
+    public bool PlantAlive()
+    {
+        return (timeElapsed < timeAliveLeft);
+    }
     public DependenceAttribute GetDepComp(GameObject dep)
     {
         return dep.GetComponent<DependenceAttribute>();
@@ -169,13 +177,16 @@ public class PlantRates : MonoBehaviour
             BalanceFloats(allDependencies, changedIndex, maxEfficiency);
         }
 
-        if (timeElapsed < timeAliveLeft)
+        float actualDeathEffic = 0f;
+
+        if (PlantAlive())
         {
-            currEfficiency = GetCurrentEfficiency(allDependencies);
+            currEfficiency = NumOp.Cutoff(GetCurrentEfficiency(allDependencies), 0f, 1f);
 
             //time till death decreases as efficiency lowers whereas it increases growth time
-            float actualDeathEffic = (currEfficiency - (currEfficiency * deathTimeSkew));
 
+            //the higher the death skew, the more exponentially the currefficiency falls
+            actualDeathEffic = currEfficiency - ( currEfficiency * (deathTimeSkew * (1f - currEfficiency)) );
             timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
 
             //constant countdown
@@ -195,6 +206,7 @@ public class PlantRates : MonoBehaviour
 
         if (debug)
         {
+            print("actual death efficiency: " + actualDeathEffic.ToString());
             print("Plant Time Left (%): " + Health().ToString());
             print(String.Format("Name: {0}, TimeAlive: {1}hrs, TimeElapsed: {2}hrs", name, timeAliveLeft, timeElapsed));
         }

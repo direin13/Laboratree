@@ -15,6 +15,13 @@ public class Grow : MonoBehaviour
     public int timeElapsed;
     public float growthAmount;
 
+
+    public void SetTimeElapsed(int time)
+    {
+        timeElapsed = NumOp.Cutoff(time, 0, time);
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,11 +79,13 @@ public class Grow : MonoBehaviour
             }
         }
 
-
-        //constant countdown
-        if (GetComponent<Timer>().Tick())
+        if (transform.root.gameObject.GetComponent<PlantRates>().PlantAlive())
         {
-            timeElapsed = timeElapsed + 1;
+            //constant countdown
+            if (GetComponent<Timer>().Tick())
+            {
+                timeElapsed = timeElapsed + 1;
+            }
         }
 
         if (debug)
