@@ -7,15 +7,23 @@ using TMPro;
 
 public class NavigateCollection : MonoBehaviour
 {
-    // public GameObject plantManager;
     public TextMeshProUGUI indexText;
-    public Button leftButton;
-    public Button rightButton;
+
+    [SerializeField]
+    private Button leftButton, rightButton;
+    
+    [SerializeField]
+    private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput;
+
     public Transform parent;
-    public TextMeshProUGUI nameText;
     private List<GameObject> originalPlantList;
-    private List<GameObject> plantList = new List<GameObject>();     //for creating a deep copy of original list 
-    private int indexNum;
+    
+    public List<GameObject> plantList = new List<GameObject>();     //for creating a deep copy of original list 
+    public int indexNum = 0;
+
+    float getCurrVal(string attribute) {
+        return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
+    }
 
     void Start(){
         GameObject plantCollectionHolder = GameObject.Find("GameManager");
@@ -23,13 +31,11 @@ public class NavigateCollection : MonoBehaviour
         originalPlantList = plantManager.plantCollection;
         indexNum = 0;   //starts at 0
 
-        
-
-
         // display first plant in the list
         for (int i = 0; i < originalPlantList.Count; i++) {
             //instantiate object - set position, rotation
             //use new Vector3(70,-100,-20) when working with image
+
             GameObject plant = Instantiate(originalPlantList[i]);   //create clone
             plant.transform.localScale = new Vector3(35,35,1);
             plant.transform.position = new Vector3(70,-112,-20);
@@ -59,12 +65,26 @@ public class NavigateCollection : MonoBehaviour
         //change name to current plant
         nameText.text = "Name: " + plantList[indexNum].name;
 
+        //change attribute values
+        var lighting = getCurrVal("Lighting").ToString();
+        var temp = getCurrVal("Temperature").ToString();
+        var water = getCurrVal("Water").ToString();
+        var fertiliser = getCurrVal("Fertiliser").ToString();
+
+        print("Current lighting value is: " + lighting);
+
+        //set text in interval fields
+        lightInput.text = lighting;
+        tempInput.text = temp;
+        waterInput.text = water;
+        fertiliserInput.text = fertiliser;
+
         //set index amount
         indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
-        print(plantList[indexNum].transform.position);
+        // print(plantList[indexNum].transform.position);
 
-        // //make it stop responding to time
-        // plantList[indexNum].GetComponent<Timer>().getTicks = false;
+        //make it stop responding to time
+        plantList[indexNum].GetComponent<Timer>().getTicks = false;
     }
 
     void Update(){
@@ -77,6 +97,8 @@ public class NavigateCollection : MonoBehaviour
         if (rightButton.GetComponent<NavigateButtons>().clicked == true) {
             navigate(true,rightButton);
         }
+
+
     }
 
     //displays and navigates between plants in list
@@ -93,15 +115,16 @@ public class NavigateCollection : MonoBehaviour
                 indexNum--;     //subtract one from index
             }
 
-            //set plant at new index active
-            plantList[indexNum].SetActive(true);
+            // //set plant at new index active
+            // plantList[indexNum].SetActive(true);
 
-            //change name
-            nameText.text = "Name: " + plantList[indexNum].name;
+            // //change name
+            // // nameText.text = "Name: " + plantList[indexNum].name;
 
-            indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
-            button.GetComponent<NavigateButtons>().clicked = false;         //reset button status        
+            // //change attribute values
 
+
+            // indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
         } catch (System.ArgumentOutOfRangeException e1){      //when index is out of range
             if (indexNum == plantList.Count) {       //restarts
                 indexNum = 0;
@@ -111,9 +134,9 @@ public class NavigateCollection : MonoBehaviour
             }
 
             Debug.Log("Exception caught: " + e1);
-            button.GetComponent<NavigateButtons>().clicked = false;         //reset button status
         }     
         finally {
+            button.GetComponent<NavigateButtons>().clicked = false;         //reset button status
             display();
         }
 
