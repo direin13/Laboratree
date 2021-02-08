@@ -150,7 +150,7 @@ public class PlantManager : MonoBehaviour
     void Update()
     {
         //setting the timer speed for every plant in the collection
-        float maxSpeed = 0.01f;
+        float maxSpeed = 0.0001f;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
