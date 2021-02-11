@@ -13,6 +13,8 @@ public class Grow : MonoBehaviour
     public int growthStages;
     public bool debug;
     public float growthAmount;
+    public int timeTillStart;
+    public bool hasStarted;
 
 
     // Start is called before the first frame update
@@ -25,6 +27,7 @@ public class Grow : MonoBehaviour
             {
                 expectedGrowTime = genes.GetValue<int>("expectedGrowTime");
                 growthTimeSkew = genes.GetValue<float>("growthTimeSkew");
+                timeTillStart = genes.GetValue<int>("timeTillStart");
             }
             catch (Exception e)
             {
@@ -38,6 +41,7 @@ public class Grow : MonoBehaviour
         }
 
         currGrowTime = expectedGrowTime;
+        timeTillStart = transform.root.GetComponent<Timer>().timeElapsed + timeTillStart;
     }
 
     // Update is called once per frame
@@ -56,25 +60,33 @@ public class Grow : MonoBehaviour
         currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
         int timeElapsed = transform.root.GetComponent<Timer>().timeElapsed;
-        if (growthStages <= 0)
+        if (timeElapsed >= timeTillStart)
         {
-            growthAmount = 1f;
+            hasStarted = true;
         }
-        else
+
+        if (hasStarted)
         {
-            int stageInterval = NumOp.Cutoff(currGrowTime, 0, currGrowTime) / growthStages;
-            if (stageInterval <= 0)
+            if (growthStages <= 0)
+            {
                 growthAmount = 1f;
+            }
             else
             {
-                int stage = timeElapsed / stageInterval;
-                growthAmount = NumOp.Cutoff((float)stage / growthStages, 0f, 1f);
+                int stageInterval = NumOp.Cutoff(currGrowTime, 0, currGrowTime) / growthStages;
+                if (stageInterval <= 0)
+                    growthAmount = 1f;
+                else
+                {
+                    int stage = (timeElapsed-timeTillStart) / stageInterval;
+                    growthAmount = NumOp.Cutoff((float)stage / growthStages, 0f, 1f);
+                }
             }
         }
 
         if (debug)
         {
-            print(String.Format("Name: {0}, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", name, currGrowTime, timeElapsed));
+            print(String.Format("Name: {0}, Full Growth Time: {1}hrs, TimeElapsed: {2}hrs", name, currGrowTime, (timeElapsed-timeTillStart)));
         }
 
     }

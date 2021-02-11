@@ -231,6 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   getTicks: 0
+  timeElapsed: 0
 --- !u!1 &1136169495935048521
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +611,7 @@ GameObject:
   - component: {fileID: 3326379265821909443}
   - component: {fileID: 1586405412865871776}
   - component: {fileID: 4361994766379012426}
+  - component: {fileID: 3700442761549878471}
   m_Layer: 6
   m_Name: Stem
   m_TagString: Untagged
@@ -726,6 +728,16 @@ MonoBehaviour:
     valueType: float
     dominantVal: 0
     recessiveVal: 0
+  - name: timeTillStart
+    allelePair: Hh
+    valueType: int
+    dominantVal: 0
+    recessiveVal: 0
+  - name: scaleAmount
+    allelePair: Hh
+    valueType: Vector2
+    dominantVal: (0.09162117 , 0.8974713)
+    recessiveVal: (0.09162117 , 0.9004713)
 --- !u!114 &3326379265821909443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   getTicks: 0
+  timeElapsed: 0
 --- !u!114 &4361994766379012426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,8 +789,22 @@ MonoBehaviour:
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
-  timeElapsed: 0
   growthAmount: 0
+  timeTillStart: 0
+  hasStarted: 0
+--- !u!114 &3700442761549878471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7548149064760046106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2576b0879022c34da783d190df39db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAmount: {x: 0.09162117, y: 0.8974713}
 --- !u!1 &7858647810298514979
 GameObject:
   m_ObjectHideFlags: 0

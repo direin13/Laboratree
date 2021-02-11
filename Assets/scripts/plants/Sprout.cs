@@ -10,6 +10,7 @@ public class Sprout : MonoBehaviour
     public Sprite sprite;
     public int leafCount;
     public bool enableBackgroundLeaves;
+    public bool flipBackground;
 
     public float angle;
     public float rotationOffset;
@@ -209,7 +210,7 @@ public class Sprout : MonoBehaviour
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
             Transform tf = leaves[i].transform;
-            if (!enableBackgroundLeaves || i % 2 != 0)
+            if ( !enableBackgroundLeaves || (i % 2 != 0 && !flipBackground || i % 2 == 0 && flipBackground))
             {
                 sr.color = chosenColor;
             }
@@ -217,7 +218,7 @@ public class Sprout : MonoBehaviour
             {
                 //move leaf back and lower the colour value
                 sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f, chosenColor[3]);
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2] + 4);
+                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2]+20);
             }
         }
     }
@@ -232,7 +233,7 @@ public class Sprout : MonoBehaviour
         angle = NumOp.Cutoff(angle, 0f, 360f);
         zLayer = NumOp.Cutoff(zLayer, 0, maxZLayer);
 
-        if (leafCount != leaves.Length)
+        if (leafCount != leaves.Length && GetComponent<Grow>().hasStarted)
             leaves = CreateLeaves(leafCount);
 
         float growthAmount = GetComponent<Grow>().growthAmount;
@@ -240,5 +241,6 @@ public class Sprout : MonoBehaviour
         SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
         SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale*growthAmount);
         SetColor();
+
     }
 }

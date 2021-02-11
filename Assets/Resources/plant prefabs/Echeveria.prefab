@@ -246,6 +246,7 @@ GameObject:
   - component: {fileID: 1362960878761630859}
   - component: {fileID: 6276896906148052074}
   - component: {fileID: 8031748551857023122}
+  - component: {fileID: 5390303422981466918}
   m_Layer: 6
   m_Name: Stem
   m_TagString: Untagged
@@ -363,6 +364,16 @@ MonoBehaviour:
     valueType: float
     dominantVal: 0
     recessiveVal: 0.2
+  - name: timeTillStart
+    allelePair: Hh
+    valueType: int
+    dominantVal: 0
+    recessiveVal: 0
+  - name: scaleAmount
+    allelePair: Hh
+    valueType: Vector2
+    dominantVal: (0.09162117, 0.8974713)
+    recessiveVal: (0.09162117, 0.9074713)
 --- !u!114 &1362960878761630859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,6 +426,21 @@ MonoBehaviour:
   growthStages: 400
   debug: 0
   growthAmount: 0
+  timeTillStart: 0
+  hasStarted: 0
+--- !u!114 &5390303422981466918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696777647148962612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2576b0879022c34da783d190df39db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAmount: {x: 0.09162117, y: 0.8974713}
 --- !u!1 &3133198579604828187
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,6 +455,7 @@ GameObject:
   - component: {fileID: 9031393000997793142}
   - component: {fileID: 565542478543960557}
   - component: {fileID: 8928279261268285707}
+  - component: {fileID: 4989379167254181970}
   m_Layer: 6
   m_Name: Leaves
   m_TagString: Untagged
@@ -445,7 +472,7 @@ Transform:
   m_GameObject: {fileID: 3133198579604828187}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
-  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
+  m_LocalScale: {x: 10.914508, y: 1.1142417, z: 1}
   m_Children: []
   m_Father: {fileID: 1361768035421041227}
   m_RootOrder: 0
@@ -543,6 +570,11 @@ MonoBehaviour:
     valueType: string
     dominantVal: echeveriaLeaf
     recessiveVal: echeveriaLeaf
+  - name: timeTillStart
+    allelePair: Hh
+    valueType: int
+    dominantVal: 2000
+    recessiveVal: 1800
 --- !u!114 &3565422700871793706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,6 +590,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
   leafCount: 2
   enableBackgroundLeaves: 1
+  flipBackground: 0
   angle: 150
   rotationOffset: 0.4
   sproutSize: 0.8
@@ -615,11 +648,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expectedGrowTime: 0
+  expectedGrowTime: 2000
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
   growthAmount: 0
+  timeTillStart: 2000
+  hasStarted: 0
+--- !u!114 &4989379167254181970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3133198579604828187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acae85dec6058d46b2b843fd9c64c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixeScale: 1
 --- !u!1 &3718783906031590718
 GameObject:
   m_ObjectHideFlags: 0

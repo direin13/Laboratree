@@ -98,7 +98,6 @@ public class PlantManager : MonoBehaviour
 
     public bool PlantActive(GameObject plant)
     {
-        print(plant.name);
         return plantStatus[plant.name];
     }
 
@@ -151,7 +150,7 @@ public class PlantManager : MonoBehaviour
     void Update()
     {
         //setting the timer speed for every plant in the collection
-        float maxSpeed = 0.01f;
+        float maxSpeed = GetComponent<Timer>().maxSpeed;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
@@ -200,7 +199,7 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Echeveria"), true);
+          SetPlantStatus(MakePlant("joes plant", "Jade"), true);
         }
 
 

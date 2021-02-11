@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour
     public readonly float maxSpeed = 0.00001f;
     private bool hasTicked = false;
     public bool getTicks;
-    public int timeElapsed;
+    public int timeElapsed; //reference of how many units of time has passed
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +28,7 @@ public class Timer : MonoBehaviour
 
     public void Set(string name, float newTime, float tickSpeed)
     {
+        //set a countdown timer
         newTime = NumOp.Cutoff(newTime, 0, newTime);
         if (timeStamps.ContainsKey(name) != true)
         {
@@ -48,10 +49,11 @@ public class Timer : MonoBehaviour
         return timeStamps[name];
     }
 
-    public void Change(string name, float seconds)
+    public void Change(string name, float amount)
     {
-        seconds = NumOp.Cutoff(seconds, 0, seconds);
-        timeStamps[name] = timeStamps[name] + (seconds - timeStamps[name]);
+        //changes current time stamp by given amount
+        amount = NumOp.Cutoff(amount, 0, amount);
+        timeStamps[name] = timeStamps[name] + (amount - timeStamps[name]);
     }
 
     public bool TimeUp(string name)
@@ -87,9 +89,11 @@ public class Timer : MonoBehaviour
             float dist = Time.time - onGoingTimeStamps[key];
             if (dist >= tickSpeeds[key] * speed)
             {
+                //countdown the timer
                 onGoingTimeStamps[key] = onGoingTimeStamps[key] + dist;
                 timeStamps[key] = NumOp.Cutoff(timeStamps[key] - (tickSpeeds[key] * speed), 0, timeStamps[key]);
-                if (key == "<<tick>>")
+
+                if (key == "<<tick>>" && getTicks)
                 {
                     hasTicked = true;
                     timeElapsed++;
