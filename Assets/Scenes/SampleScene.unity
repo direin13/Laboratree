@@ -1518,6 +1518,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Echeveria
       objectReference: {fileID: 0}
+    - target: {fileID: 4548330150819597711, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: genes.Array.data[0].allelePair
+      value: Hh
+      objectReference: {fileID: 0}
+    - target: {fileID: 4548330150819597711, guid: 8e33ee773101dfd4faa805a595d08c60,
+        type: 3}
+      propertyPath: genes.Array.data[7].allelePair
+      value: Hh
+      objectReference: {fileID: 0}
     - target: {fileID: 5909881898777592350, guid: 8e33ee773101dfd4faa805a595d08c60,
         type: 3}
       propertyPath: m_RootOrder

@@ -36,7 +36,7 @@ public class ChangeAttribute : MonoBehaviour
 
             //set current val to new val
             attributeObj.GetComponent<DependenceAttribute>().currValue = float.Parse(input.text);
-            print("changed to value: " + attributeObj.GetComponent<DependenceAttribute>().currValue.ToString());
+            print(plantList[indexNum].name + " changed to value: " + attributeObj.GetComponent<DependenceAttribute>().currValue.ToString());
 
             // change placeholder to current val
             placeholder.text = input.text;

@@ -28,6 +28,7 @@ public class NavigateCollection : MonoBehaviour
     }
 
     GameObject makeClone(){
+        
         GameObject plant = Instantiate(plantList[indexNum]);
         plant.SetActive(true);
         plant.transform.localScale = new Vector3(35,35,1);
@@ -36,12 +37,6 @@ public class NavigateCollection : MonoBehaviour
     }
 
     void Start(){
-        GameObject plantCollectionHolder = GameObject.Find("GameManager");
-        PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
-        plantList = plantManager.plantCollection;
-        indexNum = 0;   //starts at 0
-
-        display();
     }
 
     void display(){
@@ -120,7 +115,13 @@ public class NavigateCollection : MonoBehaviour
     }
 
     public void OnEnable() {
-        Start();
+        print("starting navigation");
+        GameObject plantCollectionHolder = GameObject.Find("GameManager");
+        PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
+        plantList = plantManager.plantCollection;
+        indexNum = 0;   //starts at 0
+
+        display();
     }
 
 }
