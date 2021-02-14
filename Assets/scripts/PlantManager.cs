@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Object = UnityEngine.Object;
 using UnityEditor;
+using System.Reflection;
+
 
 public class PlantManager : MonoBehaviour
 {
@@ -47,8 +49,9 @@ public class PlantManager : MonoBehaviour
         }
 
         //testing manually set first plant active, will remove later
-        plantStatus[plantCollection[0].name] = true;
         GetComponent<Timer>().getTicks = true;
+        GameObject testPlant = MakePlant("Echeveria", "Echeveria");
+        SetPlantStatus(testPlant, true);
     }
 
     public void SetPlantStatus(GameObject plant, bool status)
@@ -140,10 +143,17 @@ public class PlantManager : MonoBehaviour
         }
 
         GameObject plant = GameObject.Instantiate(prefabMappings[prefab]);
+        readGenes(plant, true);
         plant.name = name;
         plantStatus[plant.name] = false;
         plantCollection.Add(plant);
+        readGenes(plant, true);
         return plant;
+    }
+
+    public void readGenes(GameObject plant, bool status)
+    {
+        plant.BroadcastMessage("ReadGenesOnStart", status);
     }
 
     // Update is called once per frame

@@ -50,6 +50,7 @@ MonoBehaviour:
   maxValue: 8760
   optimumPercentage: 0.15
   currValue: 1289
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &7272850406020960297
 MonoBehaviour:
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 5519496565076544647}
   - {fileID: 2261521484891620750}
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &3149663077842933334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +396,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &6122632504804596226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +431,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &2236575641242564684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleAmount: {x: 0.09162117, y: 0.8974713}
+  readGenesOnStart: 0
 --- !u!1 &2923023254480885363
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,6 +605,7 @@ MonoBehaviour:
   zLayer: 5
   offsetSpawnPoint: {x: 0.008, y: -0.2}
   leafScale: {x: 0.29, y: 0.175}
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &9132743406865124126
 MonoBehaviour:
@@ -621,6 +627,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &302519953378058117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +662,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 1000
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &8954155794758011626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +791,7 @@ MonoBehaviour:
   maxValue: 3600
   optimumPercentage: 0.15
   currValue: 486
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &4844748360065467563
 MonoBehaviour:
@@ -900,6 +909,7 @@ MonoBehaviour:
   maxValue: 10000
   optimumPercentage: 0.61
   currValue: 90
+  readGenesOnStart: 0
   debug: 0
 --- !u!1 &7682611242822625595
 GameObject:
@@ -1033,6 +1043,7 @@ MonoBehaviour:
   maxValue: 30
   optimumPercentage: 0.5
   currValue: 5
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &5627899810223592251
 MonoBehaviour:

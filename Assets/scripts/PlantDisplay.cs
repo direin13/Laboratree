@@ -5,65 +5,53 @@ using System;
 using UnityEngine.UI;
 using TMPro;
 
-public class NavigateCollection : MonoBehaviour
+public class PlantDisplay : MonoBehaviour
 {
     public TextMeshProUGUI indexText;
 
     [SerializeField]
     private Button leftButton, rightButton;
-    
-    [SerializeField]
-    private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput;
 
-    public GameObject FollowPoint;
-    public Transform parent;
+    [SerializeField]
+    private TextMeshProUGUI nameText;
+
     public List<GameObject> plantList;
     private GameObject currPlant;
-    
-    public int indexNum;
-    public int prevIndexNum;
 
-    float getCurrVal(string attribute) {
+    private int prevIndexNum;
+    public int indexNum;
+
+
+    float getCurrVal(string attribute)
+    {
         return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
     }
 
-    GameObject makeClone(){
-        
+    GameObject makeClone()
+    {
+
         GameObject plant = Instantiate(plantList[indexNum]);
         plant.SetActive(true);
-        plant.transform.localScale = new Vector3(35,35,1);
-        plant.transform.position = new Vector3(70,-112,-40);
+        plant.transform.localScale = new Vector3(35, 35, 1);
+        plant.transform.position = new Vector3(0, -112, -40);
+        plant.GetComponent<Timer>().getTicks = false;
         plant.BroadcastMessage("ReadGenesOnStart", false);
         return plant;
     }
 
-    void Start(){
+    void Start()
+    {
     }
 
-    void display(){
-
+    void display()
+    {
         currPlant = makeClone();
-
         //change name to current plant
-        nameText.text = "Name: " + plantList[indexNum].name;
-
-        //change attribute values
-        var lighting = getCurrVal("Lighting").ToString();
-        var temp = getCurrVal("Temperature").ToString();
-        var water = getCurrVal("Water").ToString();
-        var fertiliser = getCurrVal("Fertiliser").ToString();
-
-        //set text in interval fields
-        lightInput.text = lighting;
-        tempInput.text = temp;
-        waterInput.text = water;
-        fertiliserInput.text = fertiliser;
-
+        nameText.text = plantList[indexNum].name;
     }
 
     void Update()
     {
-
 
         if (plantList.Count <= 0)
         {
@@ -77,7 +65,7 @@ public class NavigateCollection : MonoBehaviour
 
         if (currPlant)
         {
-            currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
+            currPlant.transform.position = new Vector3(transform.position.x, transform.position.y, currPlant.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
         }
 
@@ -94,6 +82,7 @@ public class NavigateCollection : MonoBehaviour
             indexNum++;
             rightButton.GetComponent<NavigateButtons>().clicked = false;
         }
+
 
         if (prevIndexNum != indexNum)
         {

@@ -21,31 +21,43 @@ public class DependenceAttribute : MonoBehaviour
     public float optimumPercentage;
     public float currValue;
 
+    public bool readGenesOnStart;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
+
+
     public bool debug;
     // Start is called before the first frame update
 
     void Start()
     {
         //reading gene script for variable values
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                dependencyAmount = genes.GetValue<float>("dependencyAmount");
-                minValue = genes.GetValue<int>("minValue");
-                maxValue = genes.GetValue<int>("maxValue");
-                optimumPercentage = genes.GetValue<float>("optimumPercentage");
+                try
+                {
+                    dependencyAmount = genes.GetValue<float>("dependencyAmount");
+                    minValue = genes.GetValue<int>("minValue");
+                    maxValue = genes.GetValue<int>("maxValue");
+                    optimumPercentage = genes.GetValue<float>("optimumPercentage");
+                }
+                catch (Exception e)
+                {
+                    print(e.ToString());
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e.ToString());
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
 
         depAmountChanged = false;
@@ -63,7 +75,7 @@ public class DependenceAttribute : MonoBehaviour
         float optimumValue = minValue + ((maxValue - minValue) * optimumPercentage);
         optimumValue = NumOp.Cutoff(optimumValue, minValue, maxValue);
 
-        //currValue = optimumValue;
+        currValue = optimumValue;
 
         //Get efficiency of dependency, the closer to the optimum it is, the higher the efficiency
         if (currValue <= optimumValue)

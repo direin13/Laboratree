@@ -26,7 +26,15 @@ public class Sprout : MonoBehaviour
     public Vector2 leafScale;
     private GameObject[] leaves;
 
+    public bool readGenesOnStart;
+
     public bool debug;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
 
 
     public GameObject[] CreateLeaves(int amount)
@@ -88,39 +96,42 @@ public class Sprout : MonoBehaviour
 
         //reading gene script for variable values
         Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            if (genes != null)
             {
-                Sprite tmpSprite = Resources.Load<Sprite>("sprites/" + genes.GetValue<string>("sprite"));
-                if (tmpSprite == null)
+                try
                 {
-                    throw new Exception(String.Format("There's no sprite 'Resources/sprites/{0}'", genes.GetValue<string>("sprite")));
-                }
-                else
-                {
-                    sprite = tmpSprite;
-                }
-                leafCount = genes.GetValue<int>("leafCount");
-                angle = genes.GetValue<float>("angle");
-                rotationOffset = genes.GetValue<float>("rotationOffset");
-                sproutSize = genes.GetValue<float>("sproutSize");
-                invHeightSkew = genes.GetValue<bool>("invHeightSkew");
-                heightOffset = genes.GetValue<float>("heightOffset");
-                heightOffsetPower = genes.GetValue<float>("heightOffsetPower");
-                offsetSpawnPoint = Parse.Vec2(genes.GetValue<string>("offsetSpawnPoint"));
-                leafScale = Parse.Vec2(genes.GetValue<string>("leafScale"));
+                    Sprite tmpSprite = Resources.Load<Sprite>("sprites/" + genes.GetValue<string>("sprite"));
+                    if (tmpSprite == null)
+                    {
+                        throw new Exception(String.Format("There's no sprite 'Resources/sprites/{0}'", genes.GetValue<string>("sprite")));
+                    }
+                    else
+                    {
+                        sprite = tmpSprite;
+                    }
+                    leafCount = genes.GetValue<int>("leafCount");
+                    angle = genes.GetValue<float>("angle");
+                    rotationOffset = genes.GetValue<float>("rotationOffset");
+                    sproutSize = genes.GetValue<float>("sproutSize");
+                    invHeightSkew = genes.GetValue<bool>("invHeightSkew");
+                    heightOffset = genes.GetValue<float>("heightOffset");
+                    heightOffsetPower = genes.GetValue<float>("heightOffsetPower");
+                    offsetSpawnPoint = Parse.Vec2(genes.GetValue<string>("offsetSpawnPoint"));
+                    leafScale = Parse.Vec2(genes.GetValue<string>("leafScale"));
 
+                }
+                catch (Exception e)
+                {
+                    print(e);
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e);
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
     }
 

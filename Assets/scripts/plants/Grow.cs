@@ -16,32 +16,43 @@ public class Grow : MonoBehaviour
     public int timeTillStart;
     public bool hasStarted;
 
+    public bool readGenesOnStart;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                expectedGrowTime = genes.GetValue<int>("expectedGrowTime");
-                growthTimeSkew = genes.GetValue<float>("growthTimeSkew");
-                timeTillStart = genes.GetValue<int>("timeTillStart");
+                try
+                {
+                    expectedGrowTime = genes.GetValue<int>("expectedGrowTime");
+                    growthTimeSkew = genes.GetValue<float>("growthTimeSkew");
+                    timeTillStart = genes.GetValue<int>("timeTillStart");
+                }
+                catch (Exception e)
+                {
+                    print(e.ToString());
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e.ToString());
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
-        }
-
         currGrowTime = expectedGrowTime;
         timeTillStart = transform.root.GetComponent<Timer>().timeElapsed + timeTillStart;
+        }
+
     }
 
     // Update is called once per frame

@@ -7,26 +7,38 @@ using MiscFunctions;
 public class Stem : MonoBehaviour
 {
     public Vector2 scaleAmount;
+
+    public bool readGenesOnStart;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         //load genes for fields
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                scaleAmount = Parse.Vec2(genes.GetValue<string>("scaleAmount"));
+                try
+                {
+                    scaleAmount = Parse.Vec2(genes.GetValue<string>("scaleAmount"));
+                }
+                catch (Exception e)
+                {
+                    print(e.ToString());
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e.ToString());
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
     }
 

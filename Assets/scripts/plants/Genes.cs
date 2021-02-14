@@ -404,6 +404,7 @@ public class Genes : MonoBehaviour
         return out_;
     }
 
+
     // Update is called once per frame
     void Update()
     {
