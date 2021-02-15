@@ -21,27 +21,23 @@ public class NavigateCollection : MonoBehaviour
     private GameObject currPlant;
     
     public int indexNum;
+    public int prevIndexNum;
 
     float getCurrVal(string attribute) {
-        print("current index num is " + indexNum.ToString());
         return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
     }
 
     GameObject makeClone(){
+        
         GameObject plant = Instantiate(plantList[indexNum]);
         plant.SetActive(true);
         plant.transform.localScale = new Vector3(35,35,1);
-        plant.transform.position = new Vector3(70,-112,-20);
+        plant.transform.position = new Vector3(70,-112,-60);
+        plant.BroadcastMessage("ReadGenesOnStart", false);
         return plant;
     }
 
     void Start(){
-        GameObject plantCollectionHolder = GameObject.Find("GameManager");
-        PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
-        plantList = plantManager.plantCollection;
-        indexNum = 0;   //starts at 0
-
-        display();
     }
 
     void display(){
@@ -65,62 +61,78 @@ public class NavigateCollection : MonoBehaviour
 
     }
 
-    void Update(){
+    void Update()
+    {
 
-        //switch to next/previous plant
-        if (leftButton.GetComponent<NavigateButtons>().clicked == true) {
-            navigate(false,leftButton);
-        } 
 
-        if (rightButton.GetComponent<NavigateButtons>().clicked == true) {
-            navigate(true,rightButton);
+        if (plantList.Count <= 0)
+        {
+            currPlant = null;
         }
-        
-        currPlant.transform.position = new Vector3(FollowPoint.transform.position.x,FollowPoint.transform.position.y,currPlant.transform.position.z);
 
-        //set index amount
-        indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
-        // print("current lighting val is " + getCurrVal("Lighting").ToString());
-    }
-
-    //displays and navigates between plants in list
-    void navigate(bool next, Button button) {
-
-        try {
-            //change index
-            if (next) {
-                indexNum++;     //add one to index
-            } else {
-                indexNum--;     //subtract one from index
-            }
-
-            var trigger = plantList[indexNum];      //triggers catch
-            
-        } catch (System.ArgumentOutOfRangeException e1){      //when index is out of range
-            if (indexNum >= plantList.Count) {       //restarts
-                indexNum = 0;
-
-            } else if (indexNum <= 0) {
-                indexNum = plantList.Count - 1;
-            }
-
-            Debug.Log("Exception caught: " + e1);
-
-        }     
-        finally {
-            Destroy(currPlant);
-            button.GetComponent<NavigateButtons>().clicked = false;         //reset button status
+        else if (!currPlant)
+        {
             display();
         }
 
+        if (currPlant)
+        {
+            currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
+            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
+        }
+
+
+        //switch to next/previous plant
+        if (leftButton.GetComponent<NavigateButtons>().clicked == true)
+        {
+            indexNum--;
+            leftButton.GetComponent<NavigateButtons>().clicked = false;
+        }
+
+        if (rightButton.GetComponent<NavigateButtons>().clicked == true)
+        {
+            indexNum++;
+            rightButton.GetComponent<NavigateButtons>().clicked = false;
+        }
+
+        if (prevIndexNum != indexNum)
+        {
+            navigate();
+        }
+
+        if (indexText)
+            indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
     }
 
-    public void OnDisable() {
+    //displays and navigates between plants in list
+    void navigate()
+    {
+        if (indexNum >= plantList.Count)
+        {
+            indexNum = 0;
+        }
+        else if (indexNum < 0)
+        {
+            indexNum = plantList.Count - 1;
+        }
+
+        Destroy(currPlant);
+        currPlant = null;
+        prevIndexNum = indexNum;
+    }
+
+    public void OnDisable()
+    {
         Destroy(currPlant);
     }
 
-    public void OnEnable() {
-        Start();
+    public void OnEnable()
+    {
+        GameObject plantCollectionHolder = GameObject.Find("GameManager");
+        PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
+        plantList = plantManager.plantCollection;
+        indexNum = 0;   //starts at 0
+        prevIndexNum = indexNum;
     }
 
     public void deleteFromList(){
