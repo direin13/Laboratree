@@ -134,4 +134,12 @@ public class NavigateCollection : MonoBehaviour
         indexNum = 0;   //starts at 0
         prevIndexNum = indexNum;
     }
+
+    public void deleteFromList(){
+        plantList.RemoveAt(indexNum);
+        
+        //trigger next plant using right button
+        rightButton.GetComponent<NavigateButtons>().clicked = true;
+    }
+
 }
