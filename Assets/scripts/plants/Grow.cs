@@ -50,7 +50,6 @@ public class Grow : MonoBehaviour
                 Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
         currGrowTime = expectedGrowTime;
-        timeTillStart = transform.root.GetComponent<Timer>().timeElapsed + timeTillStart;
         }
 
     }
@@ -71,7 +70,7 @@ public class Grow : MonoBehaviour
         currGrowTime = expectedGrowTime + (expectedGrowTime - (int)((float)expectedGrowTime * actualGrowthEffic));
 
         int timeElapsed = transform.root.GetComponent<Timer>().timeElapsed;
-        if (timeElapsed >= timeTillStart)
+        if (timeTillStart - timeElapsed <= 0)
         {
             hasStarted = true;
         }

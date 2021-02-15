@@ -158,6 +158,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &1531115021
 MonoBehaviour:
@@ -179,6 +180,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &1531115020
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +200,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 250
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &1531115019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +372,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &2136647240
 MonoBehaviour:
@@ -390,6 +394,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &2136647239
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -409,6 +414,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 450
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &2136647238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +511,7 @@ MonoBehaviour:
   maxValue: 10000
   optimumPercentage: 0.61
   currValue: 90
+  readGenesOnStart: 0
   debug: 0
 --- !u!1 &1529415848611073026
 GameObject:
@@ -556,6 +563,7 @@ MonoBehaviour:
   maxValue: 3600
   optimumPercentage: 0.15
   currValue: 486
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &1917587356969026606
 MonoBehaviour:
@@ -671,6 +679,7 @@ MonoBehaviour:
   maxValue: 30
   optimumPercentage: 0.5
   currValue: 5
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &1709945582898713534
 MonoBehaviour:
@@ -837,6 +846,7 @@ MonoBehaviour:
   maxValue: 8760
   optimumPercentage: 0.15
   currValue: 1289
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &4417742701456249004
 MonoBehaviour:
@@ -1063,6 +1073,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &2818873761028901787
 MonoBehaviour:
@@ -1084,6 +1095,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &2426539126636560358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1103,6 +1115,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 730
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &4842039697671915100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1249,6 +1262,7 @@ MonoBehaviour:
   - {fileID: 1529415848611073026}
   - {fileID: 5098684678048679179}
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &8220611505852077779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1428,6 +1442,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &961332356781955719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1462,6 +1477,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &5559089051351295349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1475,3 +1491,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleAmount: {x: 0.09162117, y: 1.4974713}
+  readGenesOnStart: 0

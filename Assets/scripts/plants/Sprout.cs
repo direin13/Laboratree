@@ -24,7 +24,7 @@ public class Sprout : MonoBehaviour
     public readonly int maxZLayer = 30;
     public Vector2 offsetSpawnPoint;
     public Vector2 leafScale;
-    private GameObject[] leaves;
+    public GameObject[] leaves;
 
     public bool readGenesOnStart;
 
@@ -57,7 +57,7 @@ public class Sprout : MonoBehaviour
 
         spawnPoint = new Vector3(stemSprite.transform.position[0],
                                  stemSprite.transform.position[1],
-                                 stem.transform.position[2] + (float)zLayer - 14) + offset;
+                                 stem.transform.position[2] + (float)zLayer - 14) + offset; //move z forward infront of stem
 
         GameObject[] newLeaves = new GameObject[amount];
 
@@ -92,12 +92,12 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leaves = new GameObject[0];
 
         //reading gene script for variable values
-        Genes genes = GetComponent<Genes>();
         if (readGenesOnStart)
         {
+            leaves = new GameObject[0];
+            Genes genes = GetComponent<Genes>();
             if (genes != null)
             {
                 try
@@ -220,16 +220,16 @@ public class Sprout : MonoBehaviour
         for (int i = 0; i < leaves.Length; i++)
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
-            Transform tf = leaves[i].transform;
             if ( !enableBackgroundLeaves || (i % 2 != 0 && !flipBackground || i % 2 == 0 && flipBackground))
             {
                 sr.color = chosenColor;
             }
             else
             {
-                //move leaf back and lower the colour value
                 sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f, chosenColor[3]);
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2]+20);
+                //move leaf back and lower the colour value
+                Transform tf = leaves[i].transform.parent;
+                tf.position = new Vector3(tf.position[0], tf.position[1], (transform.position[2] + zLayer - 14) + 20);
             }
         }
     }

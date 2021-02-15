@@ -32,7 +32,7 @@ public class NavigateCollection : MonoBehaviour
         GameObject plant = Instantiate(plantList[indexNum]);
         plant.SetActive(true);
         plant.transform.localScale = new Vector3(35,35,1);
-        plant.transform.position = new Vector3(70,-112,-40);
+        plant.transform.position = new Vector3(70,-112,-60);
         plant.BroadcastMessage("ReadGenesOnStart", false);
         return plant;
     }

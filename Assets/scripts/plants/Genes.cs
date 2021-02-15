@@ -295,6 +295,7 @@ public class Genes : MonoBehaviour
 
         genes.Clear();
         genes = new_;
+        CrossGenes(this, this); // randomize allele pairs
     }
     
 

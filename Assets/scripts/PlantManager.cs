@@ -112,25 +112,6 @@ public class PlantManager : MonoBehaviour
     }
 
 
-    public GameObject MakePlant(string name)
-    {
-        //Load and instantiate basic plant object
-        foreach(GameObject p in plantCollection)
-        {
-            if (p.name == name)
-            {
-                throw new Exception(String.Format("'{0}' is already in the plant collection!", name));
-            }
-        }
-
-        GameObject plant = GameObject.Instantiate(prefabMappings["Basic Plant"]);
-        plant.name = name;
-        plantStatus[plant.name] = false;
-        plantCollection.Add(plant);
-        return plant;
-    }
-
-
     public GameObject MakePlant(string name, string prefab)
     {
         //Load and instantiates plant object from given plant prefab
@@ -143,7 +124,7 @@ public class PlantManager : MonoBehaviour
         }
 
         GameObject plant = GameObject.Instantiate(prefabMappings[prefab]);
-        readGenes(plant, true);
+        plant.BroadcastMessage("ReadGenesOnStart", true);
         plant.name = name;
         plantStatus[plant.name] = false;
         plantCollection.Add(plant);
@@ -209,13 +190,18 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Jade"), true);
+          SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
         }
 
 
         if (timeElapsed == 100)
         {
             SetPlantStatus(Breed(plantCollection[0], plantCollection[1], "AloexJoe"), true);
+        }
+
+        if (timeElapsed == 3000)
+        {
+            //Instantiate<GameObject>(plantCollection[1]);
         }
     }
 
@@ -225,7 +211,7 @@ public class PlantManager : MonoBehaviour
         //breed/crossbreeds 2 plants and returns new plant of name outName
 
 
-        GameObject outPlant = MakePlant(outName);
+        GameObject outPlant = MakePlant(outName, "Basic Plant");
         //mix life expectancy of plant
         plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
 
