@@ -295,6 +295,7 @@ public class Genes : MonoBehaviour
 
         genes.Clear();
         genes = new_;
+        CrossGenes(this, this); // randomize allele pairs
     }
     
 
@@ -403,6 +404,7 @@ public class Genes : MonoBehaviour
 
         return out_;
     }
+
 
     // Update is called once per frame
     void Update()

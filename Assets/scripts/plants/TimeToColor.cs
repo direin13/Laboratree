@@ -18,28 +18,39 @@ public class TimeToColor : MonoBehaviour
     public bool setSpriteRendererColor;
     public bool debug;
 
+    public bool readGenesOnStart;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                ColorUtility.TryParseHtmlString(genes.GetValue<string>("earlyColor"), out earlyColor);
-                ColorUtility.TryParseHtmlString(genes.GetValue<string>("optimumColor"), out optimumColor);
-                ColorUtility.TryParseHtmlString(genes.GetValue<string>("lateColor"), out lateColor);
-                healthToColorRatio = genes.GetValue<float>("healthToColorRatio");
+                try
+                {
+                    ColorUtility.TryParseHtmlString(genes.GetValue<string>("earlyColor"), out earlyColor);
+                    ColorUtility.TryParseHtmlString(genes.GetValue<string>("optimumColor"), out optimumColor);
+                    ColorUtility.TryParseHtmlString(genes.GetValue<string>("lateColor"), out lateColor);
+                    healthToColorRatio = genes.GetValue<float>("healthToColorRatio");
+                }
+                catch (Exception e)
+                {
+                    print(e);
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e);
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
     }
 

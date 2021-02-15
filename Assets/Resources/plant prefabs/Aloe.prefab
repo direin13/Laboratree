@@ -50,6 +50,7 @@ MonoBehaviour:
   maxValue: 8760
   optimumPercentage: 0.15
   currValue: 1289
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &7272850406020960297
 MonoBehaviour:
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 5519496565076544647}
   - {fileID: 2261521484891620750}
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &3149663077842933334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,6 +233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 1
+  timeElapsed: 0
 --- !u!1 &2776206745038992732
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +248,7 @@ GameObject:
   - component: {fileID: 1225476191998704355}
   - component: {fileID: 6122632504804596226}
   - component: {fileID: 7826536422204149498}
+  - component: {fileID: 2236575641242564684}
   m_Layer: 6
   m_Name: Stem
   m_TagString: Untagged
@@ -362,6 +366,16 @@ MonoBehaviour:
     valueType: float
     dominantVal: 0
     recessiveVal: 0.2
+  - name: timeTillStart
+    allelePair: Hh
+    valueType: int
+    dominantVal: 0
+    recessiveVal: 0
+  - name: scaleAmount
+    allelePair: Hh
+    valueType: Vector2
+    dominantVal: (0.09162117, 0.8974713)
+    recessiveVal: (0.09162117, 0.9074713)
 --- !u!114 &1225476191998704355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,6 +396,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &6122632504804596226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -396,6 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 1
+  timeElapsed: 0
 --- !u!114 &7826536422204149498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -412,8 +428,24 @@ MonoBehaviour:
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
-  timeElapsed: 0
   growthAmount: 0
+  timeTillStart: 0
+  hasStarted: 0
+  readGenesOnStart: 0
+--- !u!114 &2236575641242564684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2776206745038992732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2576b0879022c34da783d190df39db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleAmount: {x: 0.09162117, y: 0.8974713}
+  readGenesOnStart: 0
 --- !u!1 &2923023254480885363
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +460,7 @@ GameObject:
   - component: {fileID: 9132743406865124126}
   - component: {fileID: 302519953378058117}
   - component: {fileID: 8650411060713668451}
+  - component: {fileID: 8954155794758011626}
   m_Layer: 6
   m_Name: Leaves
   m_TagString: Untagged
@@ -444,7 +477,7 @@ Transform:
   m_GameObject: {fileID: 2923023254480885363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16371763, y: -0.05014088, z: 0}
-  m_LocalScale: {x: 10.91451, y: 1.1142416, z: 1}
+  m_LocalScale: {x: 10.914508, y: 1.1142417, z: 1}
   m_Children: []
   m_Father: {fileID: 1228930159526024227}
   m_RootOrder: 0
@@ -542,6 +575,11 @@ MonoBehaviour:
     valueType: string
     dominantVal: aloeLeaf
     recessiveVal: aloeLeaf
+  - name: timeTillStart
+    allelePair: Hh
+    valueType: int
+    dominantVal: 1000
+    recessiveVal: 1200
 --- !u!114 &3643725074588179010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -557,6 +595,7 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: b3d561ee53c9cca45ae45ad01a3b490c, type: 3}
   leafCount: 2
   enableBackgroundLeaves: 1
+  flipBackground: 0
   angle: 100
   rotationOffset: 0.6
   sproutSize: 0.8
@@ -566,6 +605,7 @@ MonoBehaviour:
   zLayer: 5
   offsetSpawnPoint: {x: 0.008, y: -0.2}
   leafScale: {x: 0.29, y: 0.175}
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &9132743406865124126
 MonoBehaviour:
@@ -587,6 +627,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &302519953378058117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,6 +642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100000
   getTicks: 1
+  timeElapsed: 0
 --- !u!114 &8650411060713668451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,8 +659,23 @@ MonoBehaviour:
   growthTimeSkew: 0
   growthStages: 400
   debug: 0
-  timeElapsed: 0
   growthAmount: 0
+  timeTillStart: 1000
+  hasStarted: 0
+  readGenesOnStart: 0
+--- !u!114 &8954155794758011626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923023254480885363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7acae85dec6058d46b2b843fd9c64c73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixeScale: 1
 --- !u!1 &3490351190697540438
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +791,7 @@ MonoBehaviour:
   maxValue: 3600
   optimumPercentage: 0.15
   currValue: 486
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &4844748360065467563
 MonoBehaviour:
@@ -851,6 +909,7 @@ MonoBehaviour:
   maxValue: 10000
   optimumPercentage: 0.61
   currValue: 90
+  readGenesOnStart: 0
   debug: 0
 --- !u!1 &7682611242822625595
 GameObject:
@@ -984,6 +1043,7 @@ MonoBehaviour:
   maxValue: 30
   optimumPercentage: 0.5
   currValue: 5
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &5627899810223592251
 MonoBehaviour:

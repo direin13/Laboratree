@@ -52,7 +52,7 @@ namespace MiscFunctions
     {
         public static Vector2 Vec2(string value)
         {
-            //given string in the form "1, 2", will return a vector2 of (1, 2)
+            //given string in the form "(1, 2)", will return a vector2 of (1, 2)
             if (value.ElementAt(0) != '(' || value.ElementAt(value.Length-1) != ')')
             {
                 throw new ArgumentException(String.Format("Invalid value. Cannot parse string '{0}' to Vector2", value));

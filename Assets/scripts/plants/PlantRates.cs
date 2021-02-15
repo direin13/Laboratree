@@ -26,7 +26,13 @@ public class PlantRates : MonoBehaviour
 
     public GameObject[] allDependencies;
     public bool debug;
+    public bool readGenesOnStart;
 
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
 
     public bool PlantAlive()
     {
@@ -66,24 +72,28 @@ public class PlantRates : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         //reading gene script for variable values
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                expectedLifetime = genes.GetValue<int>("expectedLifetime");
-                deathTimeSkew = genes.GetValue<float>("deathTimeSkew");
+                try
+                {
+                    expectedLifetime = genes.GetValue<int>("expectedLifetime");
+                    deathTimeSkew = genes.GetValue<float>("deathTimeSkew");
+                }
+                catch (Exception e)
+                {
+                    print(e);
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e);
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
 
         timeAliveLeft = expectedLifetime;

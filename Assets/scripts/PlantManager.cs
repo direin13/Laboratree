@@ -7,6 +7,8 @@ using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using Object = UnityEngine.Object;
 using UnityEditor;
+using System.Reflection;
+
 
 public class PlantManager : MonoBehaviour
 {
@@ -47,8 +49,9 @@ public class PlantManager : MonoBehaviour
         }
 
         //testing manually set first plant active, will remove later
-        plantStatus[plantCollection[0].name] = true;
         GetComponent<Timer>().getTicks = true;
+        GameObject testPlant = MakePlant("Echeveria", "Echeveria");
+        SetPlantStatus(testPlant, true);
     }
 
     public void SetPlantStatus(GameObject plant, bool status)
@@ -98,7 +101,6 @@ public class PlantManager : MonoBehaviour
 
     public bool PlantActive(GameObject plant)
     {
-        print(plant.name);
         return plantStatus[plant.name];
     }
 
@@ -107,25 +109,6 @@ public class PlantManager : MonoBehaviour
     {
         plantCollection.Remove(plant);
         plantStatus.Remove(plant.name);
-    }
-
-
-    public GameObject MakePlant(string name)
-    {
-        //Load and instantiate basic plant object
-        foreach(GameObject p in plantCollection)
-        {
-            if (p.name == name)
-            {
-                throw new Exception(String.Format("'{0}' is already in the plant collection!", name));
-            }
-        }
-
-        GameObject plant = GameObject.Instantiate(prefabMappings["Basic Plant"]);
-        plant.name = name;
-        plantStatus[plant.name] = false;
-        plantCollection.Add(plant);
-        return plant;
     }
 
 
@@ -141,17 +124,24 @@ public class PlantManager : MonoBehaviour
         }
 
         GameObject plant = GameObject.Instantiate(prefabMappings[prefab]);
+        plant.BroadcastMessage("ReadGenesOnStart", true);
         plant.name = name;
         plantStatus[plant.name] = false;
         plantCollection.Add(plant);
+        readGenes(plant, true);
         return plant;
+    }
+
+    public void readGenes(GameObject plant, bool status)
+    {
+        plant.BroadcastMessage("ReadGenesOnStart", status);
     }
 
     // Update is called once per frame
     void Update()
     {
         //setting the timer speed for every plant in the collection
-        float maxSpeed = 0.01f;
+        float maxSpeed = GetComponent<Timer>().maxSpeed;
         globalTimeSpeed = NumOp.Cutoff(1f - timeSlider.GetComponent<Slider>().value, maxSpeed, 1f);
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
@@ -200,13 +190,18 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Echeveria"), true);
+          SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
         }
 
 
         if (timeElapsed == 100)
         {
             SetPlantStatus(Breed(plantCollection[0], plantCollection[1], "AloexJoe"), true);
+        }
+
+        if (timeElapsed == 3000)
+        {
+            //Instantiate<GameObject>(plantCollection[1]);
         }
     }
 
@@ -216,7 +211,7 @@ public class PlantManager : MonoBehaviour
         //breed/crossbreeds 2 plants and returns new plant of name outName
 
 
-        GameObject outPlant = MakePlant(outName);
+        GameObject outPlant = MakePlant(outName, "Basic Plant");
         //mix life expectancy of plant
         plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
 

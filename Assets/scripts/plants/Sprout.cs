@@ -10,6 +10,7 @@ public class Sprout : MonoBehaviour
     public Sprite sprite;
     public int leafCount;
     public bool enableBackgroundLeaves;
+    public bool flipBackground;
 
     public float angle;
     public float rotationOffset;
@@ -23,9 +24,17 @@ public class Sprout : MonoBehaviour
     public readonly int maxZLayer = 30;
     public Vector2 offsetSpawnPoint;
     public Vector2 leafScale;
-    private GameObject[] leaves;
+    public GameObject[] leaves;
+
+    public bool readGenesOnStart;
 
     public bool debug;
+
+
+    public void ReadGenesOnStart(bool b)
+    {
+        readGenesOnStart = b;
+    }
 
 
     public GameObject[] CreateLeaves(int amount)
@@ -48,7 +57,7 @@ public class Sprout : MonoBehaviour
 
         spawnPoint = new Vector3(stemSprite.transform.position[0],
                                  stemSprite.transform.position[1],
-                                 stem.transform.position[2] + (float)zLayer - 14) + offset;
+                                 stem.transform.position[2] + (float)zLayer - 14) + offset; //move z forward infront of stem
 
         GameObject[] newLeaves = new GameObject[amount];
 
@@ -83,43 +92,46 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        leaves = new GameObject[0];
 
         //reading gene script for variable values
-        Genes genes = GetComponent<Genes>();
-        if (genes != null)
+        if (readGenesOnStart)
         {
-            try
+            leaves = new GameObject[0];
+            Genes genes = GetComponent<Genes>();
+            if (genes != null)
             {
-                Sprite tmpSprite = Resources.Load<Sprite>("sprites/" + genes.GetValue<string>("sprite"));
-                if (tmpSprite == null)
+                try
                 {
-                    throw new Exception(String.Format("There's no sprite 'Resources/sprites/{0}'", genes.GetValue<string>("sprite")));
-                }
-                else
-                {
-                    sprite = tmpSprite;
-                }
-                leafCount = genes.GetValue<int>("leafCount");
-                angle = genes.GetValue<float>("angle");
-                rotationOffset = genes.GetValue<float>("rotationOffset");
-                sproutSize = genes.GetValue<float>("sproutSize");
-                invHeightSkew = genes.GetValue<bool>("invHeightSkew");
-                heightOffset = genes.GetValue<float>("heightOffset");
-                heightOffsetPower = genes.GetValue<float>("heightOffsetPower");
-                offsetSpawnPoint = Parse.Vec2(genes.GetValue<string>("offsetSpawnPoint"));
-                leafScale = Parse.Vec2(genes.GetValue<string>("leafScale"));
+                    Sprite tmpSprite = Resources.Load<Sprite>("sprites/" + genes.GetValue<string>("sprite"));
+                    if (tmpSprite == null)
+                    {
+                        throw new Exception(String.Format("There's no sprite 'Resources/sprites/{0}'", genes.GetValue<string>("sprite")));
+                    }
+                    else
+                    {
+                        sprite = tmpSprite;
+                    }
+                    leafCount = genes.GetValue<int>("leafCount");
+                    angle = genes.GetValue<float>("angle");
+                    rotationOffset = genes.GetValue<float>("rotationOffset");
+                    sproutSize = genes.GetValue<float>("sproutSize");
+                    invHeightSkew = genes.GetValue<bool>("invHeightSkew");
+                    heightOffset = genes.GetValue<float>("heightOffset");
+                    heightOffsetPower = genes.GetValue<float>("heightOffsetPower");
+                    offsetSpawnPoint = Parse.Vec2(genes.GetValue<string>("offsetSpawnPoint"));
+                    leafScale = Parse.Vec2(genes.GetValue<string>("leafScale"));
 
+                }
+                catch (Exception e)
+                {
+                    print(e);
+                    Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                }
             }
-            catch (Exception e)
+            else
             {
-                print(e);
-                Debug.LogWarning("A gene could not be read, some variables may be using default values!", gameObject);
+                Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
-        }
-        else
-        {
-            Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
         }
     }
 
@@ -208,16 +220,16 @@ public class Sprout : MonoBehaviour
         for (int i = 0; i < leaves.Length; i++)
         {
             SpriteRenderer sr = leaves[i].GetComponent<SpriteRenderer>();
-            Transform tf = leaves[i].transform;
-            if (!enableBackgroundLeaves || i % 2 != 0)
+            if ( !enableBackgroundLeaves || (i % 2 != 0 && !flipBackground || i % 2 == 0 && flipBackground))
             {
                 sr.color = chosenColor;
             }
             else
             {
-                //move leaf back and lower the colour value
                 sr.color = new Color(chosenColor[0] * 0.7f, chosenColor[1] * 0.7f, chosenColor[2] * 0.7f, chosenColor[3]);
-                tf.parent.position = new Vector3(tf.parent.position[0], tf.parent.position[1], spawnPoint[2] + 4);
+                //move leaf back and lower the colour value
+                Transform tf = leaves[i].transform.parent;
+                tf.position = new Vector3(tf.position[0], tf.position[1], (transform.position[2] + zLayer - 14) + 20);
             }
         }
     }
@@ -232,7 +244,7 @@ public class Sprout : MonoBehaviour
         angle = NumOp.Cutoff(angle, 0f, 360f);
         zLayer = NumOp.Cutoff(zLayer, 0, maxZLayer);
 
-        if (leafCount != leaves.Length)
+        if (leafCount != leaves.Length && GetComponent<Grow>().hasStarted)
             leaves = CreateLeaves(leafCount);
 
         float growthAmount = GetComponent<Grow>().growthAmount;
@@ -240,5 +252,6 @@ public class Sprout : MonoBehaviour
         SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
         SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale*growthAmount);
         SetColor();
+
     }
 }
