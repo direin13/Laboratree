@@ -15,6 +15,9 @@ public class PlantDisplay : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nameText;
 
+    [SerializeField]
+    private GameObject followPoint;
+
     public List<GameObject> plantList;
     private GameObject currPlant;
 
@@ -65,7 +68,7 @@ public class PlantDisplay : MonoBehaviour
 
         if (currPlant)
         {
-            currPlant.transform.position = new Vector3(transform.position.x, transform.position.y, currPlant.transform.position.z);
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, currPlant.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
         }
 

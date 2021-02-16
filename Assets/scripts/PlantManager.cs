@@ -119,7 +119,7 @@ public class PlantManager : MonoBehaviour
         {
             if (p.name == name)
             {
-                throw new Exception(String.Format("'{0}' is already in the plant collection!", name));
+                throw new ArgumentException(String.Format("'{0}' is already in the plant collection!", name));
             }
         }
 
@@ -128,14 +128,9 @@ public class PlantManager : MonoBehaviour
         plant.name = name;
         plantStatus[plant.name] = false;
         plantCollection.Add(plant);
-        readGenes(plant, true);
         return plant;
     }
 
-    public void readGenes(GameObject plant, bool status)
-    {
-        plant.BroadcastMessage("ReadGenesOnStart", status);
-    }
 
     // Update is called once per frame
     void Update()
@@ -261,7 +256,6 @@ public class PlantManager : MonoBehaviour
                 foreach (GameObject otherObj in allParentStructObj)
                 {
                     print(obj.name + " " + otherObj.name);
-                    print(otherObj.GetComponent<Genes>());
                     if (otherObj.name == obj.name)
                     {
                         print("mixing");

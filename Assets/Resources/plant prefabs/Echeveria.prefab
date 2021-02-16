@@ -50,6 +50,7 @@ MonoBehaviour:
   maxValue: 8760
   optimumPercentage: 0.15
   currValue: 1289
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &7423527856568792641
 MonoBehaviour:
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 5724850599274539759}
   - {fileID: 2056307087766561766}
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &2908806705631293502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,6 +396,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &6276896906148052074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -428,6 +431,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &5390303422981466918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -441,6 +445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleAmount: {x: 0.09162117, y: 0.8974713}
+  readGenesOnStart: 0
 --- !u!1 &3133198579604828187
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,7 +579,7 @@ MonoBehaviour:
     allelePair: Hh
     valueType: int
     dominantVal: 2000
-    recessiveVal: 1800
+    recessiveVal: 2000
 --- !u!114 &3565422700871793706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,6 +605,8 @@ MonoBehaviour:
   zLayer: 5
   offsetSpawnPoint: {x: 0.008, y: -0.2}
   leafScale: {x: 0.19, y: 0.1}
+  leaves: []
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &9031393000997793142
 MonoBehaviour:
@@ -621,6 +628,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 0
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &565542478543960557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -655,6 +663,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 2000
   hasStarted: 0
+  readGenesOnStart: 0
 --- !u!114 &4989379167254181970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +792,7 @@ MonoBehaviour:
   maxValue: 3600
   optimumPercentage: 0.15
   currValue: 486
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &4672468529789493955
 MonoBehaviour:
@@ -900,6 +910,7 @@ MonoBehaviour:
   maxValue: 10000
   optimumPercentage: 0.61
   currValue: 3600
+  readGenesOnStart: 0
   debug: 0
 --- !u!1 &7590334375058939727
 GameObject:
@@ -951,6 +962,7 @@ MonoBehaviour:
   maxValue: 30
   optimumPercentage: 0.5
   currValue: 20
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &5616446849533424979
 MonoBehaviour:

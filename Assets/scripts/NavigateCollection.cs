@@ -45,7 +45,7 @@ public class NavigateCollection : MonoBehaviour
         currPlant = makeClone();
 
         //change name to current plant
-        nameText.text = "Name: " + plantList[indexNum].name;
+        nameText.text = plantList[indexNum].name;
 
         //change attribute values
         var lighting = getCurrVal("Lighting").ToString();

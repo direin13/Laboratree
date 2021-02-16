@@ -10,7 +10,6 @@ public class MainMenu : MonoBehaviour
     public GameObject folderHead;
     private Vector3 followPoint;
     public bool isOpen;
-    public bool fullyOpen;
 
     // Start is called before the first frame update
     void Start()
@@ -63,18 +62,6 @@ public class MainMenu : MonoBehaviour
                 ChangePosition(new Vector3(curr_pos[0], point[1], curr_pos[2]));
             }
         }
-        else
-        {
-            if (isOpen)
-            {
-                fullyOpen = true;
-            }
-            else
-            {
-                fullyOpen = false;
-            }
-        }
-
     }
 
 
