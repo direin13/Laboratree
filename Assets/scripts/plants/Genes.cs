@@ -244,15 +244,6 @@ public class Gene
 
             Vector2 tmpRec = GetValueMix(rec1, rec2, 0.5f);
             newRecessiveVal = String.Format("({0}, {1})", tmpRec[0], tmpRec[1]);
-
-            if (name == "leafScale")
-            {
-                Debug.Log("mixing leafscale");
-                Debug.Log(newDominantVal);
-                Debug.Log(dom1);
-                Debug.Log(dom2);
-
-            }
         }
 
         else
