@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using System;
+using TMPro;
 
 public class CrossBreedClick : MonoBehaviour
 {
-    public GameObject plantDisplay1;
-    public GameObject plantDisplay2;
+    public GameObject plantDisplay1, plantDisplay2;
+    public GameObject inputField;
 
     // Start is called before the first frame update
     void Start()
@@ -20,19 +21,42 @@ public class CrossBreedClick : MonoBehaviour
         PlantManager plantManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
         int index1 = plantDisplay1.GetComponent<PlantDisplay>().indexNum;
         int index2 = plantDisplay2.GetComponent<PlantDisplay>().indexNum;
-        print(index1.ToString() + " " + index2.ToString());
-        if (index1 == index2)
+        string name = inputField.GetComponent<TMP_InputField>().text;
+
+        string invMessage = "";
+        if (plantManager.plantCollection.Count <= 1)
         {
-            print("cannot crossbreed the same plant");
+            invMessage = "There aren't a enough plants in the collection";
         }
-        else if (plantManager.plantCollection.Count <= 1)
+        else if (index1 == index2)
         {
-            print("There aren't a sufficient number of plants in the collection");
+            invMessage = "cannot crossbreed the same plant";
+        }
+        else if (name.Trim() == "")
+        {
+            invMessage = "Invalid name";
+        }
+
+        else
+        {
+            try
+            {
+                plantManager.Breed(plantManager.plantCollection[index1], plantManager.plantCollection[index2], name);
+            }
+            catch (ArgumentException)
+            {
+                invMessage = "A plant with this name already exists in the collection";
+            }
+        }
+
+        PopUpManager popUpManager = GameObject.Find("GameManager").GetComponent<PopUpManager>();
+        if (invMessage != "")
+        {
+            popUpManager.PopUpMessage(invMessage);
         }
         else
         {
-
-            plantManager.Breed(plantManager.plantCollection[index1], plantManager.plantCollection[index2], "New Breed");
+            popUpManager.PopUpMessage(String.Format("'{0}' has been added to the collection", name));
         }
     }
 
