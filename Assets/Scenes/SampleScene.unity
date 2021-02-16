@@ -2306,8 +2306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   folderHead: {fileID: 1780917556}
-  isOpen: 1
-  fullyOpen: 0
+  isOpen: 0
 --- !u!1 &295405976
 GameObject:
   m_ObjectHideFlags: 0
