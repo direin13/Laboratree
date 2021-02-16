@@ -7,13 +7,13 @@ using TMPro;
 public class AddToCollection : MonoBehaviour
 {
     [SerializeField]
-    private GameObject plant, panel, GameManager;
+    private GameObject plantPrefab, panel, GameManager;
 
     [SerializeField]
     private Button firstAddButton,secondAddButton,cancelButton;
 
     [SerializeField]
-    private TextMeshProUGUI NameInput;
+    private TMP_InputField NameInput;
 
     public void showPanel(){
         panel.SetActive(true);
@@ -21,13 +21,14 @@ public class AddToCollection : MonoBehaviour
 
     //second add button clicked
     public void addPlant(){
-         if (NameInput.text != "") {
-            GameObject newPlant = Instantiate(plant);
-            newPlant.SetActive(false);
-            newPlant.name = NameInput.text;
-            GameManager.GetComponent<PlantManager>().plantCollection.Add(newPlant);
-            panel.SetActive(false);
-         }
+
+        var text = NameInput.text;
+
+        if (text.Length == 0) {
+        } else {
+        GameManager.GetComponent<PlantManager>().MakePlant(NameInput.text, plantPrefab.name);
+
+        }
     }
 
     public void cancelAdd(){
