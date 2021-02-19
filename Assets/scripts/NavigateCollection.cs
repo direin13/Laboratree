@@ -22,6 +22,7 @@ public class NavigateCollection : MonoBehaviour
     
     public int indexNum;
     public int prevIndexNum;
+    private PlantManager pManager;
 
     float getCurrVal(string attribute) {
         return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
@@ -29,15 +30,17 @@ public class NavigateCollection : MonoBehaviour
 
     GameObject makeClone(){
         
-        GameObject plant = Instantiate(plantList[indexNum]);
+        GameObject plant = Instantiate(pManager.plantCollection[indexNum]);
         plant.SetActive(true);
         plant.transform.localScale = new Vector3(35,35,1);
         plant.transform.position = new Vector3(70,-112,-60);
         plant.BroadcastMessage("ReadGenesOnStart", false);
+        plant.GetComponent<Timer>().getTicks = false;
         return plant;
     }
 
     void Start(){
+        pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
     }
 
     void display(){
@@ -45,7 +48,7 @@ public class NavigateCollection : MonoBehaviour
         currPlant = makeClone();
 
         //change name to current plant
-        nameText.text = plantList[indexNum].name;
+        nameText.text = pManager.plantCollection[indexNum].name;
 
         //change attribute values
         var lighting = getCurrVal("Lighting").ToString();
@@ -65,7 +68,7 @@ public class NavigateCollection : MonoBehaviour
     {
 
 
-        if (plantList.Count <= 0)
+        if (pManager.plantCollection.Count <= 0)
         {
             currPlant = null;
         }
@@ -78,7 +81,7 @@ public class NavigateCollection : MonoBehaviour
         if (currPlant)
         {
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
-            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
+            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
         }
 
 
@@ -101,24 +104,48 @@ public class NavigateCollection : MonoBehaviour
         }
 
         if (indexText)
-            indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
+            indexText.text = (indexNum + 1).ToString() + "/" + pManager.plantCollection.Count.ToString();
+
     }
 
     //displays and navigates between plants in list
     void navigate()
     {
-        if (indexNum >= plantList.Count)
+        if (indexNum >= pManager.plantCollection.Count)
         {
             indexNum = 0;
         }
         else if (indexNum < 0)
         {
-            indexNum = plantList.Count - 1;
+            indexNum = pManager.plantCollection.Count - 1;
         }
 
         Destroy(currPlant);
         currPlant = null;
         prevIndexNum = indexNum;
+    }
+
+    public void ActivatePlant()
+    {
+        GameObject gameManager = GameObject.Find("GameManager");
+        PlantManager plantManager = gameManager.GetComponent<PlantManager>();
+        try
+        {
+            plantManager.SetPlantStatus(plantManager.plantCollection[indexNum], true);
+            gameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been added to the labspace", plantManager.plantCollection[indexNum].name));
+        }
+        catch (ArgumentException) //no space or is active already
+        {       
+            if (plantManager.PlantActive(plantManager.plantCollection[indexNum]))
+            {
+                plantManager.SetPlantStatus(plantManager.plantCollection[indexNum], false);
+                gameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been removed from the labspace", plantManager.plantCollection[indexNum].name));
+            }
+            else
+            {
+                gameManager.GetComponent<PopUpManager>().SwapPlant(indexNum);
+            }
+        }
     }
 
     public void OnDisable()
@@ -128,15 +155,15 @@ public class NavigateCollection : MonoBehaviour
 
     public void OnEnable()
     {
-        GameObject plantCollectionHolder = GameObject.Find("GameManager");
-        PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
+        GameObject gameManager = GameObject.Find("GameManager");
+        PlantManager plantManager = gameManager.GetComponent<PlantManager>();
         plantList = plantManager.plantCollection;
         indexNum = 0;   //starts at 0
-        prevIndexNum = indexNum;
+        prevIndexNum = -1;
     }
 
     public void deleteFromList(){
-        plantList.RemoveAt(indexNum);
+        pManager.RemovePlant(indexNum);
         
         //trigger next plant using right button
         rightButton.GetComponent<NavigateButtons>().clicked = true;

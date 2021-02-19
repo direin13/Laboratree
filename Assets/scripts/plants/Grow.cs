@@ -74,6 +74,10 @@ public class Grow : MonoBehaviour
         {
             hasStarted = true;
         }
+        else
+        {
+            hasStarted = false;
+        }
 
         if (hasStarted)
         {

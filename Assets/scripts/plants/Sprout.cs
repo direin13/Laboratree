@@ -34,20 +34,18 @@ public class Sprout : MonoBehaviour
     public void ReadGenesOnStart(bool b)
     {
         readGenesOnStart = b;
+        print(b);
     }
 
 
     public GameObject[] CreateLeaves(int amount)
     {
-        if (leaves != null)
+        //delete leaves
+        foreach (Transform t in transform)
         {
-            //delete leaves
-            foreach (Transform t in transform)
-            {
-                GameObject obj = t.gameObject;
-                if (obj.name.Contains("<<node>>"))
-                    Destroy(obj);
-            }
+            GameObject obj = t.gameObject;
+            if (obj.name.Contains("<<node>>"))
+                Destroy(obj);
         }
 
         GameObject stem = transform.parent.gameObject;
@@ -84,7 +82,6 @@ public class Sprout : MonoBehaviour
             leafNode.transform.position = spawnPoint + new Vector3(0, (stemHeight / 2), 0);
 
             SetLocalScale(leaf, new Vector3(leafScale[0], leafScale[1], 1));
-
         }
         return newLeaves;
     }
@@ -92,11 +89,13 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        print("starting");
         //reading gene script for variable values
         if (readGenesOnStart)
         {
-            leaves = new GameObject[0];
+            print("resetting");
+
+            leaves = null;
             Genes genes = GetComponent<Genes>();
             if (genes != null)
             {
@@ -154,6 +153,7 @@ public class Sprout : MonoBehaviour
             print("Angle interval: " + interval.ToString());
         }
         int midInd = leaves.Length / 2;
+
         if (leaves.Length % 2 == 0)
         {
             midInd--;
@@ -244,14 +244,17 @@ public class Sprout : MonoBehaviour
         angle = NumOp.Cutoff(angle, 0f, 360f);
         zLayer = NumOp.Cutoff(zLayer, 0, maxZLayer);
 
-        if (leafCount != leaves.Length && GetComponent<Grow>().hasStarted)
-            leaves = CreateLeaves(leafCount);
+        if (GetComponent<Grow>().hasStarted)
+        {
+            if ((leaves == null || leafCount != leaves.Length))
+                leaves = CreateLeaves(leafCount);
 
-        float growthAmount = GetComponent<Grow>().growthAmount;
+            float growthAmount = GetComponent<Grow>().growthAmount;
 
-        SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
-        SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale*growthAmount);
-        SetColor();
+            SetLeavesRotation(angle * growthAmount, sproutSize * growthAmount, rotationOffset * growthAmount);
+            SetHeightSkew(heightOffset * growthAmount, heightOffsetPower * growthAmount, invHeightSkew, leafScale * growthAmount);
+            SetColor();
+        }
 
     }
 }

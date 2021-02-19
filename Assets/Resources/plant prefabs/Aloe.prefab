@@ -246,7 +246,6 @@ GameObject:
   - component: {fileID: 1316055443291667250}
   - component: {fileID: 1421705645912430232}
   - component: {fileID: 1225476191998704355}
-  - component: {fileID: 6122632504804596226}
   - component: {fileID: 7826536422204149498}
   - component: {fileID: 2236575641242564684}
   m_Layer: 6
@@ -397,21 +396,6 @@ MonoBehaviour:
   setSpriteRendererColor: 1
   debug: 0
   readGenesOnStart: 0
---- !u!114 &6122632504804596226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2776206745038992732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100000
-  getTicks: 1
-  timeElapsed: 0
 --- !u!114 &7826536422204149498
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +415,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
-  readGenesOnStart: 0
+  readGenesOnStart: 1
 --- !u!114 &2236575641242564684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +442,6 @@ GameObject:
   - component: {fileID: 4392447268228017127}
   - component: {fileID: 3643725074588179010}
   - component: {fileID: 9132743406865124126}
-  - component: {fileID: 302519953378058117}
   - component: {fileID: 8650411060713668451}
   - component: {fileID: 8954155794758011626}
   m_Layer: 6
@@ -605,6 +588,7 @@ MonoBehaviour:
   zLayer: 5
   offsetSpawnPoint: {x: 0.008, y: -0.2}
   leafScale: {x: 0.29, y: 0.175}
+  leaves: []
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &9132743406865124126
@@ -628,21 +612,6 @@ MonoBehaviour:
   setSpriteRendererColor: 0
   debug: 0
   readGenesOnStart: 0
---- !u!114 &302519953378058117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2923023254480885363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100000
-  getTicks: 1
-  timeElapsed: 0
 --- !u!114 &8650411060713668451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +631,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 1000
   hasStarted: 0
-  readGenesOnStart: 0
+  readGenesOnStart: 1
 --- !u!114 &8954155794758011626
 MonoBehaviour:
   m_ObjectHideFlags: 0
