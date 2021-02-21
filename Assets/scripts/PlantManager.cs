@@ -175,7 +175,8 @@ public class PlantManager : MonoBehaviour
 
     public void SwapPlant(int i, int activePosition)
     {
-        SetPlantStatus(activePlants[activePosition], false);
+        int replaced = Array.IndexOf(activePlants, plantCollection[activePosition]); 
+        SetPlantStatus(activePlants[replaced], false);
         SetPlantStatus(plantCollection[i], true);
     }
 
@@ -196,26 +197,7 @@ public class PlantManager : MonoBehaviour
         plantCollection.Add(plant);
         SetPlantStatus(plant, false);
 
-        foreach (Sprout comp in plant.GetComponentsInChildren<Sprout>())
-        {
-            comp.ReadGenesOnStart(true);
-        }
-        foreach (Grow comp in plant.GetComponentsInChildren<Grow>())
-        {
-            comp.ReadGenesOnStart(true);
-        }
-        foreach (DependenceAttribute comp in plant.GetComponentsInChildren<DependenceAttribute>())
-        {
-            comp.ReadGenesOnStart(true);
-        }
-        foreach (PlantRates comp in plant.GetComponentsInChildren<PlantRates>())
-        {
-            comp.ReadGenesOnStart(true);
-        }
-        foreach (TimeToColor comp in plant.GetComponentsInChildren<TimeToColor>())
-        {
-            comp.ReadGenesOnStart(true);
-        }
+        ResetPlantComp(plant);
 
         return plant;
     }
@@ -267,7 +249,7 @@ public class PlantManager : MonoBehaviour
         //breed/crossbreeds 2 plants and returns new plant of name outName
 
 
-        GameObject outPlant = MakePlant(outName, "Basic Plant");
+        GameObject outPlant = MakePlant(outName, "Aloe");
         //mix life expectancy of plant
         plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
 
@@ -324,6 +306,7 @@ public class PlantManager : MonoBehaviour
         }
 
         outPlant.GetComponent<Timer>().timeElapsed = 0;
+        ResetPlantComp(outPlant);
 
         print("got through");
 
@@ -340,5 +323,29 @@ public class PlantManager : MonoBehaviour
             out_[i-1] = gObj;
         }
         return out_;
+    }
+
+    public void ResetPlantComp(GameObject plant)
+    {
+        foreach (Sprout comp in plant.GetComponentsInChildren<Sprout>())
+        {
+            comp.ReadGenesOnStart(true);
+        }
+        foreach (Grow comp in plant.GetComponentsInChildren<Grow>())
+        {
+            comp.ReadGenesOnStart(true);
+        }
+        foreach (DependenceAttribute comp in plant.GetComponentsInChildren<DependenceAttribute>())
+        {
+            comp.ReadGenesOnStart(true);
+        }
+        foreach (PlantRates comp in plant.GetComponentsInChildren<PlantRates>())
+        {
+            comp.ReadGenesOnStart(true);
+        }
+        foreach (TimeToColor comp in plant.GetComponentsInChildren<TimeToColor>())
+        {
+            comp.ReadGenesOnStart(true);
+        }
     }
 }

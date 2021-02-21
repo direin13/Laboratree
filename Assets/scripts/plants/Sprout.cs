@@ -30,6 +30,7 @@ public class Sprout : MonoBehaviour
 
     public bool debug;
 
+    private bool d;
 
     public void ReadGenesOnStart(bool b)
     {
@@ -37,17 +38,21 @@ public class Sprout : MonoBehaviour
         print(b);
     }
 
-
-    public GameObject[] CreateLeaves(int amount)
+    public void ResetLeaves()
     {
-        //delete leaves
         foreach (Transform t in transform)
         {
             GameObject obj = t.gameObject;
             if (obj.name.Contains("<<node>>"))
                 Destroy(obj);
         }
+    }
 
+
+    public GameObject[] CreateLeaves(int amount)
+    {
+        //delete leaves
+        ResetLeaves();
         GameObject stem = transform.parent.gameObject;
         SpriteRenderer stemSprite = stem.GetComponent<SpriteRenderer>();
 
@@ -89,13 +94,13 @@ public class Sprout : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        print("starting");
+        d = false;
         //reading gene script for variable values
         if (readGenesOnStart)
         {
-            print("resetting");
 
             leaves = null;
+            ResetLeaves();
             Genes genes = GetComponent<Genes>();
             if (genes != null)
             {
@@ -246,6 +251,12 @@ public class Sprout : MonoBehaviour
 
         if (GetComponent<Grow>().hasStarted)
         {
+            if (!d)
+            {
+                print(String.Format("'{0}' {1}", transform.root.name, "okay"));
+                d = true;
+            }
+
             if ((leaves == null || leafCount != leaves.Length))
                 leaves = CreateLeaves(leafCount);
 
