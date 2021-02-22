@@ -53,7 +53,7 @@ public class NavigateCollection : MonoBehaviour
 
         //change attribute values
         var lighting = getCurrVal("Lighting").ToString() + " lumen(s)";
-        var temp = getCurrVal("Temperature").ToString() + " celsius";
+        var temp = getCurrVal("Temperature").ToString() + "°C";
         var water = getCurrVal("Water").ToString() + " day(s)";
         var fertiliser = getCurrVal("Fertiliser").ToString() + " day(s)";
 
@@ -82,8 +82,9 @@ public class NavigateCollection : MonoBehaviour
         {
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
-            timeAlive.text = "Time Alive: " + plantList[indexNum].GetComponent<Timer>().timeElapsed.ToString() + " day(s)";
-            healthEfficiency.text = "Health Efficiency: " + plantList[indexNum].GetComponent<PlantRates>().currEfficiency.ToString(); //health efficiency
+            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed / 24;
+            timeAlive.text = String.Format("Days Alive: {0}", numDays);
+            healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", plantList[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
         }
 
         //switch to next/previous plant
