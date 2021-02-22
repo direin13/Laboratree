@@ -158,6 +158,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  leaves: []
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &1531115021
@@ -372,6 +373,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  leaves: []
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &2136647240
@@ -1073,6 +1075,7 @@ MonoBehaviour:
   zLayer: 0
   offsetSpawnPoint: {x: 0.008, y: -0.1}
   leafScale: {x: 0.13, y: 0.07}
+  leaves: []
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &2818873761028901787
@@ -1262,7 +1265,7 @@ MonoBehaviour:
   - {fileID: 1529415848611073026}
   - {fileID: 5098684678048679179}
   debug: 0
-  readGenesOnStart: 0
+  readGenesOnStart: 1
 --- !u!114 &8220611505852077779
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1290,7 +1293,6 @@ GameObject:
   - component: {fileID: 5468269409949645751}
   - component: {fileID: 5339662483977639453}
   - component: {fileID: 5233577934177401446}
-  - component: {fileID: 961332356781955719}
   - component: {fileID: 3836453446652923519}
   - component: {fileID: 5559089051351295349}
   m_Layer: 6
@@ -1443,21 +1445,6 @@ MonoBehaviour:
   setSpriteRendererColor: 1
   debug: 0
   readGenesOnStart: 0
---- !u!114 &961332356781955719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9162487880955147737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100000
-  getTicks: 1
-  timeElapsed: 0
 --- !u!114 &3836453446652923519
 MonoBehaviour:
   m_ObjectHideFlags: 0

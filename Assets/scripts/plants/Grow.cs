@@ -28,6 +28,7 @@ public class Grow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasStarted = false;
         if (readGenesOnStart)
         {
             Genes genes = GetComponent<Genes>();
@@ -73,6 +74,10 @@ public class Grow : MonoBehaviour
         if (timeTillStart - timeElapsed <= 0)
         {
             hasStarted = true;
+        }
+        else
+        {
+            hasStarted = false;
         }
 
         if (hasStarted)

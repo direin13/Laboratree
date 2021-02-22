@@ -246,7 +246,6 @@ GameObject:
   - component: {fileID: 1272373391928515930}
   - component: {fileID: 1175747815399731440}
   - component: {fileID: 1362960878761630859}
-  - component: {fileID: 6276896906148052074}
   - component: {fileID: 8031748551857023122}
   - component: {fileID: 5390303422981466918}
   m_Layer: 6
@@ -397,21 +396,6 @@ MonoBehaviour:
   setSpriteRendererColor: 1
   debug: 0
   readGenesOnStart: 0
---- !u!114 &6276896906148052074
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2696777647148962612}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100000
-  getTicks: 1
-  timeElapsed: 0
 --- !u!114 &8031748551857023122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,7 +415,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
-  readGenesOnStart: 0
+  readGenesOnStart: 1
 --- !u!114 &5390303422981466918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,7 +442,6 @@ GameObject:
   - component: {fileID: 4548330150819597711}
   - component: {fileID: 3565422700871793706}
   - component: {fileID: 9031393000997793142}
-  - component: {fileID: 565542478543960557}
   - component: {fileID: 8928279261268285707}
   - component: {fileID: 4989379167254181970}
   m_Layer: 6
@@ -629,21 +612,6 @@ MonoBehaviour:
   setSpriteRendererColor: 0
   debug: 0
   readGenesOnStart: 0
---- !u!114 &565542478543960557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3133198579604828187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100000
-  getTicks: 1
-  timeElapsed: 0
 --- !u!114 &8928279261268285707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +631,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 2000
   hasStarted: 0
-  readGenesOnStart: 0
+  readGenesOnStart: 1
 --- !u!114 &4989379167254181970
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ MonoBehaviour:
   maxValue: 1000
   optimumPercentage: 0.5
   currValue: 0
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &9219730444401479511
 MonoBehaviour:
@@ -217,6 +218,7 @@ MonoBehaviour:
   - {fileID: 5589505556137104399}
   - {fileID: 582995459726035853}
   debug: 0
+  readGenesOnStart: 0
 --- !u!114 &7624847753245778200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +366,7 @@ MonoBehaviour:
   maxValue: 30
   optimumPercentage: 0.5
   currValue: 20
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &1547660641213895751
 MonoBehaviour:
@@ -448,6 +451,7 @@ MonoBehaviour:
   maxValue: 10000
   optimumPercentage: 0.5
   currValue: 0
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &3995042917877339965
 MonoBehaviour:
@@ -563,6 +567,7 @@ MonoBehaviour:
   maxValue: 1000
   optimumPercentage: 0.5
   currValue: 0
+  readGenesOnStart: 0
   debug: 0
 --- !u!114 &4576690600193416738
 MonoBehaviour:
@@ -609,7 +614,6 @@ GameObject:
   - component: {fileID: 3219736459609313837}
   - component: {fileID: 9201639785607183194}
   - component: {fileID: 3326379265821909443}
-  - component: {fileID: 1586405412865871776}
   - component: {fileID: 4361994766379012426}
   - component: {fileID: 3700442761549878471}
   m_Layer: 6
@@ -758,21 +762,7 @@ MonoBehaviour:
   healthToColorRatio: 0.15
   setSpriteRendererColor: 1
   debug: 0
---- !u!114 &1586405412865871776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7548149064760046106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b506965e63da0af489c9bc2f67b5b5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  getTicks: 0
-  timeElapsed: 0
+  readGenesOnStart: 0
 --- !u!114 &4361994766379012426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,6 +782,7 @@ MonoBehaviour:
   growthAmount: 0
   timeTillStart: 0
   hasStarted: 0
+  readGenesOnStart: 1
 --- !u!114 &3700442761549878471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,6 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleAmount: {x: 0.09162117, y: 0.8974713}
+  readGenesOnStart: 0
 --- !u!1 &7858647810298514979
 GameObject:
   m_ObjectHideFlags: 0

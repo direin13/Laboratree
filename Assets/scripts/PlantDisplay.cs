@@ -23,6 +23,8 @@ public class PlantDisplay : MonoBehaviour
 
     private int prevIndexNum;
     public int indexNum;
+    public Vector3 plantScale;
+    private PlantManager pManager;
 
 
     float getCurrVal(string attribute)
@@ -32,10 +34,9 @@ public class PlantDisplay : MonoBehaviour
 
     GameObject makeClone()
     {
-
-        GameObject plant = Instantiate(plantList[indexNum]);
+        GameObject plant = Instantiate(pManager.plantCollection[indexNum]);
         plant.SetActive(true);
-        plant.transform.localScale = new Vector3(35, 35, 1);
+        plant.transform.localScale = plantScale;
         plant.transform.position = new Vector3(0, -112, -60);
         plant.GetComponent<Timer>().getTicks = false;
         plant.BroadcastMessage("ReadGenesOnStart", false);
@@ -44,19 +45,30 @@ public class PlantDisplay : MonoBehaviour
 
     void Start()
     {
+        prevIndexNum = -1;
+        pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
+    }
+
+    public void ChangeIndex(int index)
+    {
+        //triggers a new clone in display
+        prevIndexNum = -1;
+        indexNum = index;
+        print(index.ToString() + prevIndexNum.ToString());
     }
 
     void display()
     {
         currPlant = makeClone();
         //change name to current plant
-        nameText.text = plantList[indexNum].name;
+        if (nameText)
+            nameText.text = pManager.plantCollection[indexNum].name;
     }
 
     void Update()
     {
 
-        if (plantList.Count <= 0)
+        if (pManager.plantCollection.Count <= 0)
         {
             currPlant = null;
         }
@@ -68,44 +80,47 @@ public class PlantDisplay : MonoBehaviour
 
         if (currPlant)
         {
-            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, currPlant.transform.position.z);
-            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);
+            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
         }
 
 
         //switch to next/previous plant
-        if (leftButton.GetComponent<NavigateButtons>().clicked == true)
+        if (leftButton && leftButton.GetComponent<NavigateButtons>().clicked == true)
         {
             indexNum--;
             leftButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
-        if (rightButton.GetComponent<NavigateButtons>().clicked == true)
+        if (rightButton && rightButton.GetComponent<NavigateButtons>().clicked == true)
         {
             indexNum++;
             rightButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
-
+        //print(prevIndexNum.ToString() + " and " + indexNum.ToString());
         if (prevIndexNum != indexNum)
         {
+            print("ok");
             navigate();
         }
 
         if (indexText)
-            indexText.text = (indexNum + 1).ToString() + "/" + plantList.Count.ToString();
+            indexText.text = (indexNum + 1).ToString() + "/" + pManager.plantCollection.Count.ToString();
+
     }
 
     //displays and navigates between plants in list
     void navigate()
     {
-        if (indexNum >= plantList.Count)
+        print("navigating");
+        if (indexNum >= pManager.plantCollection.Count)
         {
             indexNum = 0;
         }
         else if (indexNum < 0)
         {
-            indexNum = plantList.Count - 1;
+            indexNum = pManager.plantCollection.Count - 1;
         }
 
         Destroy(currPlant);
@@ -123,7 +138,5 @@ public class PlantDisplay : MonoBehaviour
         GameObject plantCollectionHolder = GameObject.Find("GameManager");
         PlantManager plantManager = plantCollectionHolder.GetComponent<PlantManager>();
         plantList = plantManager.plantCollection;
-        indexNum = 0;   //starts at 0
-        prevIndexNum = indexNum;
     }
 }
