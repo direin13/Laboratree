@@ -13,7 +13,7 @@ public class NavigateCollection : MonoBehaviour
     private Button leftButton, rightButton;
     
     [SerializeField]
-    private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput;
+    private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput,healthEfficiency,timeAlive;
 
     public GameObject FollowPoint;
     public Transform parent;
@@ -48,17 +48,16 @@ public class NavigateCollection : MonoBehaviour
         nameText.text = plantList[indexNum].name;
 
         //change attribute values
-        var lighting = getCurrVal("Lighting").ToString();
-        var temp = getCurrVal("Temperature").ToString();
-        var water = getCurrVal("Water").ToString();
-        var fertiliser = getCurrVal("Fertiliser").ToString();
+        var lighting = getCurrVal("Lighting").ToString() + " lumen(s)";
+        var temp = getCurrVal("Temperature").ToString() + " celsius";
+        var water = getCurrVal("Water").ToString() + " day(s)";
+        var fertiliser = getCurrVal("Fertiliser").ToString() + " day(s)";
 
         //set text in interval fields
         lightInput.text = lighting;
         tempInput.text = temp;
         waterInput.text = water;
         fertiliserInput.text = fertiliser;
-
     }
 
     void Update()
@@ -78,7 +77,9 @@ public class NavigateCollection : MonoBehaviour
         if (currPlant)
         {
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
-            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;
+            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
+            timeAlive.text = "Time Alive: " + plantList[indexNum].GetComponent<Timer>().timeElapsed.ToString() + " day(s)";
+            healthEfficiency.text = "Health Efficiency: " + plantList[indexNum].GetComponent<PlantRates>().currEfficiency.ToString(); //health efficiency
         }
 
 
