@@ -20,7 +20,8 @@ public class ShowFolderPage : MonoBehaviour
     {
         if (page != null)
         {
-            if (transform.parent.gameObject.GetComponent<FolderHead>().activeButton == GetComponent<Button>())
+            FolderHead fh = transform.parent.gameObject.GetComponent<FolderHead>();
+            if ( (fh.GetMainMenu().isOpen || fh.GetMainMenu().inTransition) && fh.activeButton == GetComponent<Button>())
             {
                 page.SetActive(true);
                 page.transform.localPosition = startPos;

@@ -163,6 +163,8 @@ public class NavigateCollection : MonoBehaviour
                 gameManager.GetComponent<PopUpManager>().SwapPlant(indexNum);
             }
         }
+
+        prevIndexNum = -1; //trigger new clone of plant
     }
 
     public void OnDisable()
@@ -175,8 +177,7 @@ public class NavigateCollection : MonoBehaviour
         GameObject gameManager = GameObject.Find("GameManager");
         PlantManager plantManager = gameManager.GetComponent<PlantManager>();
         plantList = plantManager.plantCollection;
-        indexNum = 0;   //starts at 0
-        prevIndexNum = -1;
+        prevIndexNum = -1; //trigger a new clone
     }
 
     public void deleteFromList(){
