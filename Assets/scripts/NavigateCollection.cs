@@ -82,7 +82,7 @@ public class NavigateCollection : MonoBehaviour
         {
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
-            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed / 24;
+            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
             healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", plantList[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
         }
