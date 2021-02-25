@@ -190,8 +190,8 @@ MonoBehaviour:
   - name: expectedLifetime
     allelePair: Hh
     valueType: int
-    dominantVal: 8760
-    recessiveVal: 6690
+    dominantVal: 1825
+    recessiveVal: 1625
   - name: deathTimeSkew
     allelePair: Hh
     valueType: float
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3180c11263f04f4eb6244919a356b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expectedLifetime: 8760
+  expectedLifetime: 1825
   deathTimeSkew: 0.02
   currEfficiency: 0
   allDependencies:
@@ -358,8 +358,8 @@ MonoBehaviour:
   - name: expectedGrowTime
     allelePair: Hh
     valueType: int
-    dominantVal: 1000
-    recessiveVal: 900
+    dominantVal: 190
+    recessiveVal: 150
   - name: growthTimeSkew
     allelePair: Hh
     valueType: float
@@ -408,9 +408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expectedGrowTime: 1000
+  expectedGrowTime: 190
   growthTimeSkew: 0
-  growthStages: 400
+  growthStages: 150
   debug: 0
   growthAmount: 0
   timeTillStart: 0
@@ -561,8 +561,8 @@ MonoBehaviour:
   - name: timeTillStart
     allelePair: Hh
     valueType: int
-    dominantVal: 1000
-    recessiveVal: 1200
+    dominantVal: 190
+    recessiveVal: 150
 --- !u!114 &3643725074588179010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eadb3100031d6ef449e2746cb12877a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expectedGrowTime: 1000
+  expectedGrowTime: 600
   growthTimeSkew: 0
   growthStages: 400
   debug: 0

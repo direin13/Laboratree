@@ -1237,8 +1237,8 @@ MonoBehaviour:
   - name: expectedLifetime
     allelePair: Hh
     valueType: int
-    dominantVal: 8760
-    recessiveVal: 6690
+    dominantVal: 31025
+    recessiveVal: 28025
   - name: deathTimeSkew
     allelePair: Hh
     valueType: float
@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3180c11263f04f4eb6244919a356b76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expectedLifetime: 8760
+  expectedLifetime: 10000
   deathTimeSkew: 0.02
   currEfficiency: 0
   allDependencies:

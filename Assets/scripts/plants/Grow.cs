@@ -61,7 +61,7 @@ public class Grow : MonoBehaviour
         //make sure variables stay in acceptable range
         expectedGrowTime = NumOp.Cutoff(expectedGrowTime, 1, expectedGrowTime);
         growthTimeSkew = NumOp.Cutoff(growthTimeSkew, 0f, 1f);
-        growthStages = NumOp.Cutoff(growthStages, 0, growthStages);
+        growthStages = NumOp.Cutoff(growthStages, 0, expectedGrowTime);
 
         PlantRates pr = transform.root.gameObject.GetComponent<PlantRates>();
 

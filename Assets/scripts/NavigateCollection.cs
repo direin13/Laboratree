@@ -82,7 +82,7 @@ public class NavigateCollection : MonoBehaviour
         {
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
-            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed / 24;
+            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
             healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", plantList[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
         }
@@ -165,6 +165,8 @@ public class NavigateCollection : MonoBehaviour
                 gameManager.GetComponent<PopUpManager>().SwapPlant(indexNum);
             }
         }
+
+        prevIndexNum = -1; //trigger new clone of plant
     }
 
     public void OnDisable()
@@ -177,8 +179,7 @@ public class NavigateCollection : MonoBehaviour
         GameObject gameManager = GameObject.Find("GameManager");
         PlantManager plantManager = gameManager.GetComponent<PlantManager>();
         plantList = plantManager.plantCollection;
-        indexNum = 0;   //starts at 0
-        prevIndexNum = -1;
+        prevIndexNum = -1; //trigger a new clone
     }
 
     public void deleteFromList(){
