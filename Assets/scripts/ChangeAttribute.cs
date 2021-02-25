@@ -36,10 +36,21 @@ public class ChangeAttribute : MonoBehaviour
 
             //set current val to new val
             attributeObj.GetComponent<DependenceAttribute>().currValue = float.Parse(input.text);
-            print(plantList[indexNum].name + " changed to value: " + attributeObj.GetComponent<DependenceAttribute>().currValue.ToString());
 
+            string measurement = "";
+
+            //get measurement value
+            if (this.name == "Lighting") {
+                measurement = " lumen(s)";
+            }
+            if (this.name == "Temperature") {
+                measurement = "°C";
+            }
+            if (this.name == "Water" || this.name == "Fertiliser" ) {
+                measurement = " day(s)";
+            }
             // change placeholder to current val
-            placeholder.text = input.text;
+            placeholder.text = input.text + measurement;
 
             //reset values
             input.text = "";

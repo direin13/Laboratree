@@ -4170,6 +4170,8 @@ MonoBehaviour:
   tempInput: {fileID: 2039001284}
   waterInput: {fileID: 911950803}
   fertiliserInput: {fileID: 1267166143}
+  healthEfficiency: {fileID: 708531447}
+  timeAlive: {fileID: 1909411983}
   FollowPoint: {fileID: 362283241}
   parent: {fileID: 436741107}
   plantList: []
