@@ -215,6 +215,10 @@ public class PlantManager : MonoBehaviour
         foreach (GameObject plant in plantCollection)
         {
             plant.GetComponent<Timer>().speed = GetComponent<Timer>().speed;
+            if (!plant.GetComponent<PlantRates>().PlantAlive())
+            {
+                plant.GetComponent<Timer>().getTicks = false;
+            }
         }
 
 
