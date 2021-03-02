@@ -9,6 +9,15 @@ using Object = UnityEngine.Object;
 using UnityEditor;
 using System.Reflection;
 using System.Linq;
+using TMPro;
+
+
+[Serializable]
+public class PlantTag
+{
+    public int position;
+    public GameObject nameTag;
+}
 
 
 public class PlantManager : MonoBehaviour
@@ -22,6 +31,7 @@ public class PlantManager : MonoBehaviour
     public Vector3 plantEndPos;
     private int timeElapsed;
     public readonly int maxActivePlants = 3;
+    public PlantTag [] plantTags;
 
     public readonly static string prefabPath = "plant prefabs/";
     public List<string> allPrefabs;
@@ -144,8 +154,8 @@ public class PlantManager : MonoBehaviour
             plant.transform.position = new Vector3(-1000, -1000, 1);
         }
 
-        int[] arr = GetActivePlantIndexes();
-        print(String.Format("[{0}, {1}, {2}]", arr[0], arr[1], arr[2]));
+        //int[] arr = GetActivePlantIndexes();
+        //print(String.Format("[{0}, {1}, {2}]", arr[0], arr[1], arr[2]));
     }
 
 
@@ -165,7 +175,6 @@ public class PlantManager : MonoBehaviour
     public void RemovePlant(int i)
     {
         GameObject plant = plantCollection[i];
-        print(i.ToString() + " " + plantCollection.Count.ToString());
         SetPlantStatus(plant, false);
         plantCollection.RemoveAt(i);
         DestroyImmediate(plant);
@@ -232,6 +241,7 @@ public class PlantManager : MonoBehaviour
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
 
+        //turn on active palnts
         foreach (GameObject plant in activePlants)
         {
             if (plant)
@@ -240,6 +250,8 @@ public class PlantManager : MonoBehaviour
             }
         }
 
+
+        //Turn off inactive plants or dead plants
         int i = 0;
         while (i < plantCollection.Count)
         {
@@ -254,6 +266,32 @@ public class PlantManager : MonoBehaviour
             i++;
         }
 
+
+        for (int j=0; j < activePlants.Length; j++)
+        {
+            GameObject plant = activePlants[j];
+            foreach (PlantTag tag in plantTags)
+            {
+                if (tag.position == j)
+                {
+                    string tagText;
+                    if (plant)
+                    {
+                        tagText = plant.name;
+                        if (tagText.Length > 11)
+                        {
+                            tagText = plant.name.Substring(0, 12) + "...";
+                        }
+                    }
+                    else
+                    {
+                        tagText = "-Empty-";
+                    }
+
+                    tag.nameTag.GetComponentInChildren<TextMesh>().text = tagText;
+                }
+            }
+        }
 
         if (GetComponent<Timer>().Tick())
         {

@@ -16,7 +16,7 @@ public class PlantManagerTest
         pmanager.allPrefabs.Add("Aloe");
         pmanager.allPrefabs.Add("Jade");
         pmanager.allPrefabs.Add("Echeveria");
-        pmanager.allPrefabs.Add("BasicPlant");
+        pmanager.allPrefabs.Add("Basic Plant");
         foreach (string prefab in pmanager.allPrefabs)
         {
             if (pmanager.prefabMappings.ContainsKey(prefab))
@@ -244,6 +244,45 @@ public class PlantManagerTest
 
         Assert.IsTrue(pmanager.PlantActive(newPlant2), String.Format("Plant '{0}' was activated. Should be true but got false", newPlant2.name));
     }
+
+
+    [Test]
+    public void ActivatePlantTest7()
+    {
+        string name = "Max's plant";
+        GameObject newPlant = pmanager.MakePlant(name, "Jade");
+        GameObject newPlant2 = pmanager.MakePlant(name + "(2)", "Jade");
+        GameObject newPlant3 = pmanager.MakePlant(name + "(3)", "Echeveria");
+
+        pmanager.SetPlantStatus(newPlant, true);
+        pmanager.SetPlantStatus(newPlant2, true);
+
+        Assert.IsTrue(newPlant.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was activated. Timer should be active but it isnt", newPlant.name));
+        Assert.IsTrue(newPlant2.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was activated. Timer should be active but it isnt", newPlant2.name));
+        Assert.IsFalse(newPlant3.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was not activated. Timer should not be active but it is", newPlant3.name));
+    }
+
+
+    [Test]
+    public void ActivatePlantTest8()
+    {
+        string name = "Max's plant";
+        GameObject newPlant = pmanager.MakePlant(name, "Jade");
+        GameObject newPlant2 = pmanager.MakePlant(name + "(2)", "Jade");
+        GameObject newPlant3 = pmanager.MakePlant(name + "(3)", "Echeveria");
+
+        pmanager.SetPlantStatus(newPlant, true);
+        pmanager.SetPlantStatus(newPlant3, true);
+
+        Assert.IsTrue(newPlant3.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was activated. Timer should be active but it isnt", newPlant3.name));
+        Assert.IsFalse(newPlant2.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was not activated. Timer should be active but it is", newPlant2.name));
+
+        pmanager.SetPlantStatus(newPlant3, false);
+
+        Assert.IsFalse(newPlant3.GetComponent<Timer>().getTicks, String.Format("Plant '{0}' was not activated. Timer should be active but it is", newPlant3.name));
+
+    }
+
 
 
     [Test]
