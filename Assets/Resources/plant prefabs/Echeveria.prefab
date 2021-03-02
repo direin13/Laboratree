@@ -793,8 +793,8 @@ MonoBehaviour:
   - name: optimumPercentage
     allelePair: Hh
     valueType: float
-    dominantVal: 0.15
-    recessiveVal: 0.3
+    dominantVal: 0.10
+    recessiveVal: 0.2
 --- !u!1 &5775779440486256616
 GameObject:
   m_ObjectHideFlags: 0

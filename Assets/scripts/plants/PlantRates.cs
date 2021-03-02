@@ -40,7 +40,10 @@ public class PlantRates : MonoBehaviour
     }
     public DependenceAttribute GetDepComp(GameObject dep)
     {
-        return dep.GetComponent<DependenceAttribute>();
+        if (dep)
+            return dep.GetComponent<DependenceAttribute>();
+        else
+            return null;
     }
 
     public DependenceAttribute GetDepComp(string name)
@@ -58,16 +61,6 @@ public class PlantRates : MonoBehaviour
     {
         return GetComponent<Timer>();
     }
-
-    public float DepRateSum(GameObject [] values)
-    {
-        float sum = 0;
-        foreach (GameObject obj in values)
-            sum = sum + GetDepComp(obj).dependencyAmount;
-
-        return sum;
-    }
-
 
     // Start is called before the first frame update
     void Start()
@@ -105,7 +98,11 @@ public class PlantRates : MonoBehaviour
         //balances array so all the dependency rates add up to the cutOff
         //pivot is the index that the other dependencies get balanced around
 
-        float decValue = DepRateSum(values) - cutOff;
+        float decValue = 0;
+
+        foreach (GameObject obj in values)
+            decValue = decValue + GetDepComp(obj).dependencyAmount;
+
 
         if (decValue > 0)
         {
