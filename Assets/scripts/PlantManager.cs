@@ -21,11 +21,11 @@ public class PlantManager : MonoBehaviour
     public Vector3 plantStartPos;
     public Vector3 plantEndPos;
     private int timeElapsed;
-    private readonly int maxActivePlants = 3;
+    public readonly int maxActivePlants = 3;
 
-    private readonly static string prefabPath = "plant prefabs/";
+    public readonly static string prefabPath = "plant prefabs/";
     public List<string> allPrefabs;
-    private readonly Dictionary<string, GameObject> prefabMappings = new Dictionary<string, GameObject>();
+    public readonly Dictionary<string, GameObject> prefabMappings = new Dictionary<string, GameObject>();
 
 
     // Start is called before the first frame update
@@ -87,11 +87,11 @@ public class PlantManager : MonoBehaviour
         }
 
 
-        int i = 0;
-        bool spaceFound = false;
-        while (i < activePlants.Length && !spaceFound)
+        if (status)
         {
-            if (status)
+            int i = 0;
+            bool spaceFound = false;
+            while (i < activePlants.Length && !spaceFound)
             {
                 //automatically put in labspace if there's space
                 if (activePlants[i] == null)
@@ -112,17 +112,24 @@ public class PlantManager : MonoBehaviour
                     {
                         plant.transform.position = plantEndPos;
                     }
+                    print("active added");
                 }
+                i++;
             }
-            else
+        }
+
+        else
+        {
+            //remove from active list
+            for (int i = 0; i < activePlants.Length; i++)
             {
                 if (activePlants[i] == plant)
                 {
                     activePlants[i] = null;
+                    print("active removed");
                 }
-
             }
-            i++;
+
         }
 
         if (status)
@@ -136,6 +143,9 @@ public class PlantManager : MonoBehaviour
             plant.SetActive(false);
             plant.transform.position = new Vector3(-1000, -1000, 1);
         }
+
+        int[] arr = GetActivePlantIndexes();
+        print(String.Format("[{0}, {1}, {2}]", arr[0], arr[1], arr[2]));
     }
 
 
@@ -149,16 +159,22 @@ public class PlantManager : MonoBehaviour
     {
         SetPlantStatus(plant, false);
         plantCollection.Remove(plant);
+        DestroyImmediate(plant);
     }
 
     public void RemovePlant(int i)
     {
-        SetPlantStatus(plantCollection[i], false);
-        plantCollection.Remove(plantCollection[i]);
+        GameObject plant = plantCollection[i];
+        print(i.ToString() + " " + plantCollection.Count.ToString());
+        SetPlantStatus(plant, false);
+        plantCollection.RemoveAt(i);
+        DestroyImmediate(plant);
     }
 
     public int [] GetActivePlantIndexes()
     {
+        //returns the indexes of the active plants in the collection
+        //if a activeplant space is empty, it will be -1
         int[] indexes = new int[maxActivePlants];
         int j = 0;
 
@@ -167,8 +183,12 @@ public class PlantManager : MonoBehaviour
             if (plant)
             {
                 indexes[j] = plantCollection.IndexOf(plant);
-                j++;
             }
+            else
+            {
+                indexes[j] = -1;
+            }
+            j++;
         }
         return indexes;
     }
@@ -212,13 +232,26 @@ public class PlantManager : MonoBehaviour
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
 
-        foreach (GameObject plant in plantCollection)
+        foreach (GameObject plant in activePlants)
         {
-            plant.GetComponent<Timer>().speed = GetComponent<Timer>().speed;
-            if (!plant.GetComponent<PlantRates>().PlantAlive())
+            if (plant)
             {
-                plant.GetComponent<Timer>().getTicks = false;
+                plant.GetComponent<Timer>().getTicks = true;
             }
+        }
+
+        int i = 0;
+        while (i < plantCollection.Count)
+        {
+            if (plantCollection[i])
+            {
+                plantCollection[i].GetComponent<Timer>().speed = GetComponent<Timer>().speed;
+                if (!plantCollection[i].GetComponent<PlantRates>().PlantAlive())
+                {
+                    plantCollection[i].GetComponent<Timer>().getTicks = false;
+                }
+            }
+            i++;
         }
 
 
@@ -231,19 +264,19 @@ public class PlantManager : MonoBehaviour
         //testing making some plants dynamically
         if (timeElapsed == 10)
         {
-          SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
+          //SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
         }
 
 
         if (timeElapsed == 3000)
         {
-            Breed(plantCollection[0], plantCollection[1], "AloexJoe");
+            //Breed(plantCollection[0], plantCollection[1], "AloexJoe");
         }
 
         if (timeElapsed == 3300)
         {
-            SetPlantStatus(plantCollection[2], true);
-            print("done");
+            //SetPlantStatus(plantCollection[2], true);
+            //print("done");
         }
     }
 
@@ -270,7 +303,7 @@ public class PlantManager : MonoBehaviour
         //choose structure passed down
         GameObject plant1Struct = plant1.transform.Find("Structure").gameObject;
         GameObject plant2Struct = plant2.transform.Find("Structure").gameObject;
-        Destroy(outPlant.transform.Find("Structure").gameObject);
+        DestroyImmediate(outPlant.transform.Find("Structure").gameObject);
 
         GameObject childStruct;
         GameObject unchosenStruct;
@@ -311,8 +344,6 @@ public class PlantManager : MonoBehaviour
 
         outPlant.GetComponent<Timer>().timeElapsed = 0;
         ResetPlantComp(outPlant);
-
-        print("got through");
 
         return outPlant;
     }

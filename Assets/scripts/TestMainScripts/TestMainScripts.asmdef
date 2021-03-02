@@ -1,0 +1,25 @@
+{
+    "name": "TestMainScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3",
+        "GUID:f709812d01b72904ca78dd96a3762628",
+        "GUID:ddbda74f2e4a31745bf3bd581895266a"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -35,7 +35,6 @@ public class Sprout : MonoBehaviour
     public void ReadGenesOnStart(bool b)
     {
         readGenesOnStart = b;
-        print(b);
     }
 
     public void ResetLeaves()

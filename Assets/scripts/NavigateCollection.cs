@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 using TMPro;
+using MiscFunctions;
 
 public class NavigateCollection : MonoBehaviour
 {
@@ -17,7 +18,6 @@ public class NavigateCollection : MonoBehaviour
 
     public GameObject FollowPoint;
     public Transform parent;
-    public List<GameObject> plantList;
     private GameObject currPlant;
     
     public int indexNum;
@@ -26,17 +26,20 @@ public class NavigateCollection : MonoBehaviour
     public GameObject activateButton;
 
     float getCurrVal(string attribute) {
-        return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
+        return pManager.plantCollection[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
     }
 
-    GameObject makeClone(){
-        
-        GameObject plant = Instantiate(pManager.plantCollection[indexNum]);
-        plant.SetActive(true);
-        plant.transform.localScale = new Vector3(35,35,1);
-        plant.transform.position = new Vector3(70,-112,-60);
-        plant.BroadcastMessage("ReadGenesOnStart", false);
-        plant.GetComponent<Timer>().getTicks = false;
+    public GameObject makeClone(){
+        GameObject plant = null;
+        if (pManager.plantCollection.Count > 0)
+        {
+            plant = Instantiate(pManager.plantCollection[indexNum]);
+            plant.SetActive(true);
+            plant.transform.localScale = new Vector3(35, 35, 1);
+            plant.transform.position = new Vector3(70, -112, -60);
+            plant.BroadcastMessage("ReadGenesOnStart", false);
+            plant.GetComponent<Timer>().getTicks = false;
+        }
         return plant;
     }
 
@@ -44,47 +47,49 @@ public class NavigateCollection : MonoBehaviour
         pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
     }
 
-    void display(){
+    public void display(){
+        print("making new plant");
 
         currPlant = makeClone();
 
-        //change name to current plant
-        nameText.text = pManager.plantCollection[indexNum].name;
-
-        //change attribute values
-        var lighting = getCurrVal("Lighting").ToString() + " lumen(s)";
-        var temp = getCurrVal("Temperature").ToString() + "°C";
-        var water = getCurrVal("Water").ToString() + " day(s)";
-        var fertiliser = getCurrVal("Fertiliser").ToString() + " day(s)";
-
-        //set text in interval fields
-        lightInput.text = lighting;
-        tempInput.text = temp;
-        waterInput.text = water;
-        fertiliserInput.text = fertiliser;
     }
 
     void Update()
     {
 
-
-        if (pManager.plantCollection.Count <= 0)
+        if (!currPlant)
         {
-            currPlant = null;
+            timeAlive.text = String.Format("Days Alive: {0}", "N/A");
+            healthEfficiency.text = String.Format("Health Efficiency: {0}","N/A"); //health efficiency
+            nameText.text = "N/A";
+
+            currPlant = makeClone();
         }
 
-        else if (!currPlant)
+        else
         {
-            display();
-        }
+            print(pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed);
 
-        if (currPlant)
-        {
+            nameText.text = pManager.plantCollection[indexNum].name;
+
+            //change attribute values
+            var lighting = getCurrVal("Lighting").ToString() + " lumen(s)";
+            var temp = getCurrVal("Temperature").ToString() + "°C";
+            var water = getCurrVal("Water").ToString() + " day(s)";
+            var fertiliser = getCurrVal("Fertiliser").ToString() + " day(s)";
+
+            //set text in interval fields
+            lightInput.text = lighting;
+            tempInput.text = temp;
+            waterInput.text = water;
+            fertiliserInput.text = fertiliser;
+
+
             currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
-            currPlant.GetComponent<Timer>().timeElapsed = plantList[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
-            var numDays = plantList[indexNum].GetComponent<Timer>().timeElapsed;
+            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
+            var numDays = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
-            healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", plantList[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
+            healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", pManager.plantCollection[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
         }
 
         //switch to next/previous plant
@@ -129,7 +134,7 @@ public class NavigateCollection : MonoBehaviour
     }
 
     //displays and navigates between plants in list
-    void navigate()
+    public void navigate()
     {
         if (indexNum >= pManager.plantCollection.Count)
         {
@@ -178,23 +183,18 @@ public class NavigateCollection : MonoBehaviour
     {
         GameObject gameManager = GameObject.Find("GameManager");
         PlantManager plantManager = gameManager.GetComponent<PlantManager>();
-        plantList = plantManager.plantCollection;
         prevIndexNum = -1; //trigger a new clone
     }
 
     public void deleteFromList(){
         string plantName = pManager.plantCollection[indexNum].name;
-        pManager.RemovePlant(indexNum);
-        Destroy(currPlant);
+        DestroyImmediate(currPlant);
         currPlant = null;
-        //trigger next plant using right button
-        rightButton.GetComponent<NavigateButtons>().clicked = true;
-        if (indexNum - 1 == pManager.plantCollection.Count - 1)
-        {
-            indexNum--;
-        }
+        pManager.RemovePlant(indexNum);
+        indexNum = NumOp.Cutoff(indexNum, 0, pManager.plantCollection.Count-1);
 
         pManager.gameObject.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been deleted.", plantName));
+        prevIndexNum = indexNum;
     }
 
 }

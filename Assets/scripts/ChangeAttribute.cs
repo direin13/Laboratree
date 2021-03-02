@@ -11,12 +11,12 @@ public class ChangeAttribute : MonoBehaviour
     public TMP_InputField input;
 
     //shallow copies
-    private List<GameObject> plantList;
+    private PlantManager pManager;
     private int indexNum;
 
     void Start(){
 
-        plantList = GameObject.Find("PlantCollectionPage").GetComponent<NavigateCollection>().plantList;
+        pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
     }
 
     void Update() {
@@ -31,7 +31,7 @@ public class ChangeAttribute : MonoBehaviour
             string attribute = this.name;
             
             //finding dependency object to change in current plant
-            Transform dependencyObj = plantList[indexNum].transform.Find("Dependencies");
+            Transform dependencyObj = pManager.plantCollection[indexNum].transform.Find("Dependencies");
             Transform attributeObj = dependencyObj.transform.Find(attribute);
 
             //set current val to new val
