@@ -36,7 +36,11 @@ public class AddToCollection : MonoBehaviour
                 Debug.Log("Exception caught: " + e);
             }
 
+            NameInput.text = "";
         }
+
+        panel.SetActive(false);
+
     }
 
     public void cancelAdd(){
