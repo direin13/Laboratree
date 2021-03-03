@@ -9,15 +9,18 @@ public class FollowPoint : MonoBehaviour
     private GameObject point, plant;
 
     void OnEnable(){
-        plant.SetActive(true);
+        if (plant)
+            plant.SetActive(true);
     }
 
     void Update(){
-        plant.transform.position = new Vector3(point.transform.position.x, point.transform.position.y,-20);        //place plant in same position
+        if (plant)
+            plant.transform.position = new Vector3(point.transform.position.x, point.transform.position.y,-20);        //place plant in same position
     }
 
 
     void OnDisable(){
-        plant.SetActive(false);
+        if (plant)
+            plant.SetActive(false);
     }
 }
