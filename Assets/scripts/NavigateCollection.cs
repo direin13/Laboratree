@@ -59,7 +59,7 @@ public class NavigateCollection : MonoBehaviour
         if (!currPlant)
         {
             timeAlive.text = String.Format("Days Alive: {0}", "N/A");
-            healthEfficiency.text = String.Format("Health: {0}","N/A"); //health efficiency
+            healthEfficiency.text = String.Format("Health: {0}", "N/A"); //health efficiency
             nameText.text = "N/A";
 
             currPlant = makeClone();
@@ -86,7 +86,18 @@ public class NavigateCollection : MonoBehaviour
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
             var numDays = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
-            healthEfficiency.text = String.Format("Health: {0:0.00}%", pManager.plantCollection[indexNum].GetComponent<PlantRates>().currEfficiency*100); //health efficiency
+            healthEfficiency.text = String.Format("Health: {0:0.00}%", pManager.plantCollection[indexNum].GetComponent<PlantRates>().currEfficiency * 100); //health efficiency
+
+            //update dependencies of clone
+            string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
+            foreach (string dep in dependencies)
+            {
+                DependenceAttribute depCompOrigin = pManager.plantCollection[indexNum].GetComponent<PlantRates>().GetDepComp(dep);
+                DependenceAttribute depCompClone = currPlant.GetComponent<PlantRates>().GetDepComp(dep);
+
+                depCompClone.currValue = depCompOrigin.currValue;
+
+            }
         }
 
         //switch to next/previous plant
@@ -110,7 +121,7 @@ public class NavigateCollection : MonoBehaviour
         if (indexText)
         {
             if (pManager.plantCollection.Count == 0)
-                indexText.text = (indexNum).ToString() + "/" + pManager.plantCollection.Count.ToString();
+                indexText.text = "0" + "/" + pManager.plantCollection.Count.ToString();
             else
                 indexText.text = (indexNum + 1).ToString() + "/" + pManager.plantCollection.Count.ToString();
         }
