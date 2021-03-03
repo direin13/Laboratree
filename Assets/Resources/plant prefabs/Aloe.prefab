@@ -49,7 +49,7 @@ MonoBehaviour:
   minValue: 168
   maxValue: 8760
   optimumPercentage: 0.15
-  currValue: 1289
+  currValue: 200
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &7272850406020960297
@@ -1011,7 +1011,7 @@ MonoBehaviour:
   minValue: 10
   maxValue: 30
   optimumPercentage: 0.5
-  currValue: 5
+  currValue: 25
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &5627899810223592251
