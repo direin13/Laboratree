@@ -26,14 +26,18 @@ public class PlantDisplay : MonoBehaviour
     public Vector3 plantScale;
     private PlantManager pManager;
 
-    GameObject makeClone()
+    public GameObject makeClone()
     {
-        GameObject plant = Instantiate(pManager.plantCollection[indexNum]);
-        plant.SetActive(true);
-        plant.transform.localScale = plantScale;
-        plant.transform.position = new Vector3(0, -112, -60);
-        plant.GetComponent<Timer>().getTicks = false;
-        plant.BroadcastMessage("ReadGenesOnStart", false);
+        GameObject plant = null;
+        if (pManager.plantCollection.Count > 0)
+        {
+            plant = Instantiate(pManager.plantCollection[indexNum]);
+            plant.SetActive(true);
+            plant.transform.localScale = new Vector3(35, 35, 1);
+            plant.transform.position = new Vector3(70, -112, -60);
+            plant.BroadcastMessage("ReadGenesOnStart", false);
+            plant.GetComponent<Timer>().getTicks = false;
+        }
         return plant;
     }
 
@@ -48,34 +52,31 @@ public class PlantDisplay : MonoBehaviour
         //triggers a new clone in display
         prevIndexNum = -1;
         indexNum = index;
-        print(index.ToString() + prevIndexNum.ToString());
-    }
-
-    void display()
-    {
-        currPlant = makeClone();
-        //change name to current plant
-        if (nameText)
-            nameText.text = pManager.plantCollection[indexNum].name;
     }
 
     void Update()
     {
-
-        if (pManager.plantCollection.Count <= 0)
+        if (!currPlant)
         {
-            currPlant = null;
+            nameText.text = "N/A";
+            currPlant = makeClone();
         }
 
-        else if (!currPlant)
-        {
-            display();
-        }
-
-        if (currPlant)
+        else
         {
             currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
+            if (nameText)
+                nameText.text = pManager.plantCollection[indexNum].name;
+
+            string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
+            foreach (string dep in dependencies)
+            {
+                DependenceAttribute depCompOrigin = pManager.plantCollection[indexNum].GetComponent<PlantRates>().GetDepComp(dep);
+                DependenceAttribute depCompClone = currPlant.GetComponent<PlantRates>().GetDepComp(dep);
+
+                depCompClone.currValue = depCompOrigin.currValue;
+            }
         }
 
 
@@ -95,7 +96,6 @@ public class PlantDisplay : MonoBehaviour
         //print(prevIndexNum.ToString() + " and " + indexNum.ToString());
         if (prevIndexNum != indexNum)
         {
-            print("ok");
             navigate();
         }
 
@@ -107,7 +107,6 @@ public class PlantDisplay : MonoBehaviour
     //displays and navigates between plants in list
     void navigate()
     {
-        print("navigating");
         if (indexNum >= pManager.plantCollection.Count)
         {
             indexNum = 0;

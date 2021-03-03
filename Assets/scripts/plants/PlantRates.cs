@@ -87,10 +87,10 @@ public class PlantRates : MonoBehaviour
             {
                 Debug.LogWarning(String.Format("A gene script was not given to '{0}', using default values!", name), gameObject);
             }
+            BalanceFloats(allDependencies, 0, maxEfficiency);
         }
 
         timeAliveLeft = expectedLifetime;
-        BalanceFloats(allDependencies, 0, maxEfficiency);
     }
 
     private void BalanceFloats(GameObject [] values, int pivotIndex, float cutOff)
@@ -209,6 +209,7 @@ public class PlantRates : MonoBehaviour
         {
             print("actual death efficiency: " + actualDeathEffic.ToString());
             print("Plant Time Left (%): " + Health().ToString());
+            print("Plant alive: " + PlantAlive().ToString());
             print(String.Format("Name: {0}, TimeAlive: {1}hrs, TimeElapsed: {2}hrs", name, timeAliveLeft, GetComponent<Timer>().timeElapsed));
         }
 
