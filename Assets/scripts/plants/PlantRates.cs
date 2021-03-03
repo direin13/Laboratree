@@ -189,7 +189,12 @@ public class PlantRates : MonoBehaviour
             actualDeathEffic = currEfficiency - ( currEfficiency * (deathTimeSkew * (1f - currEfficiency)) );
             timeAliveLeft = (int)((float)expectedLifetime * actualDeathEffic);
 
-            //constant countdown
+            TimeToColor[] allColors = GetComponentsInChildren<TimeToColor>();
+            for (int i = 0; i < allColors.Length; i++)
+            {
+                allColors[i].alphaValue = 1f;
+            }
+
         }
         else
         {
