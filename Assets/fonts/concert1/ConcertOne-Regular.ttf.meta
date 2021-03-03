@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7f32189c631d06344a46915beb6bd0f8
+guid: 2ec369b0c00d2604884e7064fa131382
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - KG A Little Spark
+  - Concert One
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -877,7 +877,7 @@ MonoBehaviour:
   minValue: 1000
   maxValue: 10000
   optimumPercentage: 0.61
-  currValue: 90
+  currValue: 5000
   readGenesOnStart: 0
   debug: 0
 --- !u!1 &7682611242822625595
