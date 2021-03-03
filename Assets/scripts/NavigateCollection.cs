@@ -48,7 +48,6 @@ public class NavigateCollection : MonoBehaviour
     }
 
     public void display(){
-        print("making new plant");
 
         currPlant = makeClone();
 
@@ -60,7 +59,7 @@ public class NavigateCollection : MonoBehaviour
         if (!currPlant)
         {
             timeAlive.text = String.Format("Days Alive: {0}", "N/A");
-            healthEfficiency.text = String.Format("Health Efficiency: {0}","N/A"); //health efficiency
+            healthEfficiency.text = String.Format("Health: {0}","N/A"); //health efficiency
             nameText.text = "N/A";
 
             currPlant = makeClone();
@@ -68,8 +67,6 @@ public class NavigateCollection : MonoBehaviour
 
         else
         {
-            print(pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed);
-
             nameText.text = pManager.plantCollection[indexNum].name;
 
             //change attribute values
@@ -89,7 +86,7 @@ public class NavigateCollection : MonoBehaviour
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
             var numDays = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
-            healthEfficiency.text = String.Format("Health Efficiency: {0:0.0000}", pManager.plantCollection[indexNum].GetComponent<PlantRates>().currEfficiency); //health efficiency
+            healthEfficiency.text = String.Format("Health: {0:0.00}%", pManager.plantCollection[indexNum].GetComponent<PlantRates>().currEfficiency*100); //health efficiency
         }
 
         //switch to next/previous plant

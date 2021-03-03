@@ -122,7 +122,7 @@ public class PlantManager : MonoBehaviour
                     {
                         plant.transform.position = plantEndPos;
                     }
-                    print("active added");
+                    //print("active added");
                 }
                 i++;
             }
@@ -136,7 +136,7 @@ public class PlantManager : MonoBehaviour
                 if (activePlants[i] == plant)
                 {
                     activePlants[i] = null;
-                    print("active removed");
+                    //print("active removed");
                 }
             }
 
@@ -285,7 +285,7 @@ public class PlantManager : MonoBehaviour
                     }
                     else
                     {
-                        tagText = "-Empty-";
+                        tagText = "-";
                     }
 
                     tag.nameTag.GetComponentInChildren<TextMesh>().text = tagText;
