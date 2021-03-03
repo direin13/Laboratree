@@ -26,12 +26,6 @@ public class PlantDisplay : MonoBehaviour
     public Vector3 plantScale;
     private PlantManager pManager;
 
-
-    float getCurrVal(string attribute)
-    {
-        return plantList[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
-    }
-
     GameObject makeClone()
     {
         GameObject plant = Instantiate(pManager.plantCollection[indexNum]);

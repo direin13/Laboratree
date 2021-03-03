@@ -26,7 +26,7 @@ public class AddToCollection : MonoBehaviour
         var text = NameInput.text;
 
         if (text.Length == 0) {
-            GameManager.GetComponent<PopUpManager>().PopUpMessage("No name entered!");
+            GameManager.GetComponent<PopUpManager>().PopUpMessage("Invalid name");
         } else {
             try {
                 GameManager.GetComponent<PlantManager>().MakePlant(NameInput.text, plantPrefab.name);
@@ -36,7 +36,11 @@ public class AddToCollection : MonoBehaviour
                 Debug.Log("Exception caught: " + e);
             }
 
+            NameInput.text = "";
         }
+
+        panel.SetActive(false);
+
     }
 
     public void cancelAdd(){
