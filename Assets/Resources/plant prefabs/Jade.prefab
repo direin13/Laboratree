@@ -1237,8 +1237,8 @@ MonoBehaviour:
   - name: expectedLifetime
     allelePair: Hh
     valueType: int
-    dominantVal: 31025
-    recessiveVal: 28025
+    dominantVal: 10000
+    recessiveVal: 7000
   - name: deathTimeSkew
     allelePair: Hh
     valueType: float
