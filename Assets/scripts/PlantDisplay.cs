@@ -58,7 +58,8 @@ public class PlantDisplay : MonoBehaviour
     {
         if (!currPlant)
         {
-            nameText.text = "N/A";
+            if (nameText)
+                nameText.text = "N/A";
             currPlant = makeClone();
         }
 

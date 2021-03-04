@@ -278,9 +278,9 @@ public class PlantManager : MonoBehaviour
                     if (plant)
                     {
                         tagText = plant.name;
-                        if (tagText.Length > 11)
+                        if (tagText.Length > 9)
                         {
-                            tagText = plant.name.Substring(0, 12) + "...";
+                            tagText = plant.name.Substring(0, 9) + "...";
                         }
                     }
                     else
