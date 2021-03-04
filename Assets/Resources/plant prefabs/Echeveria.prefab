@@ -47,9 +47,9 @@ MonoBehaviour:
   dependencyAmount: 0.1
   dependencyEfficiency: 1
   minValue: 168
-  maxValue: 8760
-  optimumPercentage: 0.15
-  currValue: 1289
+  maxValue: 500
+  optimumPercentage: 0.8
+  currValue: 300
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &7423527856568792641
@@ -78,13 +78,13 @@ MonoBehaviour:
   - name: maxValue
     allelePair: Hh
     valueType: int
-    dominantVal: 8760
-    recessiveVal: 6990
+    dominantVal: 500
+    recessiveVal: 550
   - name: optimumPercentage
     allelePair: Hh
     valueType: float
-    dominantVal: 0.15
-    recessiveVal: 0.1
+    dominantVal: 0.8
+    recessiveVal: 0.65
 --- !u!1 &2456659089476139467
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,8 +190,8 @@ MonoBehaviour:
   - name: expectedLifetime
     allelePair: Hh
     valueType: int
-    dominantVal: 1080
-    recessiveVal: 1110
+    dominantVal: 30000
+    recessiveVal: 25000
   - name: deathTimeSkew
     allelePair: Hh
     valueType: float
@@ -756,10 +756,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependencyAmount: 0.3
   dependencyEfficiency: 1
-  minValue: 360
-  maxValue: 3600
-  optimumPercentage: 0.15
-  currValue: 486
+  minValue: 14
+  maxValue: 30
+  optimumPercentage: 0.73
+  currValue: 18
   readGenesOnStart: 0
   debug: 0
 --- !u!114 &4672468529789493955
@@ -783,18 +783,18 @@ MonoBehaviour:
   - name: minValue
     allelePair: Hh
     valueType: int
-    dominantVal: 360
-    recessiveVal: 340
+    dominantVal: 14
+    recessiveVal: 10
   - name: maxValue
     allelePair: Hh
     valueType: int
-    dominantVal: 3600
-    recessiveVal: 4000
+    dominantVal: 30
+    recessiveVal: 35
   - name: optimumPercentage
     allelePair: Hh
     valueType: float
-    dominantVal: 0.10
-    recessiveVal: 0.2
+    dominantVal: 0.73
+    recessiveVal: 0.55
 --- !u!1 &5775779440486256616
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,18 +848,18 @@ MonoBehaviour:
   - name: minValue
     allelePair: Hh
     valueType: int
-    dominantVal: 1000
-    recessiveVal: 900
+    dominantVal: 2000
+    recessiveVal: 1900
   - name: maxValue
     allelePair: HH
     valueType: int
-    dominantVal: 10000
-    recessiveVal: 8000
+    dominantVal: 5000
+    recessiveVal: 4500
   - name: optimumPercentage
     allelePair: hh
     valueType: float
-    dominantVal: 0.61
-    recessiveVal: 0.4
+    dominantVal: 0.8
+    recessiveVal: 0.65
 --- !u!114 &8566533951440973173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -874,9 +874,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dependencyAmount: 0.25
   dependencyEfficiency: 1
-  minValue: 1000
-  maxValue: 10000
-  optimumPercentage: 0.61
+  minValue: 2000
+  maxValue: 5000
+  optimumPercentage: 0.8
   currValue: 3600
   readGenesOnStart: 0
   debug: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   dependencyEfficiency: 1
   minValue: 10
   maxValue: 30
-  optimumPercentage: 0.5
+  optimumPercentage: 0.7
   currValue: 20
   readGenesOnStart: 0
   debug: 0
@@ -954,17 +954,17 @@ MonoBehaviour:
     allelePair: HH
     valueType: int
     dominantVal: 10
-    recessiveVal: 6
+    recessiveVal: 7
   - name: maxValue
     allelePair: Hh
     valueType: int
     dominantVal: 30
-    recessiveVal: 13
+    recessiveVal: 20
   - name: optimumPercentage
     allelePair: Hh
     valueType: float
-    dominantVal: 0.5
-    recessiveVal: 0.4
+    dominantVal: 0.7
+    recessiveVal: 0.5
 --- !u!1 &7599243350802026323
 GameObject:
   m_ObjectHideFlags: 0
