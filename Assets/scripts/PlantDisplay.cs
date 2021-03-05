@@ -69,6 +69,7 @@ public class PlantDisplay : MonoBehaviour
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             if (nameText)
                 nameText.text = pManager.plantCollection[indexNum].name;
+            print(nameText.text);
 
             string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
             foreach (string dep in dependencies)

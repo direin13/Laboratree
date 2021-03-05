@@ -62,14 +62,18 @@ public class NavigateCollection : MonoBehaviour
             healthEfficiency.text = String.Format("Health: {0}", "N/A"); //health efficiency
             nameText.text = "N/A";
 
-            currPlant = makeClone();
+            try {
+                currPlant = makeClone();
+            } catch (ArgumentOutOfRangeException) {
+                navigate();
+            }
+
         }
 
         else
         {
             nameText.text = pManager.plantCollection[indexNum].name;
 
-            //change attribute values
             var lighting = getCurrVal("Lighting").ToString() + " lumen(s)";
             var temp = getCurrVal("Temperature").ToString() + "°C";
             var water = getCurrVal("Water").ToString() + " day(s)";
