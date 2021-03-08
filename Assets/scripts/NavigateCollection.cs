@@ -59,7 +59,7 @@ public class NavigateCollection : MonoBehaviour
         if (!currPlant)
         {
             timeAlive.text = String.Format("Days Alive: {0}", "N/A");
-            healthEfficiency.text = String.Format("Health: {0}", "N/A"); //health efficiency
+            healthEfficiency.text = String.Format("Health: {0}", "N/A");
             nameText.text = "N/A";
 
             try {

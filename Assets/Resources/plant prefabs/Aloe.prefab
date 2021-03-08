@@ -195,8 +195,8 @@ MonoBehaviour:
   - name: deathTimeSkew
     allelePair: Hh
     valueType: float
-    dominantVal: 0.02
-    recessiveVal: 0.1
+    dominantVal: 0.98
+    recessiveVal: 0.8
 --- !u!114 &8477308398532171784
 MonoBehaviour:
   m_ObjectHideFlags: 0
