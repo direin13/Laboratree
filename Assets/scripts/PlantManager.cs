@@ -68,7 +68,7 @@ public class PlantManager : MonoBehaviour
 
     public void SetPlantStatus(GameObject plant, bool status)
     {
-        //set status of plant. If true, plant will be shown in labspace
+        //set status of plant. If true, plant will be activated and shown in labspace
         //plant must be in the plantCollection or exception will be thrown
         //shouldnt be 3 or more plants active if setting to true
 
@@ -126,6 +126,9 @@ public class PlantManager : MonoBehaviour
                 }
                 i++;
             }
+
+            if (!spaceFound)
+                throw new ArgumentException(String.Format("'{0}' cannot be added. Maximum Active plants have been reached!", plant.name));
         }
 
         else
@@ -200,8 +203,11 @@ public class PlantManager : MonoBehaviour
         return indexes;
     }
 
+
     public void SwapPlant(int i, int activePosition)
     {
+        //activates plant at position i
+        //swap plant in collection at position i with activeposition index in active plant
         int replaced = Array.IndexOf(activePlants, plantCollection[activePosition]); 
         SetPlantStatus(activePlants[replaced], false);
         SetPlantStatus(plantCollection[i], true);
@@ -210,6 +216,10 @@ public class PlantManager : MonoBehaviour
 
     public GameObject MakePlant(string name, string prefab)
     {
+        //Load and instantiates a new plant object from given plant prefab
+        //plant will be added to collection
+
+
         if (plantCollection.Count >= 20)
         {
             GetComponent<PopUpManager>().PopUpMessage("Plant Collection is full");
@@ -223,7 +233,6 @@ public class PlantManager : MonoBehaviour
         }
 
 
-        //Load and instantiates plant object from given plant prefab
         foreach (GameObject p in plantCollection)
         {
             if (p.name == name)
@@ -235,10 +244,10 @@ public class PlantManager : MonoBehaviour
         }
 
         GameObject plant = GameObject.Instantiate(prefabMappings[prefab]);
+
         plant.name = name;
         plantCollection.Add(plant);
         SetPlantStatus(plant, false);
-
         ResetPlantComp(plant);
 
         GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been added to the collection", name));
@@ -257,7 +266,8 @@ public class PlantManager : MonoBehaviour
 
         GetComponent<Timer>().speed = globalTimeSpeed / maxSpeed;
 
-        //turn on active palnts
+
+        //set timer speed and status for active and inactive plants
         foreach (GameObject plant in activePlants)
         {
             if (plant)
@@ -267,7 +277,6 @@ public class PlantManager : MonoBehaviour
         }
 
 
-        //Turn off inactive plants or dead plants
         int i = 0;
         while (i < plantCollection.Count)
         {
@@ -282,7 +291,7 @@ public class PlantManager : MonoBehaviour
             i++;
         }
 
-
+        //Set the name of the active plant tags
         for (int j=0; j < activePlants.Length; j++)
         {
             GameObject plant = activePlants[j];
@@ -309,38 +318,18 @@ public class PlantManager : MonoBehaviour
             }
         }
 
-        if (GetComponent<Timer>().Tick())
-        {
-            timeElapsed++;
-        }
+       GetComponent<Timer>().getTicks = true;
         
-
-        //testing making some plants dynamically
-        if (timeElapsed == 10)
-        {
-          //SetPlantStatus(MakePlant("joes plant", "Aloe"), true);
-        }
-
-
-        if (timeElapsed == 3000)
-        {
-            //Breed(plantCollection[0], plantCollection[1], "AloexJoe");
-        }
-
-        if (timeElapsed == 3300)
-        {
-            //SetPlantStatus(plantCollection[2], true);
-            //print("done");
-        }
     }
 
 
     public GameObject Breed(GameObject plant1, GameObject plant2, string outName)
     {
-        //breed/crossbreeds 2 plants and returns new plant of name outName
+        // breed/crossbreeds 2 plants and returns new plant of name outName
 
 
         GameObject outPlant = MakePlant(outName, "Aloe");
+
         //mix life expectancy of plant
         plant1.GetComponent<Genes>().CrossGenes(plant2.GetComponent<Genes>(), outPlant.GetComponent<Genes>());
 
