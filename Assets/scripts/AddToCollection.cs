@@ -16,18 +16,20 @@ public class AddToCollection : MonoBehaviour
     [SerializeField]
     private TMP_InputField NameInput;
 
+    //make hidden panel visible to user
     public void showPanel(){
         panel.SetActive(true);
     }
 
-    //second add button clicked
+    //second add button clicked, confirming add
     public void addPlant(){
 
         var text = NameInput.text;
 
         if (text.Length == 0) {
-            GameManager.GetComponent<PopUpManager>().PopUpMessage("Invalid name");
+            GameManager.GetComponent<PopUpManager>().PopUpMessage("Invalid name");      //make sure name is not empty
         } else {
+            //try add plant with new name to collection, catch if plant with same name already exists
             try {
                 GameManager.GetComponent<PlantManager>().MakePlant(NameInput.text, plantPrefab.name);
                 NameInput.text = "";
@@ -35,12 +37,14 @@ public class AddToCollection : MonoBehaviour
                 Debug.Log("Exception caught: " + e);
             }
 
+            NameInput.text = "";    //clear input field
         }
 
-        panel.SetActive(false);
+        panel.SetActive(false);     //hide panel from users
 
     }
 
+    //cancel button clicked, clearing and hiding panels
     public void cancelAdd(){
         NameInput.text="";
         panel.SetActive(false);
