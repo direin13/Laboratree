@@ -23,6 +23,7 @@ public class ChangeAttribute : MonoBehaviour
         //if apply button clicked
         if (button.GetComponent<NavigateButtons>().clicked == true) {
 
+            //get index in plant collection
             indexNum = GameObject.Find("PlantCollectionPage").GetComponent<NavigateCollection>().indexNum;
 
             //name of attribute to be changed

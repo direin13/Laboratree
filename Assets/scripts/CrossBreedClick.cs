@@ -11,18 +11,14 @@ public class CrossBreedClick : MonoBehaviour
     public GameObject plantDisplay1, plantDisplay2;
     public GameObject inputField;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
     public void CrossBreed()
     {
-        PlantManager plantManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
-        int index1 = plantDisplay1.GetComponent<PlantDisplay>().indexNum;
+        PlantManager plantManager = GameObject.Find("GameManager").GetComponent<PlantManager>();        //get plant manager object
+        int index1 = plantDisplay1.GetComponent<PlantDisplay>().indexNum;           //index of plants in collection
         int index2 = plantDisplay2.GetComponent<PlantDisplay>().indexNum;
-        string name = inputField.GetComponent<TMP_InputField>().text;
+        string name = inputField.GetComponent<TMP_InputField>().text;               //user input field
 
+        //handle errors - not enough plants in collection, crossbreeding same breed, invalid/existing name input
         string invMessage = "";
         if (plantManager.plantCollection.Count <= 1)
         {
@@ -49,6 +45,7 @@ public class CrossBreedClick : MonoBehaviour
             }
         }
 
+        //show pop up panel to confirm/deny crossbreed status
         PopUpManager popUpManager = GameObject.Find("GameManager").GetComponent<PopUpManager>();
         if (invMessage != "")
         {
@@ -58,11 +55,5 @@ public class CrossBreedClick : MonoBehaviour
         {
             popUpManager.PopUpMessage(String.Format("'{0}' has been added to the collection", name));
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 }

@@ -7,7 +7,7 @@ public class SwitchScene : MonoBehaviour
 {
 
     public void switchScene(){
-        SceneManager.LoadScene("Scenes/SampleScene");
+        SceneManager.LoadScene("Scenes/SampleScene");       //switch from start screen to main scene
     }
 
 }

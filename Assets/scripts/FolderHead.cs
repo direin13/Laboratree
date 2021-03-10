@@ -13,7 +13,8 @@ public class FolderHead : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        folderButtons = GetComponentsInChildren<Button>();
+        //get all buttons in display
+        folderButtons = GetComponentsInChildren<Button>();      
         if (activeButton == null)
             activeButton = folderButtons[0];
     }
@@ -29,6 +30,7 @@ public class FolderHead : MonoBehaviour
             RectTransform fButRect = folderButton.GetComponent<RectTransform>();
             float fButHeight = fButRect.rect.height;
 
+            //transition colour & position when clicked/not clicked
             if (folderButton != button)
             {
                 Color newColor = new Color(color[0] - .25f,

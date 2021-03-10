@@ -31,8 +31,9 @@ public class PlantDisplay : MonoBehaviour
         GameObject plant = null;
         if (pManager.plantCollection.Count > 0)
         {
+            //create clone of original plant at index in collection
             plant = Instantiate(pManager.plantCollection[indexNum]);
-            plant.SetActive(true);
+            plant.SetActive(true);      //make visible
             plant.transform.localScale = new Vector3(35, 35, 1);
             plant.transform.position = new Vector3(70, -112, -60);
             plant.BroadcastMessage("ReadGenesOnStart", false);
@@ -43,7 +44,7 @@ public class PlantDisplay : MonoBehaviour
 
     void Start()
     {
-        prevIndexNum = -1;
+        prevIndexNum = -1;      //trigger clone
         pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
     }
 
@@ -59,17 +60,16 @@ public class PlantDisplay : MonoBehaviour
         if (!currPlant)
         {
             if (nameText)
-                nameText.text = "N/A";
+                nameText.text = "N/A";      //set to empty
             currPlant = makeClone();
         }
 
         else
         {
-            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);
-            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);       //set to follow point position
+            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;         //match time with original 
             if (nameText)
-                nameText.text = pManager.plantCollection[indexNum].name;
-            print(nameText.text);
+                nameText.text = pManager.plantCollection[indexNum].name;        //match name with original
 
             string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
             foreach (string dep in dependencies)
@@ -77,7 +77,7 @@ public class PlantDisplay : MonoBehaviour
                 DependenceAttribute depCompOrigin = pManager.plantCollection[indexNum].GetComponent<PlantRates>().GetDepComp(dep);
                 DependenceAttribute depCompClone = currPlant.GetComponent<PlantRates>().GetDepComp(dep);
 
-                depCompClone.currValue = depCompOrigin.currValue;
+                depCompClone.currValue = depCompOrigin.currValue;           //match clone attribute values with original values
             }
         }
 
@@ -95,7 +95,6 @@ public class PlantDisplay : MonoBehaviour
             rightButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
-        //print(prevIndexNum.ToString() + " and " + indexNum.ToString());
         if (prevIndexNum != indexNum)
         {
             navigate();

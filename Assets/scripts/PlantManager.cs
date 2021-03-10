@@ -154,8 +154,6 @@ public class PlantManager : MonoBehaviour
             plant.transform.position = new Vector3(-1000, -1000, 1);
         }
 
-        //int[] arr = GetActivePlantIndexes();
-        //print(String.Format("[{0}, {1}, {2}]", arr[0], arr[1], arr[2]));
     }
 
 

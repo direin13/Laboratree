@@ -26,51 +26,52 @@ public class NavigateCollection : MonoBehaviour
     public GameObject activateButton;
 
     float getCurrVal(string attribute) {
-        return pManager.plantCollection[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;
+        return pManager.plantCollection[indexNum].transform.Find("Dependencies/" + attribute).GetComponent<DependenceAttribute>().currValue;        //return current value of dependency depending on attribute
     }
 
     public GameObject makeClone(){
         GameObject plant = null;
-        if (pManager.plantCollection.Count > 0)
+        if (pManager.plantCollection.Count > 0)     //only when coolection is not empty 
         {
-            plant = Instantiate(pManager.plantCollection[indexNum]);
-            plant.SetActive(true);
-            plant.transform.localScale = new Vector3(35, 35, 1);
-            plant.transform.position = new Vector3(70, -112, -60);
-            plant.BroadcastMessage("ReadGenesOnStart", false);
-            plant.GetComponent<Timer>().getTicks = false;
+            plant = Instantiate(pManager.plantCollection[indexNum]);        //create visible prefab/clone of plant at index 
+            plant.SetActive(true);      //make visible
+            plant.transform.localScale = new Vector3(35, 35, 1);        //set scale
+            plant.transform.position = new Vector3(70, -112, -60);      //set position
+            plant.BroadcastMessage("ReadGenesOnStart", false);          //broadcast message to relevant components
+            plant.GetComponent<Timer>().getTicks = false;               //stop plant from growing in relation to time
         }
         return plant;
     }
 
     void Start(){
-        pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
+        pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();     
     }
 
     public void display(){
 
-        currPlant = makeClone();
+        currPlant = makeClone();    //set currently displayed plant to var
 
     }
 
     void Update()
     {
 
-        if (!currPlant)
+        if (!currPlant) //if no plant, set to n/a 
         {
             timeAlive.text = String.Format("Days Alive: {0}", "N/A");
             healthEfficiency.text = String.Format("Health: {0}", "N/A");
             nameText.text = "N/A";
 
+            //attempt to make clone when new plant added to empty collection
             try {
-                currPlant = makeClone();
+                currPlant = makeClone();        
             } catch (ArgumentOutOfRangeException) {
-                navigate();
+                navigate();         //if attempt fails, adjust index value
             }
 
         }
 
-        else
+        else    //if plant collection not empty, display plant and details
         {
             nameText.text = pManager.plantCollection[indexNum].name;
 
@@ -79,14 +80,14 @@ public class NavigateCollection : MonoBehaviour
             var water = getCurrVal("Water").ToString() + " day(s)";
             var fertiliser = getCurrVal("Fertiliser").ToString() + " day(s)";
 
-            //set text in interval fields
+            //set text in environmental dependency fields
             lightInput.text = lighting;
             tempInput.text = temp;
             waterInput.text = water;
             fertiliserInput.text = fertiliser;
 
 
-            currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);
+            currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);     //set position to follow point
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
             var numDays = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
@@ -99,7 +100,7 @@ public class NavigateCollection : MonoBehaviour
                 DependenceAttribute depCompOrigin = pManager.plantCollection[indexNum].GetComponent<PlantRates>().GetDepComp(dep);
                 DependenceAttribute depCompClone = currPlant.GetComponent<PlantRates>().GetDepComp(dep);
 
-                depCompClone.currValue = depCompOrigin.currValue;
+                depCompClone.currValue = depCompOrigin.currValue;       //match dependencies between clone and origin
 
             }
         }
@@ -107,22 +108,22 @@ public class NavigateCollection : MonoBehaviour
         //switch to next/previous plant
         if (leftButton.GetComponent<NavigateButtons>().clicked == true)
         {
-            indexNum--;
+            indexNum--;     //reduce index
             leftButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
         if (rightButton.GetComponent<NavigateButtons>().clicked == true)
         {
-            indexNum++;
+            indexNum++;     //increase index
             rightButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
         if (prevIndexNum != indexNum)
         {
-            navigate();
+            navigate();     //adjust index
         }
 
-        if (indexText)
+        if (indexText)      //update value in index box
         {
             if (pManager.plantCollection.Count == 0)
                 indexText.text = "0" + "/" + pManager.plantCollection.Count.ToString();
@@ -130,7 +131,7 @@ public class NavigateCollection : MonoBehaviour
                 indexText.text = (indexNum + 1).ToString() + "/" + pManager.plantCollection.Count.ToString();
         }
 
-        if (currPlant && activateButton)
+        if (currPlant && activateButton)    //update plant's activated/deactivated status
         {
             TMP_Text buttonText = activateButton.GetComponentInChildren<TMP_Text>();
             if ( pManager.PlantActive(pManager.plantCollection[indexNum]) )
@@ -157,29 +158,31 @@ public class NavigateCollection : MonoBehaviour
             indexNum = pManager.plantCollection.Count - 1;
         }
 
-        Destroy(currPlant);
+        //remove previous plant clone
+        Destroy(currPlant);     
         currPlant = null;
+
         prevIndexNum = indexNum;
     }
 
     public void ActivatePlant()
     {
         GameObject gameManager = pManager.gameObject;
-        try
+        try     //adding plant to labspace 
         {
             pManager.SetPlantStatus(pManager.plantCollection[indexNum], true);
             gameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been added to the labspace", pManager.plantCollection[indexNum].name));
         }
         catch (ArgumentException) //no space or is active already
         {       
-            if (pManager.PlantActive(pManager.plantCollection[indexNum]))
+            if (pManager.PlantActive(pManager.plantCollection[indexNum]))       //remove from labspace
             {
                 pManager.SetPlantStatus(pManager.plantCollection[indexNum], false);
                 gameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been removed from the labspace", pManager.plantCollection[indexNum].name));
             }
-            else
+            else    //if labspace already full, prompt to swap plants 
             {
-                gameManager.GetComponent<PopUpManager>().SwapPlant(indexNum);
+                gameManager.GetComponent<PopUpManager>().SwapPlant(indexNum);           
             }
         }
 
@@ -188,7 +191,7 @@ public class NavigateCollection : MonoBehaviour
 
     public void OnDisable()
     {
-        Destroy(currPlant);
+        Destroy(currPlant);     //destroy unneeded plant display
     }
 
     public void OnEnable()
@@ -198,12 +201,15 @@ public class NavigateCollection : MonoBehaviour
         prevIndexNum = -1; //trigger a new clone
     }
 
+    //to remove from collection
     public void deleteFromList(){
         string plantName = pManager.plantCollection[indexNum].name;
+
+        //destory and reset currplant
         DestroyImmediate(currPlant);
         currPlant = null;
-        pManager.RemovePlant(indexNum);
-        indexNum = NumOp.Cutoff(indexNum, 0, pManager.plantCollection.Count-1);
+        pManager.RemovePlant(indexNum);     //remove from collection
+        indexNum = NumOp.Cutoff(indexNum, 0, pManager.plantCollection.Count-1);     //set new index
 
         pManager.gameObject.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been deleted.", plantName));
         prevIndexNum = indexNum;

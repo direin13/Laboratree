@@ -1,3 +1,5 @@
+//used to store data as json string, was going to be used to create save files
+
 using System.IO;
 using System.Text;
 using System.Collections;

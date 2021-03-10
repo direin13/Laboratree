@@ -10,17 +10,17 @@ public class FollowPoint : MonoBehaviour
 
     void OnEnable(){
         if (plant)
-            plant.SetActive(true);
+            plant.SetActive(true);      //make plant visible to user
     }
 
     void Update(){
         if (plant)
-            plant.transform.position = new Vector3(point.transform.position.x, point.transform.position.y,-20);        //place plant in same position
+            plant.transform.position = new Vector3(point.transform.position.x, point.transform.position.y,-20);        //place plant in same position as designated point
     }
 
 
     void OnDisable(){
         if (plant)
-            plant.SetActive(false);
+            plant.SetActive(false);     //make plant invisible to user
     }
 }

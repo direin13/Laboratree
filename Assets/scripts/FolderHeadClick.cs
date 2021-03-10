@@ -8,10 +8,12 @@ public class FolderHeadClick : MonoBehaviour
 {
     public void FolderHeadButtonClick()
     {
+        //get components menu components
         MainMenu m_menu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
         FolderHead menuFolder = m_menu.folderHead.GetComponent<FolderHead>();
         Button button_clicked = EventSystem.current.currentSelectedGameObject.GetComponent<Button>();
 
+        //set status of folderhead 
         if (m_menu.isOpen != true)
         {
             m_menu.SetOpen(true);
@@ -21,6 +23,6 @@ public class FolderHeadClick : MonoBehaviour
             m_menu.SetOpen(false);
         }
 
-        menuFolder.activeButton = button_clicked;
+        menuFolder.activeButton = button_clicked;       //set button status
     }
 }

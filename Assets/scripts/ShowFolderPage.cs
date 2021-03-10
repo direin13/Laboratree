@@ -12,7 +12,7 @@ public class ShowFolderPage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        startPos = page.transform.localPosition;
+        startPos = page.transform.localPosition;        //set starting position
     }
 
     // Update is called once per frame
@@ -20,18 +20,18 @@ public class ShowFolderPage : MonoBehaviour
     {
         if (page != null)
         {
-            FolderHead fh = transform.parent.gameObject.GetComponent<FolderHead>();
-            if ( (fh.GetMainMenu().isOpen || fh.GetMainMenu().inTransition) && fh.activeButton == GetComponent<Button>())
+            FolderHead fh = transform.parent.gameObject.GetComponent<FolderHead>();     //get folderhead
+            if ( (fh.GetMainMenu().isOpen || fh.GetMainMenu().inTransition) && fh.activeButton == GetComponent<Button>())       //if folderhead is active
             {
-                page.SetActive(true);
-                page.transform.localPosition = startPos;
+                page.SetActive(true);       //make designated page visible to user
+                page.transform.localPosition = startPos;        //set page's pos to start pos
             }
             else
             {
                 page.transform.localPosition = new Vector3(startPos[0] - (float)Screen.width*5, 
-                                                 startPos[1] - (float)Screen.height*5, 
-                                                 0);
-                page.SetActive(false);
+                                                 startPos[1] - (float)Screen.height*5,      
+                                                 0);        //set position to new position
+                page.SetActive(false);      //make page invsible
             }
         }
     }
