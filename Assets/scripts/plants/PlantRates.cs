@@ -17,7 +17,7 @@ public class PlantRates : MonoBehaviour
     //Dependencies can weigh more than others e.g Aloe's are much more dependent on light
     //than water so plants' dependency may be 90% light vs 10% water
 
-    private readonly float maxEfficiency = 1f;
+    public readonly float maxEfficiency = 1f;
 
     //rates used to skew the current time of the death(speed up) and growth(slow down)
     //depending on the level of efficiency of a plant
@@ -93,7 +93,7 @@ public class PlantRates : MonoBehaviour
         timeAliveLeft = expectedLifetime;
     }
 
-    private void BalanceFloats(GameObject [] values, int pivotIndex, float cutOff)
+    public void BalanceFloats(GameObject [] values, int pivotIndex, float cutOff)
     {
         //balances array so all the dependency rates add up to the cutOff
         //pivot is the index that the other dependencies get balanced around

@@ -41,6 +41,7 @@ public class PlantManagerTest
 
         pmanager.plantCollection.Clear();
         Array.Clear(pmanager.activePlants, 0, pmanager.activePlants.Length);
+
     }
 
     // A Test behaves as an ordinary method

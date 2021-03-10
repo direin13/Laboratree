@@ -30,13 +30,11 @@ public class AddToCollection : MonoBehaviour
         } else {
             try {
                 GameManager.GetComponent<PlantManager>().MakePlant(NameInput.text, plantPrefab.name);
-                GameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been added to the collection", NameInput.text));
+                NameInput.text = "";
             } catch (ArgumentException e) {
-                GameManager.GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' is already in the collection", NameInput.text));
                 Debug.Log("Exception caught: " + e);
             }
 
-            NameInput.text = "";
         }
 
         panel.SetActive(false);

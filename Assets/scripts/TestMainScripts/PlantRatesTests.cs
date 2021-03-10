@@ -4,6 +4,7 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 using System;
+using MiscFunctions;
 
 public class PlantRatesTests
 {
@@ -16,6 +17,10 @@ public class PlantRatesTests
 
         pmanager = GameObject.Find("GameManager").GetComponent<PlantManager>();
 
+        pmanager.prefabMappings.Clear();
+        pmanager.allPrefabs.Clear();
+
+
         pmanager.activePlants = new GameObject[pmanager.maxActivePlants];
 
         pmanager.allPrefabs.Add("Aloe");
@@ -24,12 +29,9 @@ public class PlantRatesTests
         pmanager.allPrefabs.Add("Basic Plant");
 
         int i = 0;
+
         foreach (string prefab in pmanager.allPrefabs)
         {
-            if (pmanager.prefabMappings.ContainsKey(prefab))
-            {
-                pmanager.prefabMappings.Remove(prefab);
-            }
 
             GameObject plant = (GameObject)Resources.Load(PlantManager.prefabPath + prefab);
             pmanager.prefabMappings.Add(prefab, plant);
@@ -111,6 +113,89 @@ public class PlantRatesTests
             {
                 Assert.IsTrue(!pr.GetDepComp(dep), String.Format("'{0}' dependency should not be in '{1}'", dep, pr.gameObject.name));
             }
+        }
+    }
+
+
+    [Test]
+    public void CurrentEfficiencyTest1()
+    {
+        string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
+        foreach (PlantRates pr in plantRates)
+        {
+            foreach (string dep in dependencies)
+            {
+                DependenceAttribute depObj = pr.GetDepComp(dep);
+                depObj.maxValue = 2000f;
+                depObj.minValue = 1000f;
+                depObj.optimumPercentage = 0.5f; //optimum is 1500
+                depObj.currValue = 1250f;
+                depObj.dependencyAmount = 0.25f;
+                depObj.UpdateEfficiency();
+            }
+
+        }
+
+        foreach (PlantRates pr in plantRates)
+        {
+            float effic = pr.GetCurrentEfficiency(pr.allDependencies);
+            Assert.IsTrue(effic >= .5f && effic < .5009f, String.Format("Efficiency should be 0.5, got '{0}'", effic));
+        }
+    }
+
+
+    [Test]
+    public void CurrentEfficiencyTest2()
+    {
+        string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
+        foreach (PlantRates pr in plantRates)
+        {
+            foreach (string dep in dependencies)
+            {
+                DependenceAttribute depObj = pr.GetDepComp(dep);
+                depObj.maxValue = 5500f;
+                depObj.minValue = 0f;
+                depObj.optimumPercentage = 0.8f; //optimum is 4400
+                depObj.currValue = 4400f;
+                depObj.dependencyAmount = 0.25f;
+                depObj.UpdateEfficiency();
+                Debug.Log(pr.gameObject.name + ": " + dep + " " + depObj.dependencyEfficiency.ToString());
+            }
+
+        }
+
+        foreach (PlantRates pr in plantRates)
+        {
+            float effic = pr.GetCurrentEfficiency(pr.allDependencies);
+            Assert.IsTrue(effic >= .995f && effic <= 1f, String.Format("Efficiency should be 1, got '{0}'", effic));
+        }
+    }
+
+
+    [Test]
+    public void CurrentEfficiencyTest3()
+    {
+        string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
+        foreach (PlantRates pr in plantRates)
+        {
+            foreach (string dep in dependencies)
+            {
+                DependenceAttribute depObj = pr.GetDepComp(dep);
+                depObj.maxValue = 0f;
+                depObj.minValue = 0f;
+                depObj.optimumPercentage = 0.8f; //optimum is 4400
+                depObj.currValue = 1023.5f;
+                depObj.dependencyAmount = 0.25f;
+                depObj.UpdateEfficiency();
+                Debug.Log(pr.gameObject.name + ": " + dep + " " + depObj.dependencyEfficiency.ToString());
+            }
+
+        }
+
+        foreach (PlantRates pr in plantRates)
+        {
+            float effic = pr.GetCurrentEfficiency(pr.allDependencies);
+            Assert.IsTrue(effic == 0f, String.Format("Efficiency should be 0, got '{0}'", effic));
         }
     }
 

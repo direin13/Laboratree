@@ -32,10 +32,6 @@ public class CrossBreedClick : MonoBehaviour
         {
             invMessage = "cannot crossbreed the same plant";
         }
-        else if (name.Trim() == "")
-        {
-            invMessage = "Invalid name";
-        }
 
         else
         {
@@ -45,7 +41,6 @@ public class CrossBreedClick : MonoBehaviour
             }
             catch (ArgumentException)
             {
-                invMessage = "A plant with this name already exists in the collection";
             }
         }
 
@@ -53,10 +48,6 @@ public class CrossBreedClick : MonoBehaviour
         if (invMessage != "")
         {
             popUpManager.PopUpMessage(invMessage);
-        }
-        else
-        {
-            popUpManager.PopUpMessage(String.Format("'{0}' has been added to the collection", name));
         }
     }
 

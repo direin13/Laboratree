@@ -212,12 +212,27 @@ public class PlantManager : MonoBehaviour
 
     public GameObject MakePlant(string name, string prefab)
     {
+        if (plantCollection.Count >= 20)
+        {
+            GetComponent<PopUpManager>().PopUpMessage("Plant Collection is full");
+            throw new ArgumentException("Plant Collection is full");
+        }
+
+        if (name.Trim() == "")
+        {
+            GetComponent<PopUpManager>().PopUpMessage("Invalid name");
+            throw new ArgumentException("Invalid name");
+        }
+
+
         //Load and instantiates plant object from given plant prefab
         foreach (GameObject p in plantCollection)
         {
             if (p.name == name)
             {
-                throw new ArgumentException(String.Format("'{0}' is already in the plant collection!", name));
+                string err = String.Format("'{0}' is already in the plant collection!", name);
+                GetComponent<PopUpManager>().PopUpMessage(err);
+                throw new ArgumentException(err);
             }
         }
 
@@ -228,8 +243,11 @@ public class PlantManager : MonoBehaviour
 
         ResetPlantComp(plant);
 
+        GetComponent<PopUpManager>().PopUpMessage(String.Format("'{0}' has been added to the collection", name));
+
         return plant;
     }
+
 
 
     // Update is called once per frame

@@ -65,13 +65,8 @@ public class DependenceAttribute : MonoBehaviour
     }
 
 
-    // Update is called once per frame
-    void Update()
+    public void UpdateEfficiency()
     {
-        currValue = NumOp.Cutoff(currValue, 0, 100000000);
-        minValue = NumOp.Cutoff(minValue, 0, minValue);
-        maxValue = NumOp.Cutoff(maxValue, minValue, maxValue);
-        optimumPercentage = NumOp.Cutoff(optimumPercentage, 0f, 1f);
         float optimumValue = minValue + ((maxValue - minValue) * optimumPercentage);
         optimumValue = NumOp.Cutoff(optimumValue, minValue, maxValue);
 
@@ -86,6 +81,24 @@ public class DependenceAttribute : MonoBehaviour
         {
             dependencyEfficiency = NumOp.Cutoff((float)(maxValue - currValue) / (float)(maxValue - optimumValue), 0, 1f);
         }
+
+        if (debug)
+        {
+            print("Optimum Value: " + optimumValue.ToString());
+        }
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        currValue = NumOp.Cutoff(currValue, 0, 100000000);
+        minValue = NumOp.Cutoff(minValue, 0, minValue);
+        maxValue = NumOp.Cutoff(maxValue, minValue, maxValue);
+        optimumPercentage = NumOp.Cutoff(optimumPercentage, 0f, 1f);
+
+        UpdateEfficiency();
+
         if (dependencyAmount != prevDepAmount)
         {
             depAmountChanged = true;
@@ -94,7 +107,6 @@ public class DependenceAttribute : MonoBehaviour
 
         if (debug)
         {
-            print("Optimum Value: " + optimumValue.ToString());
             print("Dependency efficieiency: " + dependencyEfficiency.ToString());
         }
     }
