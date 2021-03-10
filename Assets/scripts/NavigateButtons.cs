@@ -10,13 +10,12 @@ public class NavigateButtons : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        clicked = false;
+        clicked = false;        //set false by default
     }
 
     public void OnMouseDown()
     {
-        // print("I WAS CLICKED!!");
-        clicked = true;
+        clicked = true;         //set to true when clicked
     }
 
 }

@@ -46,7 +46,7 @@ public class HudDisplay : MonoBehaviour
             {
                 found = true;
                 dayOfMonth = (endPeriod - startPeriod) - (endPeriod - currDay);
-                //print(startPeriod.ToString() + " " + endPeriod.ToString());
+                //Debug.Log(startPeriod.ToString() + " " + endPeriod.ToString());
             }
             month++;
         }
