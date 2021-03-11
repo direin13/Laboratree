@@ -34,7 +34,7 @@ public class PopUpManager : MonoBehaviour
         if (popUp.confirmClicked)
         {
             popUp.confirmClicked = false;
-            if (selectingPlant != -1)
+            if (selectingPlant != -1 && popUp.selectBoxIndex != -1)
             {
                 //swapping selected plant into the labspace
                 print("about to swap");
