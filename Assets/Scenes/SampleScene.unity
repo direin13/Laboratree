@@ -577,7 +577,6 @@ GameObject:
   - component: {fileID: 87683805}
   - component: {fileID: 87683804}
   - component: {fileID: 87683803}
-  - component: {fileID: 87683802}
   m_Layer: 5
   m_Name: Right Button
   m_TagString: Untagged
@@ -604,19 +603,6 @@ RectTransform:
   m_AnchoredPosition: {x: 170.65, y: 23.699}
   m_SizeDelta: {x: 80, y: 110.313}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &87683802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 87683800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!114 &87683803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -661,14 +647,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 87683802}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 2143602732}
+        m_TargetAssemblyTypeName: PlantDisplay, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2571,7 +2557,6 @@ GameObject:
   - component: {fileID: 239505092}
   - component: {fileID: 239505091}
   - component: {fileID: 239505090}
-  - component: {fileID: 239505089}
   m_Layer: 5
   m_Name: Left Button
   m_TagString: Untagged
@@ -2598,19 +2583,6 @@ RectTransform:
   m_AnchoredPosition: {x: -170.65, y: 23.699}
   m_SizeDelta: {x: 80, y: 110.313}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &239505089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 239505087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!114 &239505090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2655,14 +2627,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 239505089}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 2143602732}
+        m_TargetAssemblyTypeName: PlantDisplay, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4639,7 +4611,6 @@ GameObject:
   - component: {fileID: 419380998}
   - component: {fileID: 419380997}
   - component: {fileID: 419380996}
-  - component: {fileID: 419380999}
   m_Layer: 5
   m_Name: Left Button
   m_TagString: Untagged
@@ -4710,14 +4681,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 419380999}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 360874261}
+        m_TargetAssemblyTypeName: NavigateCollection, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -4760,19 +4731,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 419380994}
   m_CullTransparentMesh: 1
---- !u!114 &419380999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 419380994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &428566920
 GameObject:
   m_ObjectHideFlags: 0
@@ -5990,7 +5948,6 @@ GameObject:
   - component: {fileID: 523164780}
   - component: {fileID: 523164779}
   - component: {fileID: 523164778}
-  - component: {fileID: 523164781}
   m_Layer: 5
   m_Name: Apply Button
   m_TagString: Untagged
@@ -6062,9 +6019,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 523164781}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
+      - m_Target: {fileID: 2089216866}
+        m_TargetAssemblyTypeName: ChangeAttribute, scripts
+        m_MethodName: ApplyChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6112,19 +6069,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 523164776}
   m_CullTransparentMesh: 1
---- !u!114 &523164781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523164776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &540293770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6968,13 +6912,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 730175967}
-        m_TargetAssemblyTypeName: FolderHeadClick, Assembly-CSharp
+      - m_Target: {fileID: 1780917558}
+        m_TargetAssemblyTypeName: FolderHead, scripts
         m_MethodName: FolderHeadButtonClick
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 676310057}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -7528,7 +7472,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 730175968}
-  - component: {fileID: 730175967}
   - component: {fileID: 730175970}
   - component: {fileID: 730175969}
   - component: {fileID: 730175971}
@@ -7540,18 +7483,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &730175967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 730175966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf3084266cea694dab9731560df60c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &730175968
 Transform:
   m_ObjectHideFlags: 0
@@ -7775,7 +7706,6 @@ GameObject:
   - component: {fileID: 742596860}
   - component: {fileID: 742596859}
   - component: {fileID: 742596858}
-  - component: {fileID: 742596861}
   m_Layer: 5
   m_Name: Right Button
   m_TagString: Untagged
@@ -7846,14 +7776,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 742596861}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 360874261}
+        m_TargetAssemblyTypeName: NavigateCollection, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -7896,19 +7826,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742596856}
   m_CullTransparentMesh: 1
---- !u!114 &742596861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 742596856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &764904125
 GameObject:
   m_ObjectHideFlags: 0
@@ -8537,7 +8454,6 @@ GameObject:
   - component: {fileID: 850328618}
   - component: {fileID: 850328617}
   - component: {fileID: 850328616}
-  - component: {fileID: 850328615}
   m_Layer: 5
   m_Name: Right Button
   m_TagString: Untagged
@@ -8564,19 +8480,6 @@ RectTransform:
   m_AnchoredPosition: {x: 170.65, y: 23.699}
   m_SizeDelta: {x: 80, y: 110.313}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &850328615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 850328613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!114 &850328616
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8621,14 +8524,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 850328615}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 1278010993}
+        m_TargetAssemblyTypeName: PlantDisplay, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -9881,7 +9784,6 @@ GameObject:
   - component: {fileID: 962087469}
   - component: {fileID: 962087468}
   - component: {fileID: 962087467}
-  - component: {fileID: 962087466}
   m_Layer: 5
   m_Name: Left Button
   m_TagString: Untagged
@@ -9908,19 +9810,6 @@ RectTransform:
   m_AnchoredPosition: {x: -170.65, y: 23.699}
   m_SizeDelta: {x: 80, y: 110.313}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &962087466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962087464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!114 &962087467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9965,14 +9854,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 962087466}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
-        m_Mode: 1
+      - m_Target: {fileID: 1278010993}
+        m_TargetAssemblyTypeName: PlantDisplay, scripts
+        m_MethodName: navigate
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: -1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -10452,7 +10341,6 @@ GameObject:
   - component: {fileID: 1020393187}
   - component: {fileID: 1020393186}
   - component: {fileID: 1020393185}
-  - component: {fileID: 1020393188}
   m_Layer: 5
   m_Name: Apply Button
   m_TagString: Untagged
@@ -10524,9 +10412,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1020393188}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
+      - m_Target: {fileID: 1565502241}
+        m_TargetAssemblyTypeName: ChangeAttribute, scripts
+        m_MethodName: ApplyChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10574,19 +10462,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1020393183}
   m_CullTransparentMesh: 1
---- !u!114 &1020393188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1020393183}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &1046678845
 GameObject:
   m_ObjectHideFlags: 0
@@ -11417,13 +11292,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 730175967}
-        m_TargetAssemblyTypeName: FolderHeadClick, Assembly-CSharp
+      - m_Target: {fileID: 1780917558}
+        m_TargetAssemblyTypeName: FolderHead, scripts
         m_MethodName: FolderHeadButtonClick
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1155640428}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12456,13 +12331,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 730175967}
-        m_TargetAssemblyTypeName: FolderHeadClick, Assembly-CSharp
+      - m_Target: {fileID: 1780917558}
+        m_TargetAssemblyTypeName: FolderHead, scripts
         m_MethodName: FolderHeadButtonClick
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1219638570}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17693,7 +17568,6 @@ GameObject:
   - component: {fileID: 1676672974}
   - component: {fileID: 1676672973}
   - component: {fileID: 1676672972}
-  - component: {fileID: 1676672975}
   m_Layer: 5
   m_Name: Apply Button
   m_TagString: Untagged
@@ -17765,9 +17639,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1676672975}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
+      - m_Target: {fileID: 1868869595}
+        m_TargetAssemblyTypeName: ChangeAttribute, scripts
+        m_MethodName: ApplyChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17815,19 +17689,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1676672970}
   m_CullTransparentMesh: 1
---- !u!114 &1676672975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1676672970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &1697326932
 GameObject:
   m_ObjectHideFlags: 0
@@ -19939,7 +19800,6 @@ GameObject:
   - component: {fileID: 1949006832}
   - component: {fileID: 1949006831}
   - component: {fileID: 1949006830}
-  - component: {fileID: 1949006833}
   m_Layer: 5
   m_Name: Apply Button
   m_TagString: Untagged
@@ -20011,9 +19871,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1949006833}
-        m_TargetAssemblyTypeName: NavigateButtons, Assembly-CSharp
-        m_MethodName: OnMouseDown
+      - m_Target: {fileID: 933220416}
+        m_TargetAssemblyTypeName: ChangeAttribute, scripts
+        m_MethodName: ApplyChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -20061,19 +19921,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1949006828}
   m_CullTransparentMesh: 1
---- !u!114 &1949006833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1949006828}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d037bd174c47d645aa60d75d39cc1c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clicked: 0
 --- !u!1 &1950332991
 GameObject:
   m_ObjectHideFlags: 0

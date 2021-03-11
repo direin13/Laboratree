@@ -19,42 +19,44 @@ public class ChangeAttribute : MonoBehaviour
         pManager = GameObject.Find("GameManager").GetComponent<PlantManager>();
     }
 
-    void Update() {
-        //if apply button clicked
-        if (button.GetComponent<NavigateButtons>().clicked == true) {
+    public void ApplyChange()
+    {
+        //get index in plant collection
+        indexNum = GameObject.Find("PlantCollectionPage").GetComponent<NavigateCollection>().indexNum;
 
-            //get index in plant collection
-            indexNum = GameObject.Find("PlantCollectionPage").GetComponent<NavigateCollection>().indexNum;
+        //name of attribute to be changed
+        string attribute = this.name;
 
-            //name of attribute to be changed
-            string attribute = this.name;
-            
-            //finding dependency object to change in current plant
-            Transform dependencyObj = pManager.plantCollection[indexNum].transform.Find("Dependencies");
-            Transform attributeObj = dependencyObj.transform.Find(attribute);
+        //finding dependency object to change in current plant
+        Transform dependencyObj = pManager.plantCollection[indexNum].transform.Find("Dependencies");
+        Transform attributeObj = dependencyObj.transform.Find(attribute);
 
-            //set current val to new val
-            attributeObj.GetComponent<DependenceAttribute>().currValue = float.Parse(input.text);
+        //set current val to new val
+        attributeObj.GetComponent<DependenceAttribute>().currValue = float.Parse(input.text);
 
-            string measurement = "";
+        string measurement = "";
 
-            //get measurement value
-            if (this.name == "Lighting") {
-                measurement = " lumen(s)";
-            }
-            if (this.name == "Temperature") {
-                measurement = "°C";
-            }
-            if (this.name == "Water" || this.name == "Fertiliser" ) {
-                measurement = " day(s)";
-            }
-            // change placeholder to current val
-            placeholder.text = input.text + measurement;
-
-            //reset values
-            input.text = "";
-            button.GetComponent<NavigateButtons>().clicked = false;
+        //get measurement value
+        if (this.name == "Lighting")
+        {
+            measurement = " lumen(s)";
         }
+        if (this.name == "Temperature")
+        {
+            measurement = "°C";
+        }
+        if (this.name == "Water" || this.name == "Fertiliser")
+        {
+            measurement = " day(s)";
+        }
+        // change placeholder to current val
+        placeholder.text = input.text + measurement;
+
+        //reset values
+        input.text = "";
+    }
+
+    void Update() {
 
     }
 }

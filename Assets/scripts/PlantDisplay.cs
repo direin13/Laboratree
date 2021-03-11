@@ -57,51 +57,46 @@ public class PlantDisplay : MonoBehaviour
 
     void Update()
     {
-        if (!currPlant)
+
+        if (!currPlant) //if no plant, set to n/a 
         {
-            if (nameText)
-                nameText.text = "N/A";      //set to empty
-            currPlant = makeClone();
+            nameText.text = "N/A";
+
+            //attempt to make clone when new plant added to empty collection
+            try
+            {
+                currPlant = makeClone();
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                navigate();         //if attempt fails, adjust index value
+            }
+
         }
 
-        else
+        else    //if plant collection not empty, display plant and details
         {
-            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);       //set to follow point position
-            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;         //match time with original 
-            if (nameText)
-                nameText.text = pManager.plantCollection[indexNum].name;        //match name with original
+            nameText.text = pManager.plantCollection[indexNum].name;
 
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, currPlant.transform.position.z);     //set position to follow point
+            currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
+
+            //update dependencies of clone
             string[] dependencies = { "Lighting", "Water", "Temperature", "Fertiliser" };
             foreach (string dep in dependencies)
             {
                 DependenceAttribute depCompOrigin = pManager.plantCollection[indexNum].GetComponent<PlantRates>().GetDepComp(dep);
                 DependenceAttribute depCompClone = currPlant.GetComponent<PlantRates>().GetDepComp(dep);
 
-                depCompClone.currValue = depCompOrigin.currValue;           //match clone attribute values with original values
+                depCompClone.currValue = depCompOrigin.currValue;       //match dependencies between clone and origin
+
             }
-        }
-
-
-        //switch to next/previous plant
-        if (leftButton && leftButton.GetComponent<NavigateButtons>().clicked == true)
-        {
-            indexNum--;
-            leftButton.GetComponent<NavigateButtons>().clicked = false;
-        }
-
-        if (rightButton && rightButton.GetComponent<NavigateButtons>().clicked == true)
-        {
-            indexNum++;
-            rightButton.GetComponent<NavigateButtons>().clicked = false;
         }
 
         if (prevIndexNum != indexNum)
         {
-            navigate();
+            navigate();     //adjust index
         }
-
-        if (indexText)
-            indexText.text = (indexNum + 1).ToString() + "/" + pManager.plantCollection.Count.ToString();
 
     }
 
@@ -121,6 +116,26 @@ public class PlantDisplay : MonoBehaviour
         currPlant = null;
         prevIndexNum = indexNum;
     }
+
+    public void navigate(int indexIncrement)
+    {
+        indexNum = indexNum + indexIncrement;
+        if (indexNum >= pManager.plantCollection.Count)
+        {
+            indexNum = 0;
+        }
+        else if (indexNum < 0)
+        {
+            indexNum = pManager.plantCollection.Count - 1;
+        }
+
+        //remove previous plant clone
+        Destroy(currPlant);
+        currPlant = null;
+
+        prevIndexNum = indexNum;
+    }
+
 
     public void OnDisable()
     {

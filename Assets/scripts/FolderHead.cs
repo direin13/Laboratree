@@ -56,6 +56,25 @@ public class FolderHead : MonoBehaviour
         }
     }
 
+    public void FolderHeadButtonClick(Button button)
+    {
+        //get components menu components
+        MainMenu m_menu = GetMainMenu();
+
+        //set status of folderhead 
+        if (m_menu.isOpen != true)
+        {
+            m_menu.SetOpen(true);
+        }
+        else if (button == activeButton)
+        {
+            m_menu.SetOpen(false);
+        }
+
+        activeButton = button;       //set button status
+    }
+
+
     public MainMenu GetMainMenu()
     {
         return transform.parent.gameObject.GetComponent<MainMenu>();

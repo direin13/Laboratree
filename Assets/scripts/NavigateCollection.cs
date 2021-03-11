@@ -105,19 +105,6 @@ public class NavigateCollection : MonoBehaviour
             }
         }
 
-        //switch to next/previous plant
-        if (leftButton.GetComponent<NavigateButtons>().clicked == true)
-        {
-            indexNum--;     //reduce index
-            leftButton.GetComponent<NavigateButtons>().clicked = false;
-        }
-
-        if (rightButton.GetComponent<NavigateButtons>().clicked == true)
-        {
-            indexNum++;     //increase index
-            rightButton.GetComponent<NavigateButtons>().clicked = false;
-        }
-
         if (prevIndexNum != indexNum)
         {
             navigate();     //adjust index
@@ -160,6 +147,25 @@ public class NavigateCollection : MonoBehaviour
 
         //remove previous plant clone
         Destroy(currPlant);     
+        currPlant = null;
+
+        prevIndexNum = indexNum;
+    }
+
+    public void navigate(int indexIncrement)
+    {
+        indexNum = indexNum + indexIncrement;
+        if (indexNum >= pManager.plantCollection.Count)
+        {
+            indexNum = 0;
+        }
+        else if (indexNum < 0)
+        {
+            indexNum = pManager.plantCollection.Count - 1;
+        }
+
+        //remove previous plant clone
+        Destroy(currPlant);
         currPlant = null;
 
         prevIndexNum = indexNum;

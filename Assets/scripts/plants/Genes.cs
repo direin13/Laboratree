@@ -10,7 +10,8 @@ using MiscFunctions;
 public class Gene
 {
     public string name;
-    //2 chars, uppercase == dominant, lowercase == recessive
+
+    //allele pair is 2 chars, full/half uppercase == dominant, lowercase == recessive
     public string allelePair;
     public string valueType;
     public string dominantVal;
@@ -85,6 +86,7 @@ public class Gene
         char allele2 = allelePair.ElementAt(1);
         return (char.IsUpper(allele1) && char.IsUpper(allele2) || char.IsLower(allele1) && char.IsLower(allele2));
     }
+
 
     //GetValueMix mixes the 2 values into one, depending on the specified type
     public static float GetValueMix(float val1, float val2, float offsetPercentage)
