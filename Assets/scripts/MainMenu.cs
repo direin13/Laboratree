@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     private Vector3 followPoint;
     public bool isOpen;
     public bool inTransition;
+    public Button exitButton;
 
     // Start is called before the first frame update
     void Start()
@@ -80,12 +81,14 @@ public class MainMenu : MonoBehaviour
         {
             isOpen = true;
             ChangeFollowPoint(new Vector3(0, 180f, GetPosition()[2]));
+            exitButton.gameObject.SetActive(true);
         }
 
         else
         {
             isOpen = false;
             ChangeFollowPoint(new Vector3(0, 6f, GetPosition()[2]));
+            exitButton.gameObject.SetActive(false);
         }
     }
 
