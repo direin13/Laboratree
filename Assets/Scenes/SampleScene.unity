@@ -4157,7 +4157,7 @@ MonoBehaviour:
   fertiliserInput: {fileID: 1267166143}
   healthEfficiency: {fileID: 708531447}
   timeAlive: {fileID: 1909411983}
-  FollowPoint: {fileID: 362283241}
+  followPoint: {fileID: 362283241}
   parent: {fileID: 436741107}
   indexNum: 0
   prevIndexNum: 0
@@ -4186,7 +4186,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362283241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 436741107}
@@ -5798,7 +5798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 242.6, y: 135.9, z: -200}
+  m_LocalPosition: {x: 242.6, y: 135.9, z: -300}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

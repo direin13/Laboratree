@@ -60,7 +60,8 @@ public class PlantDisplay : MonoBehaviour
 
         if (!currPlant) //if no plant, set to n/a 
         {
-            nameText.text = "N/A";
+            if (nameText) 
+                nameText.text = "N/A";
 
             //attempt to make clone when new plant added to empty collection
             try
@@ -76,9 +77,10 @@ public class PlantDisplay : MonoBehaviour
 
         else    //if plant collection not empty, display plant and details
         {
-            nameText.text = pManager.plantCollection[indexNum].name;
+            if (nameText)
+                nameText.text = pManager.plantCollection[indexNum].name;
 
-            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, currPlant.transform.position.z);     //set position to follow point
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);     //set position to follow point
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
 
             //update dependencies of clone

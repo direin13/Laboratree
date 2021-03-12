@@ -16,7 +16,7 @@ public class NavigateCollection : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI nameText,lightInput,tempInput,waterInput,fertiliserInput,healthEfficiency,timeAlive;
 
-    public GameObject FollowPoint;
+    public GameObject followPoint;
     public Transform parent;
     private GameObject currPlant;
     
@@ -87,7 +87,7 @@ public class NavigateCollection : MonoBehaviour
             fertiliserInput.text = fertiliser;
 
 
-            currPlant.transform.position = new Vector3(FollowPoint.transform.position.x, FollowPoint.transform.position.y, currPlant.transform.position.z);     //set position to follow point
+            currPlant.transform.position = new Vector3(followPoint.transform.position.x, followPoint.transform.position.y, followPoint.transform.position.z);     //set position to follow point
             currPlant.GetComponent<Timer>().timeElapsed = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;        ///time alive
             var numDays = pManager.plantCollection[indexNum].GetComponent<Timer>().timeElapsed;
             timeAlive.text = String.Format("Days Alive: {0}", numDays);
